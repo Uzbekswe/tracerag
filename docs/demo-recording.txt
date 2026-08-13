@@ -1,0 +1,40 @@
+TraceRAG v1 native terminal recording (captured 2026-08-14)
+==============================================================
+
+This is a plain-text capture of a real local terminal session on the target
+Apple Silicon machine. The Ollama models were already installed; Docker was
+not required for the native path.
+
+$ uv run tracerag doctor
+Python 3.13.2                         OK
+Ollama http://localhost:11434         OK
+Embedding model nomic-embed-text      installed
+Generation model qwen3:4b             installed
+Docker (optional)                      daemon not running / OK
+
+$ uv run tracerag corpus fetch fastapi
+Fetched FastAPI corpus at commit f336ff831c4af3d4f625c2593a27b1e0cae93eb7
+
+$ uv run tracerag ingest data/corpus/fastapi/docs/en/docs
+Indexed 2736 chunks from 155 files.
+
+$ uv run tracerag documents
+... indexed sources report Status=current ...
+
+$ uv run tracerag ask "What kind of web framework is FastAPI?" --show-source 1
+FastAPI is a modern, high-performance web framework for building APIs with
+Python based on standard Python type hints [1].
+[1] .../docs/en/docs/index.md | FastAPI { #fastapi } | score 0.016
+The expanded source contains the FastAPI description and its supporting text.
+
+$ uv run tracerag ask "What is the private database password used by FastAPI?" --show-nearest
+TraceRAG refusal: No retrieved passage met the evidence threshold.
+Nearest matches are shown for diagnosis only; the answer model is not called.
+
+$ uv run tracerag eval --dataset fastapi-v1 --limit 1
+evaluated 1/1: f01
+{"citation_validity": 1.0, "recall_at_5": 1.0, "factuality": 1.0}
+
+The full 40-case release run is documented in docs/evaluation-report.md and
+evals/baseline/fastapi-v1.json. This capture intentionally uses --limit 1 so
+the short demo remains practical on an 8 GB local machine.
