@@ -1,0 +1,15 @@
+{
+  "dataset": "fastapi-v1",
+  "version": "1.1.0",
+  "corpus_commit": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+  "models": {
+    "embedding": "nomic-embed-text",
+    "generation": "qwen3:4b"
+  },
+  "metrics": {
+    "citation_validity": 1.0,
+    "recall_at_5": 1.0,
+    "factuality": 1.0
+  },
+  "notes": "Measured on the canonical English FastAPI docs subtree with the local Apple Silicon run. Factuality is a deterministic expected-fact proxy supplemented by the semantic review in docs/manual-review.md."
+}
