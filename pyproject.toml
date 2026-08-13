@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tracerag"
+version = "0.1.0"
+description = "A local-first, citation-first terminal RAG assistant."
+readme = "README.md"
+requires-python = ">=3.13,<3.14"
+license = { text = "MIT" }
+dependencies = [
+  "chromadb>=1.0,<2",
+  "httpx>=0.28,<1",
+  "pypdf>=5,<7",
+  "pydantic-settings>=2.8,<3",
+  "python-dotenv>=1.0,<2",
+  "rank-bm25>=0.2,<1",
+  "rich>=13,<15",
+  "typer>=0.15,<1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "pytest-cov>=6,<8", "ruff>=0.9,<1"]
+
+[project.scripts]
+tracerag = "tracerag.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["tracerag"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+ignore = ["B008"]
+
+[tool.coverage.run]
+source = ["tracerag"]
