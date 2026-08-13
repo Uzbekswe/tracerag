@@ -1,0 +1,21 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "127.0.0.1:11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+  tracerag:
+    build: .
+    environment:
+      TRAGERAG_OLLAMA_URL: http://ollama:11434
+      TRAGERAG_DATA_DIR: /app/data
+    volumes:
+      - tracerag_data:/app/data
+      - ./documents:/app/documents:ro
+    depends_on:
+      - ollama
+    entrypoint: ["/app/.venv/bin/tracerag"]
+volumes:
+  ollama_data:
+  tracerag_data:
