@@ -173,6 +173,9 @@ proxy miss is semantically supported and documented in the manual review.
 Because v1.2 replaces the vector backend, P7 reruns both model-backed corpora
 before any public-visibility decision; the v1.1 reports remain labeled baseline
 evidence rather than being silently relabeled.
+The post-backend results and semantic-review decisions are recorded in
+[`docs/evaluation-report-v1.2.md`](docs/evaluation-report-v1.2.md), with
+sanitized JSON and Markdown reports under [`docs/evidence/`](docs/evidence/).
 
 The FastAPI evaluation procedure and smoke evidence are documented in
 [`docs/evaluation-report.md`](docs/evaluation-report.md); the parallel Clippy
