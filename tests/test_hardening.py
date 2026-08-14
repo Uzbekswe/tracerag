@@ -14,6 +14,8 @@ def test_dockerfile_uses_reviewed_immutable_inputs_and_non_root_runtime() -> Non
         re.MULTILINE,
     )
     assert "groupadd" in dockerfile and "useradd" in dockerfile
+    assert "chown tracerag:tracerag /app/data" in dockerfile
+    assert "chmod 555 /app/documents" in dockerfile
     assert "USER tracerag:tracerag" in dockerfile
     assert "ENTRYPOINT [\"/app/.venv/bin/tracerag\"]" in dockerfile
 

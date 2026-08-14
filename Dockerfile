@@ -14,6 +14,8 @@ COPY tracerag ./tracerag
 COPY evals ./evals
 RUN uv sync --locked --no-dev
 RUN mkdir -p /app/data /app/documents \
-    && chown -R tracerag:tracerag /app
+    && chown tracerag:tracerag /app/data \
+    && chmod 750 /app/data \
+    && chmod 555 /app/documents
 USER tracerag:tracerag
 ENTRYPOINT ["/app/.venv/bin/tracerag"]
