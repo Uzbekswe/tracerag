@@ -31,3 +31,19 @@ class PruneConfirmationRequired(TraceRAGError):
             f"prune would remove these missing sources:\n{details}\n"
             "Use --prune --yes to confirm"
         )
+
+
+class GenerationTransactionError(OSError, TraceRAGError):
+    """Base class for failures while preparing or activating one generation."""
+
+
+class GenerationStageError(GenerationTransactionError):
+    """A staged generation could not be written completely."""
+
+
+class GenerationValidationError(GenerationTransactionError):
+    """A staged generation failed an integrity or queryability check."""
+
+
+class GenerationActivationError(GenerationTransactionError):
+    """The active generation manifest could not be replaced safely."""

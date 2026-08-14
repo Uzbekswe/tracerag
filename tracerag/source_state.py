@@ -3,12 +3,25 @@ from __future__ import annotations
 import hashlib
 import json
 from dataclasses import dataclass
+from enum import Enum
 from pathlib import Path
 
 from .parsers import SUPPORTED_EXTENSIONS
 from .persistence import atomic_write_json
 
 SOURCE_STATE_SCHEMA_VERSION = 1
+
+
+class DocumentStatus(str, Enum):
+    """Closed set of source/document states shared by indexing and the CLI."""
+
+    NEW = "new"
+    CHANGED = "changed"
+    UNCHANGED = "unchanged"
+    MISSING = "missing"
+    UNSUPPORTED = "unsupported"
+    CURRENT = "current"
+    EMPTY = "empty"
 
 
 @dataclass(frozen=True)
@@ -52,7 +65,7 @@ class FileChange:
     source: str
     relative_path: str
     source_hash: str
-    status: str
+    status: DocumentStatus
     previous: SourceRecord | None = None
 
 
@@ -128,17 +141,17 @@ class ChangePlanner:
             relative_path = ChangePlanner._relative_path(resolved, root)
             previous = records.get(source)
             if path.suffix.lower() not in SUPPORTED_EXTENSIONS:
-                status = "unsupported"
+                status = DocumentStatus.UNSUPPORTED
                 source_hash = previous.source_hash if previous else ""
             elif previous is None:
                 source_hash = SourceStateStore.hash_file(resolved)
-                status = "new"
+                status = DocumentStatus.NEW
             else:
                 source_hash = SourceStateStore.hash_file(resolved)
                 status = (
-                    "unchanged"
+                    DocumentStatus.UNCHANGED
                     if previous.source_hash == source_hash and previous.corpus_sha == corpus_sha
-                    else "changed"
+                    else DocumentStatus.CHANGED
                 )
             changes.append(
                 FileChange(resolved, source, relative_path, source_hash, status, previous)
@@ -158,7 +171,7 @@ class ChangePlanner:
                             source,
                             previous.relative_path,
                             previous.source_hash,
-                            "missing",
+                            DocumentStatus.MISSING,
                             previous,
                         )
                     )

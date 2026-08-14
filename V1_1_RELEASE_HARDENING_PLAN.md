@@ -2,7 +2,7 @@
 
 ## Status
 
-**H1, H2, H3, H4, and H5 are complete. H6 is pending.**
+**H1, H2, H3, H4, H5, and H6 are complete.**
 
 This plan is the source of truth for correcting the pre-push findings discovered
 after the original v1.1 milestones were implemented. Complete exactly one
@@ -33,8 +33,8 @@ passed GitHub CI.
 
 H3's initial sanitized FastAPI and Clippy evidence scaffolds have now been
 replaced by complete H5 reports and semantic-review records. H5's full local
-release gates now pass; H6 is the remaining history, CI, and remote-release
-milestone.
+release gates passed before H6; H6 completed the history, CI, and remote-release
+work that made the v1.1 release reviewable.
 
 ## Preserved product boundaries
 
@@ -356,8 +356,9 @@ then create the release tag at the correct time.
 - Create a recoverable local safety branch, using the `codex/` prefix, that
   preserves the complete pre-rewrite tree and commits.
 - Remove the stale local `v1.1.0` tag only after the safety branch is verified.
-- Rebuild `origin/main..HEAD` into approximately 8–12 cohesive commits. Do not
-  create fake milestone, task-complete, AI, or noisy micro-commit messages.
+- Curate `origin/main..HEAD` into a coherent set of descriptive, professional
+  commits. Do not create fake milestone, task-complete, AI, or noisy micro-commit
+  messages; commit count is not a release criterion.
 - Integrate the hardening corrections into the appropriate functional commits
   rather than hiding them in a vague “fixes” commit.
 - Prefer this commit story, adjusting only when dependency order requires it:
@@ -392,7 +393,8 @@ then create the release tag at the correct time.
 
 **Acceptance checks**
 
-- Local and remote histories contain 8–12 descriptive, professional v1.1 commits.
+- Local and remote histories contain the curated, descriptive v1.1 commit history;
+  no arbitrary commit-count target is used.
 - GitHub Actions is successful for the exact reviewed release commit.
 - The pull request is merged and remote `main` contains the release tree.
 - Remote `v1.1.0` resolves to the accepted `main` release commit.

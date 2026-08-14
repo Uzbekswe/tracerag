@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.2.0] - 2026-08-15
+
+TraceRAG v1.2 reduces public-release risk while preserving the local,
+citation-first terminal workflow.
+
+- Replaced the Chroma runtime dependency with a SQLite-backed exact vector
+  store, removing the affected server code from the dependency tree.
+- Added pinned container and CI inputs, non-root execution, bounded container
+  write paths, Dependabot configuration, and a focused CodeQL workflow.
+- Added the security policy, local trust boundary, reproducibility instructions,
+  evaluation methodology, and explicit  attribution and corpus licenses.
+- Added typed document statuses, a single ingest-summary conversion seam, and a
+  pure evaluation scoring seam without changing the retrieval contract.
+
 ## [1.1.0] - 2026-08-14
 
 TraceRAG v1.1 hardens the original local, citation-first terminal workflow for
