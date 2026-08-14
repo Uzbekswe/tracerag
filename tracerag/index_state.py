@@ -17,7 +17,7 @@ PREPROCESSING_VERSION = "parser-v1"
 class EmbeddingIdentity:
     provider: str
     model: str
-    dimension: int
+    dimension: int | None
 
     def as_dict(self) -> dict[str, object]:
         return {
@@ -37,8 +37,10 @@ class EmbeddingIdentity:
             raise ValueError("embedding provider is missing")
         if not isinstance(model, str) or not model:
             raise ValueError("embedding model is missing")
-        if isinstance(dimension, bool) or not isinstance(dimension, int) or dimension <= 0:
-            raise ValueError("embedding dimension must be a positive integer")
+        if dimension is not None and (
+            isinstance(dimension, bool) or not isinstance(dimension, int) or dimension <= 0
+        ):
+            raise ValueError("embedding dimension must be a positive integer or null")
         return cls(provider, model, dimension)
 
 
@@ -280,7 +282,7 @@ class IndexStateStore:
         collection: str,
         embedding_provider: str,
         embedding_model: str,
-        embedding_dimension: int,
+        embedding_dimension: int | None,
         chunking_version: str = CHUNKING_VERSION,
         preprocessing_version: str = PREPROCESSING_VERSION,
         generation: str | None = None,
