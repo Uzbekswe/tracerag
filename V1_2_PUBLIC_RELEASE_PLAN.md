@@ -276,7 +276,7 @@ and implement the approved P2 backend decision.
 - Ruff, the full deterministic suite, lock check, and package build pass.
 - Dependency audit reflects the P2 decision accurately.
 
-**Status:** `not started`
+**Status:** `complete`
 
 ### P4 — Harden dependencies, containers, and CI inputs
 

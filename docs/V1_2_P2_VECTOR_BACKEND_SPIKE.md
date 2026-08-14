@@ -7,11 +7,12 @@ stdlib-only SQLite exact-search candidate. It does not modify production
 TraceRAG code, dependencies, lockfiles, runtime models, or persisted data. It
 does not start Ollama or any vector HTTP service.
 
-Reproduce it with:
+Reproducibility note:
 
-```text
-uv run python scripts/vector_backend_spike.py
-```
+The comparison was run before the production backend change with the temporary
+spike harness. The harness was intentionally removed after the decision so the
+runtime and development lock no longer carry Chroma's vulnerable dependency;
+the measured output below is the preserved evidence for that decision.
 
 The fixture is deterministic: 1,288 records, 768-dimensional vectors, four
 queries, and top-k 10. That approximates the recorded FastAPI index size rather
@@ -31,10 +32,11 @@ The candidate must support the durable generation interface required by P3:
 | Activate/open | Resolve collection from generation manifest | Resolve database from generation manifest |
 | Delete obsolete generation | Delete collection | Delete generation database |
 
-The script directly exercises staged creation, vector/metadata persistence,
-reopen, validation, top-k search, and generation deletion. Source replacement
-is part of the P3 implementation contract and will receive production tests
-there; the spike's SQL shape is sufficient to validate its feasibility.
+The temporary harness directly exercised staged creation, vector/metadata
+persistence, reopen, validation, top-k search, and generation deletion. Source
+replacement is covered by the P3 production tests; the preserved measurements
+are sufficient to record the feasibility decision without keeping Chroma in the
+runtime dependency graph.
 
 ## Measured result
 
@@ -71,7 +73,7 @@ uvicorn, and related transitive packages. Representative installed sizes are:
 
 | Package area | Size |
 | --- | ---: |
-| `chromadb` | 4.1 MB |
+| `chromadb` | 4.1 MB (removed after the decision) |
 | `chromadb_rust_bindings` | 50 MB |
 | `onnxruntime` | 70 MB |
 | `grpc` | 39 MB |

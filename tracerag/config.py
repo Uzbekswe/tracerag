@@ -34,8 +34,9 @@ class Settings(BaseSettings):
         return value.rstrip("/")
 
     @property
-    def chroma_path(self) -> Path:
-        return self.data_dir / "chroma"
+    def vector_path(self) -> Path:
+        """Root directory for generation-scoped local vector databases."""
+        return self.data_dir / "vectors"
 
     @property
     def bm25_path(self) -> Path:
@@ -75,5 +76,5 @@ class Settings(BaseSettings):
 
     def ensure_dirs(self) -> None:
         self.data_dir.mkdir(parents=True, exist_ok=True)
-        self.chroma_path.mkdir(parents=True, exist_ok=True)
+        self.vector_path.mkdir(parents=True, exist_ok=True)
         self.corpus_path.mkdir(parents=True, exist_ok=True)

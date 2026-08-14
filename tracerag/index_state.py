@@ -8,7 +8,7 @@ from uuid import uuid4
 from .errors import IncompatibleIndexError, LegacyIndexError
 from .persistence import atomic_write_json
 
-INDEX_SCHEMA_VERSION = 2
+INDEX_SCHEMA_VERSION = 3
 CHUNKING_VERSION = "structural-v1"
 PREPROCESSING_VERSION = "parser-v1"
 

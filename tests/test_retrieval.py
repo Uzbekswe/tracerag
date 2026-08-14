@@ -54,7 +54,7 @@ def test_hybrid_retriever_prefers_substantive_evidence() -> None:
 
 
 def test_vector_store_replaces_only_the_changed_source(tmp_path: Path) -> None:
-    store = VectorStore(tmp_path / "chroma", "test")
+    store = VectorStore(tmp_path / "vectors", "test")
     source_a = "a.md"
     source_b = "b.md"
     chunk_a1 = Chunk("a1", "old A", source_a, 0, "A", "hash-a1")
