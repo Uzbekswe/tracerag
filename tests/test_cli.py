@@ -1,4 +1,5 @@
 import json
+import re
 from pathlib import Path
 
 from rich.console import Console
@@ -10,6 +11,12 @@ from tracerag.corpus import CLIPPY_COMMIT
 from tracerag.ingest import IngestSummary
 
 runner = CliRunner()
+_ANSI_ESCAPE = re.compile(r"\x1b\[[0-9;]*m")
+
+
+def _plain_output(result) -> str:
+    """Return CLI output without terminal styling control sequences."""
+    return _ANSI_ESCAPE.sub("", result.stdout + result.stderr)
 
 
 class _DocumentsService:
@@ -129,7 +136,7 @@ def test_ingest_yes_without_prune_has_usage_error(tmp_path: Path) -> None:
     )
 
     assert result.exit_code == 2
-    assert "--yes requires --prune" in (result.stdout + result.stderr)
+    assert "--yes requires --prune" in _plain_output(result)
 
 
 def test_corpus_fetch_clippy_prints_pinned_commit_and_allowlist(
@@ -160,8 +167,9 @@ def test_corpus_fetch_clippy_prints_pinned_commit_and_allowlist(
     )
 
     assert result.exit_code == 0
-    assert CLIPPY_COMMIT in result.output
-    assert "book/src/development" in result.output
+    output = _plain_output(result)
+    assert CLIPPY_COMMIT in output
+    assert "book/src/development" in "".join(output.split())
     assert captured["destination"] == tmp_path / "corpus" / "clippy"
     assert not settings.manifest_path.exists()
 
@@ -197,8 +205,9 @@ def test_benchmark_help_exposes_fastapi_profile() -> None:
     )
 
     assert result.exit_code == 0
-    assert "--corpus" in result.output
-    assert "fastapi" in result.output
+    output = _plain_output(result)
+    assert "--corpus" in output
+    assert "fastapi" in output
 
 
 def test_eval_resolves_clippy_dataset_profile(tmp_path: Path, monkeypatch) -> None:
