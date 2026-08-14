@@ -81,7 +81,9 @@ def test_documents_uses_source_state_for_empty_parsed_files(tmp_path: Path) -> N
     root = tmp_path / "docs"
     root.mkdir()
     (root / "guide.md").write_text("# Guide\n\nUseful evidence.", encoding="utf-8")
-    (root / "newsletter.md").write_text("<html><body><!-- presentation only --></body></html>", encoding="utf-8")
+    (root / "newsletter.md").write_text(
+        "<html><body><!-- presentation only --></body></html>", encoding="utf-8"
+    )
     settings = Settings(data_dir=tmp_path / "data")
     service = RAGService(settings)
     ingestor = Ingestor(settings, service.vectors, service.lexical, _IngestOllama())

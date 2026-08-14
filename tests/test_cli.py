@@ -73,9 +73,7 @@ def test_documents_verbose_retains_source_diagnosis(tmp_path: Path, monkeypatch)
     assert "Content hash" in result.output
 
 
-def test_documents_incompatible_index_prints_rebuild_guidance(
-    tmp_path: Path, monkeypatch
-) -> None:
+def test_documents_incompatible_index_prints_rebuild_guidance(tmp_path: Path, monkeypatch) -> None:
     settings = Settings(data_dir=tmp_path)
     settings.ensure_dirs()
     settings.index_state_path.write_text('{"schema_version": 1}', encoding="utf-8")
@@ -190,9 +188,7 @@ def test_corpus_fetch_clippy_prints_pinned_commit_and_allowlist(
     assert not settings.manifest_path.exists()
 
 
-def test_eval_rejects_malformed_dataset_with_nonzero_exit(
-    tmp_path: Path, monkeypatch
-) -> None:
+def test_eval_rejects_malformed_dataset_with_nonzero_exit(tmp_path: Path, monkeypatch) -> None:
     dataset = tmp_path / "bad.json"
     dataset.write_text(
         json.dumps(

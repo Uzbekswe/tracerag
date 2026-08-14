@@ -92,9 +92,7 @@ class GenerationTransaction:
             raise
         except BaseException as exc:
             self._discard_stage(vector_store, bm25_path, source_state_path)
-            raise GenerationStageError(
-                f"could not stage generation {generation}: {exc}"
-            ) from exc
+            raise GenerationStageError(f"could not stage generation {generation}: {exc}") from exc
 
         if not committed:  # pragma: no cover - defensive guard
             raise GenerationActivationError("generation activation did not commit")
@@ -156,7 +154,10 @@ class GenerationTransaction:
         if previous_state is None:
             warnings: list[str] = []
             legacy_path = self.settings.vector_path / f"{self.settings.collection}.sqlite3"
-            if legacy_path != self.settings.vector_path / f"{active_identity.active_collection}.sqlite3":
+            if (
+                legacy_path
+                != self.settings.vector_path / f"{active_identity.active_collection}.sqlite3"
+            ):
                 try:
                     legacy_path.unlink(missing_ok=True)
                 except OSError as exc:  # pragma: no cover - exercised through injection
@@ -235,7 +236,9 @@ class GenerationTransaction:
         try:
             vector_store.delete()
         except (OSError, RuntimeError, ValueError) as exc:  # pragma: no cover - cleanup warning
-            logger.warning("could not remove failed vector stage; recoverable leftover retained: %s", exc)
+            logger.warning(
+                "could not remove failed vector stage; recoverable leftover retained: %s", exc
+            )
         finally:
             for path in (bm25_path, source_state_path):
                 try:

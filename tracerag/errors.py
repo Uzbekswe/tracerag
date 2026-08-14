@@ -28,8 +28,7 @@ class PruneConfirmationRequired(TraceRAGError):
         self.missing = tuple(missing)
         details = "\n".join(f"- {source}" for source in self.missing)
         super().__init__(
-            f"prune would remove these missing sources:\n{details}\n"
-            "Use --prune --yes to confirm"
+            f"prune would remove these missing sources:\n{details}\nUse --prune --yes to confirm"
         )
 
 

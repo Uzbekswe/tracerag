@@ -121,9 +121,7 @@ def validate_dataset(value: object) -> dict[str, object]:
         if not isinstance(in_scope, bool):
             raise DatasetValidationError(f"record {record_id!r} requires boolean in_scope")
         if not isinstance(targets, list):
-            raise DatasetValidationError(
-                f"record {record_id!r} requires evidence_targets array"
-            )
+            raise DatasetValidationError(f"record {record_id!r} requires evidence_targets array")
         if in_scope and not targets:
             raise DatasetValidationError(
                 f"in-scope record {record_id!r} requires at least one evidence target"
@@ -210,7 +208,9 @@ def _active_identity(settings: object) -> IndexIdentity | None:
     try:
         return IndexStateStore(state_path).load()
     except (OSError, ValueError) as exc:
-        raise DatasetValidationError("active index provenance is invalid; run ingest --rebuild") from exc
+        raise DatasetValidationError(
+            "active index provenance is invalid; run ingest --rebuild"
+        ) from exc
 
 
 def _validate_dataset_corpus(dataset: dict[str, object], identity: IndexIdentity | None) -> None:
@@ -524,9 +524,7 @@ def run_evaluation(
         )
         matched = case["matched_target"]
         matched_text = (
-            f"{matched['source']}#{matched['heading']} (rank {matched['rank']})"
-            if matched
-            else ""
+            f"{matched['source']}#{matched['heading']} (rank {matched['rank']})" if matched else ""
         )
         lines.append(
             f"| {case['id']} | {case['status']} | {targets_text} | "

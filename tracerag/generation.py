@@ -28,9 +28,7 @@ def validate_citations(answer: str, count: int) -> bool:
     return bool(citations) and all(1 <= citation <= count for citation in citations)
 
 
-def _fallback_snippet(
-    text: str, question_terms: set[str], max_words: int = 38
-) -> str:
+def _fallback_snippet(text: str, question_terms: set[str], max_words: int = 38) -> str:
     """Return a short readable evidence excerpt for model-format failures."""
     normalized = re.sub(r"\s+", " ", text).strip()
     if not normalized:
@@ -39,9 +37,7 @@ def _fallback_snippet(
     substantial = [sentence for sentence in sentences if len(sentence.split()) >= 3]
     snippet = max(
         substantial or [normalized],
-        key=lambda sentence: sum(
-            term in sentence.lower() for term in question_terms
-        ),
+        key=lambda sentence: sum(term in sentence.lower() for term in question_terms),
     )
     words = snippet.split()
     if len(words) > max_words:

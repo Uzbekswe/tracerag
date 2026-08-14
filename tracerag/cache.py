@@ -70,8 +70,13 @@ class EmbeddingCache:
             if payload.get("schema_version") != CACHE_SCHEMA_VERSION:
                 raise ValueError("unsupported cache schema")
             vector = payload["vector"]
-            if not isinstance(vector, list) or not vector or any(
-                isinstance(value, bool) or not isinstance(value, (float, int)) for value in vector
+            if (
+                not isinstance(vector, list)
+                or not vector
+                or any(
+                    isinstance(value, bool) or not isinstance(value, (float, int))
+                    for value in vector
+                )
             ):
                 raise ValueError("invalid cached vector")
             os.utime(path, None)

@@ -134,8 +134,7 @@ class RichIngestReporter:
             )
         if stage == "embedding":
             return (
-                f"{label} • {details.get('chunks', 0)} chunks, "
-                f"{details.get('batches', 0)} batches"
+                f"{label} • {details.get('chunks', 0)} chunks, {details.get('batches', 0)} batches"
             )
         return label
 
@@ -295,7 +294,13 @@ def ingest(
             reporter=reporter,
             corpus_provenance=corpus_context.provenance if corpus_context else None,
         )
-    except (GenerationTransactionError, IndexCompatibilityError, OllamaError, OSError, ValueError) as exc:
+    except (
+        GenerationTransactionError,
+        IndexCompatibilityError,
+        OllamaError,
+        OSError,
+        ValueError,
+    ) as exc:
         reporter.stop()
         console.print(f"[red]Error:[/red] {exc}")
         raise typer.Exit(1) from exc

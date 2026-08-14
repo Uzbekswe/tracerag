@@ -34,9 +34,7 @@ def test_vector_store_replaces_source_and_deletes_generation(tmp_path: Path) -> 
     chunks, embeddings = _chunks(tmp_path)
     store = VectorStore(tmp_path / "vectors", "generation-1")
     store.import_chunks(chunks, embeddings)
-    replacement = Chunk(
-        "c", "replacement evidence", chunks[0].source, 0, "Replacement", "hash-c"
-    )
+    replacement = Chunk("c", "replacement evidence", chunks[0].source, 0, "Replacement", "hash-c")
 
     store.replace_source(replacement.source, [replacement], [[0.5, 0.5]])
 

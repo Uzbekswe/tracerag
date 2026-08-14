@@ -124,7 +124,9 @@ class VectorStore:
         dimension = self._validate_batch(chunks, embeddings)
         if dimension is None:
             return
-        existing = connection.execute("SELECT MIN(dimension), MAX(dimension) FROM vectors").fetchone()
+        existing = connection.execute(
+            "SELECT MIN(dimension), MAX(dimension) FROM vectors"
+        ).fetchone()
         if existing[0] is not None and (existing[0] != existing[1] or existing[0] != dimension):
             raise ValueError("embedding vectors must match the existing index dimension")
         connection.executemany(
@@ -230,10 +232,11 @@ class VectorStore:
             raise ValueError("vector generation collection does not match its index identity")
         connection = self._connect()
         try:
-            metadata = dict(
-                connection.execute("SELECT key, value FROM vector_metadata").fetchall()
-            )
-            if metadata.get("schema") != VECTOR_SCHEMA or metadata.get("generation") != self.collection_name:
+            metadata = dict(connection.execute("SELECT key, value FROM vector_metadata").fetchall())
+            if (
+                metadata.get("schema") != VECTOR_SCHEMA
+                or metadata.get("generation") != self.collection_name
+            ):
                 raise ValueError("vector generation metadata does not match its identity")
             count, minimum, maximum = connection.execute(
                 "SELECT COUNT(*), MIN(dimension), MAX(dimension) FROM vectors"
@@ -241,9 +244,7 @@ class VectorStore:
             if count == 0:
                 return
             if minimum != maximum or expected_dimension != minimum:
-                raise ValueError(
-                    "vector generation dimension does not match its index identity"
-                )
+                raise ValueError("vector generation dimension does not match its index identity")
             row = connection.execute(
                 "SELECT dimension, embedding FROM vectors ORDER BY id LIMIT 1"
             ).fetchone()
@@ -304,11 +305,7 @@ class VectorStore:
                     "content_hash": items[0].content_hash,
                     "status": DocumentStatus.CURRENT
                     if current_hash and current_hash == stored_hash
-                    else (
-                        DocumentStatus.CHANGED
-                        if current_hash
-                        else DocumentStatus.MISSING
-                    ),
+                    else (DocumentStatus.CHANGED if current_hash else DocumentStatus.MISSING),
                 }
             )
         return result

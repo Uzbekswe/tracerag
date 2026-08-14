@@ -86,13 +86,17 @@ class SourceStateStore:
             return {}
         try:
             value = json.loads(self.path.read_text(encoding="utf-8"))
-            if not isinstance(value, dict) or value.get("schema_version") != SOURCE_STATE_SCHEMA_VERSION:
+            if (
+                not isinstance(value, dict)
+                or value.get("schema_version") != SOURCE_STATE_SCHEMA_VERSION
+            ):
                 raise ValueError("unsupported source-state schema")
             raw_records = value.get("sources")
             if not isinstance(raw_records, dict):
                 raise TypeError("source-state records must be an object")
             records = {
-                str(source): SourceRecord.from_dict(record) for source, record in raw_records.items()
+                str(source): SourceRecord.from_dict(record)
+                for source, record in raw_records.items()
             }
             return records
         except (OSError, json.JSONDecodeError, TypeError, ValueError):
@@ -103,7 +107,10 @@ class SourceStateStore:
     def validate(self) -> None:
         """Raise when this generation's source-state artifact is malformed."""
         value = json.loads(self.path.read_text(encoding="utf-8"))
-        if not isinstance(value, dict) or value.get("schema_version") != SOURCE_STATE_SCHEMA_VERSION:
+        if (
+            not isinstance(value, dict)
+            or value.get("schema_version") != SOURCE_STATE_SCHEMA_VERSION
+        ):
             raise ValueError("unsupported source-state schema")
         raw_records = value.get("sources")
         if not isinstance(raw_records, dict):

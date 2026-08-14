@@ -22,9 +22,7 @@ def _prepared(tmp_path: Path) -> PreparedGeneration:
     return PreparedGeneration(
         chunks=(chunk,),
         embeddings=((1.0, 0.0),),
-        source_records={
-            source: SourceRecord(source, "guide.md", "source-hash", "commit", 1)
-        },
+        source_records={source: SourceRecord(source, "guide.md", "source-hash", "commit", 1)},
         embedding_provider="ollama",
         embedding_model="nomic-embed-text",
         embedding_dimension=2,
@@ -64,7 +62,9 @@ def test_cleanup_failure_keeps_activation_and_reports_recoverable_leftover(
         raise OSError("synthetic cleanup failure")
 
     monkeypatch.setattr(VectorStore, "delete", fail_delete)
-    second = GenerationTransaction(settings, state_store).execute(_prepared(tmp_path), first.identity)
+    second = GenerationTransaction(settings, state_store).execute(
+        _prepared(tmp_path), first.identity
+    )
 
     assert state_store.load() == second.identity
     assert second.warnings

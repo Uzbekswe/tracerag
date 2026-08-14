@@ -158,9 +158,7 @@ class Ingestor:
             ]
             missing = [change for change in changes if change.status == DocumentStatus.MISSING]
             skipped = sum(change.status == DocumentStatus.UNCHANGED for change in changes)
-            unsupported = sum(
-                change.status == DocumentStatus.UNSUPPORTED for change in changes
-            )
+            unsupported = sum(change.status == DocumentStatus.UNSUPPORTED for change in changes)
             changed = sum(change.status == DocumentStatus.CHANGED for change in changes)
             self._emit(
                 reporter,
@@ -221,8 +219,7 @@ class Ingestor:
                 dimension = len(all_embeddings[0])
                 if state.embedding.dimension is not None and dimension != state.embedding.dimension:
                     raise IncompatibleIndexError(
-                        "embedding dimension is incompatible; run "
-                        "tracerag ingest PATH --rebuild"
+                        "embedding dimension is incompatible; run tracerag ingest PATH --rebuild"
                     )
 
             offset = 0
@@ -247,7 +244,9 @@ class Ingestor:
             snapshot_embeddings: list[list[float]] = []
             for source in sorted(source_payload):
                 chunks, embeddings = source_payload[source]
-                ordered = sorted(zip(chunks, embeddings, strict=True), key=lambda item: item[0].chunk_id)
+                ordered = sorted(
+                    zip(chunks, embeddings, strict=True), key=lambda item: item[0].chunk_id
+                )
                 snapshot_chunks.extend(chunk for chunk, _ in ordered)
                 snapshot_embeddings.extend(embedding for _, embedding in ordered)
             dimension = (
@@ -273,7 +272,9 @@ class Ingestor:
                 generation=outcome.identity.generation,
                 warnings=list(outcome.warnings),
             )
-            self.vectors = VectorStore(self.settings.vector_path, outcome.identity.active_collection)
+            self.vectors = VectorStore(
+                self.settings.vector_path, outcome.identity.active_collection
+            )
             self.lexical = BM25Store(self.settings.data_dir / outcome.identity.bm25_artifact)
             self._finish_summary(
                 reporter,
@@ -320,8 +321,7 @@ class Ingestor:
             cache_hits += 1
             if known_dimension is not None and len(cached) != known_dimension:
                 raise IncompatibleIndexError(
-                    "cached embedding dimension is incompatible; run "
-                    "tracerag ingest PATH --rebuild"
+                    "cached embedding dimension is incompatible; run tracerag ingest PATH --rebuild"
                 )
             vectors[index] = cached
 

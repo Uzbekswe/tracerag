@@ -77,9 +77,11 @@ def _ingestor(
 def test_lock_rejects_a_second_writer(tmp_path: Path) -> None:
     lock_path = tmp_path / "index.lock"
 
-    with ingest_lock(lock_path), pytest.raises(
-        ConcurrentIngestError, match="another ingest is already running"
-    ), ingest_lock(lock_path):
+    with (
+        ingest_lock(lock_path),
+        pytest.raises(ConcurrentIngestError, match="another ingest is already running"),
+        ingest_lock(lock_path),
+    ):
         pass
 
 

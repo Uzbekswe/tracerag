@@ -138,18 +138,14 @@ class IndexIdentity:
             not isinstance(active_collection, str) or not active_collection
         ):
             raise ValueError("active collection must be text")
-        if bm25_artifact is not None and (
-            not isinstance(bm25_artifact, str) or not bm25_artifact
-        ):
+        if bm25_artifact is not None and (not isinstance(bm25_artifact, str) or not bm25_artifact):
             raise ValueError("BM25 artifact must be text")
         if source_state_artifact is not None and (
             not isinstance(source_state_artifact, str) or not source_state_artifact
         ):
             raise ValueError("source-state artifact must be text")
         parsed_provenance = (
-            CorpusProvenance.from_dict(corpus_provenance)
-            if corpus_provenance is not None
-            else None
+            CorpusProvenance.from_dict(corpus_provenance) if corpus_provenance is not None else None
         )
         return cls(
             generation=generation,
@@ -177,8 +173,7 @@ class IndexStateStore:
             return IndexIdentity.from_dict(value)
         except (OSError, json.JSONDecodeError, TypeError, ValueError) as exc:
             raise IncompatibleIndexError(
-                "the index state manifest is invalid; run "
-                "tracerag ingest PATH --rebuild"
+                "the index state manifest is invalid; run tracerag ingest PATH --rebuild"
             ) from exc
 
     def save(self, identity: IndexIdentity) -> None:
@@ -251,8 +246,7 @@ class IndexStateStore:
         if identity is None:
             if legacy_index and not rebuild:
                 raise LegacyIndexError(
-                    "an unversioned legacy index was found; run "
-                    "tracerag ingest PATH --rebuild"
+                    "an unversioned legacy index was found; run tracerag ingest PATH --rebuild"
                 )
             return None
         if rebuild:
@@ -271,8 +265,7 @@ class IndexStateStore:
         if mismatches:
             joined = ", ".join(mismatches)
             raise IncompatibleIndexError(
-                f"index identity is incompatible ({joined}); run "
-                "tracerag ingest PATH --rebuild"
+                f"index identity is incompatible ({joined}); run tracerag ingest PATH --rebuild"
             )
         return identity
 

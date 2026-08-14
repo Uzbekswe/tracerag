@@ -17,7 +17,7 @@ def test_dockerfile_uses_reviewed_immutable_inputs_and_non_root_runtime() -> Non
     assert "chown tracerag:tracerag /app/data" in dockerfile
     assert "chmod 555 /app/documents" in dockerfile
     assert "USER tracerag:tracerag" in dockerfile
-    assert "ENTRYPOINT [\"/app/.venv/bin/tracerag\"]" in dockerfile
+    assert 'ENTRYPOINT ["/app/.venv/bin/tracerag"]' in dockerfile
 
 
 def test_compose_pins_ollama_and_limits_application_writes() -> None:
@@ -26,7 +26,7 @@ def test_compose_pins_ollama_and_limits_application_writes() -> None:
     assert re.search(r"image: ollama/ollama:0\.12\.6@sha256:[0-9a-f]{64}", compose)
     assert '"127.0.0.1:11434:11434"' in compose
     assert "read_only: true" in compose
-    assert "user: \"10001:10001\"" in compose
+    assert 'user: "10001:10001"' in compose
     assert "./documents:/app/documents:ro" in compose
     assert "tracerag_data:/app/data" in compose
 

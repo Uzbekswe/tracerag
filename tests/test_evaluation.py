@@ -226,12 +226,8 @@ def test_sequential_datasets_write_distinct_report_files(tmp_path: Path) -> None
 
 def test_exact_target_matching_requires_source_and_heading() -> None:
     targets = [{"source": "docs/guide.md", "heading": "Intro"}]
-    wrong_heading = [
-        SearchHit(Chunk("id", "text", "/docs/guide.md", 0, "Other", "hash"), 0.9)
-    ]
-    wrong_file = [
-        SearchHit(Chunk("id", "text", "/docs/other.md", 0, "Intro", "hash"), 0.9)
-    ]
+    wrong_heading = [SearchHit(Chunk("id", "text", "/docs/guide.md", 0, "Other", "hash"), 0.9)]
+    wrong_file = [SearchHit(Chunk("id", "text", "/docs/other.md", 0, "Intro", "hash"), 0.9)]
 
     assert match_evidence_targets(targets, wrong_heading) is None
     assert match_evidence_targets(targets, wrong_file) is None

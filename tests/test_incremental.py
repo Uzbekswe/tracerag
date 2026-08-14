@@ -134,9 +134,7 @@ def test_document_status_is_the_closed_source_state_contract() -> None:
     }
 
 
-def test_unchanged_ingest_skips_parse_embedding_and_writes(
-    tmp_path: Path, monkeypatch
-) -> None:
+def test_unchanged_ingest_skips_parse_embedding_and_writes(tmp_path: Path, monkeypatch) -> None:
     source = tmp_path / "guide.md"
     source.write_text("same", encoding="utf-8")
     ingestor, _, _, ollama = _ingestor(tmp_path)
@@ -179,7 +177,10 @@ def test_changed_source_only_replaces_that_source(tmp_path: Path, monkeypatch) -
     assert len(ollama.calls) == first_call_count + 1
     active = RAGService(Settings(data_dir=tmp_path)).vectors.all_chunks()
     assert {chunk.source for chunk in active} == {str(first.resolve()), str(second.resolve())}
-    assert next(chunk for chunk in active if chunk.source == str(first.resolve())).text == "first changed"
+    assert (
+        next(chunk for chunk in active if chunk.source == str(first.resolve())).text
+        == "first changed"
+    )
 
 
 def test_changed_file_reuses_identical_chunk_embeddings(tmp_path: Path, monkeypatch) -> None:
