@@ -2,6 +2,7 @@ import json
 import re
 from pathlib import Path
 
+import pytest
 from rich.console import Console
 from typer.testing import CliRunner
 
@@ -71,6 +72,23 @@ def test_documents_verbose_retains_source_diagnosis(tmp_path: Path, monkeypatch)
     assert "/tmp/guide.md" in result.output
     assert "current" in result.output
     assert "Content hash" in result.output
+
+
+@pytest.mark.xfail(strict=True, reason="P1: move service construction into the CLI error boundary")
+def test_documents_incompatible_index_prints_rebuild_guidance(
+    tmp_path: Path, monkeypatch
+) -> None:
+    settings = Settings(data_dir=tmp_path)
+    settings.ensure_dirs()
+    settings.index_state_path.write_text('{"schema_version": 1}', encoding="utf-8")
+    monkeypatch.setattr(cli_module, "Settings", lambda **_: settings)
+
+    result = runner.invoke(cli_module.app, ["documents"], color=False, terminal_width=160)
+
+    assert result.exit_code == 1
+    output = _plain_output(result)
+    assert "Traceback" not in output
+    assert "tracerag ingest PATH --rebuild" in output
 
 
 def test_ingest_reporter_prints_aggregate_summary() -> None:

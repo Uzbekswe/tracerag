@@ -80,6 +80,34 @@ def test_successful_ingest_persists_generation_scoped_source_state(tmp_path: Pat
     assert SourceStateStore(source_state_path).load()
 
 
+@pytest.mark.xfail(strict=True, reason="P1: persist an initial generation with zero chunks")
+def test_initial_all_empty_corpus_persists_authoritative_empty_source_state(
+    tmp_path: Path,
+) -> None:
+    settings = _settings(tmp_path)
+    root = tmp_path / "docs"
+    empty = root / "empty.md"
+    root.mkdir()
+    empty.write_text("", encoding="utf-8")
+
+    processed, chunks = _ingestor(settings, FakeOllama()).ingest(root)
+
+    assert (processed, chunks) == (1, 0)
+    state = IndexStateStore(settings.index_state_path).load()
+    assert state is not None
+    documents = RAGService(settings).documents()
+    assert documents == [
+        {
+            "source": str(empty),
+            "chunks": 0,
+            "content_hash": SourceStateStore.hash_file(empty),
+            "source_hash": SourceStateStore.hash_file(empty),
+            "relative_path": "empty.md",
+            "status": "empty",
+        }
+    ]
+
+
 def test_ingest_persists_path_bound_corpus_provenance(tmp_path: Path) -> None:
     settings = _settings(tmp_path)
     root = tmp_path / "docs"
