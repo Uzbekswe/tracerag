@@ -220,7 +220,15 @@ advisory before redesigning durable transaction ownership.
 - No production behavior or dependency changed during the spike.
 - The public-release implication of the decision is explicit.
 
-**Status:** `not started`
+**Decision (2026-08-14):** Replace Chroma in P3 with a SQLite-backed exact
+local vector adapter. The deterministic 1,288-row, 768-dimensional spike
+matched Chroma's exact top-k results for all four queries, used no new
+dependency, and measured approximately 100 ms per query on the target machine.
+The performance tradeoff and the requirement for final model-backed evaluation
+after the storage change are recorded in
+`docs/V1_2_P2_VECTOR_BACKEND_SPIKE.md`.
+
+**Status:** `complete`
 
 ### P3 — Deep generation transaction and vector-backend mitigation
 
