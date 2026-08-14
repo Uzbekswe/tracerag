@@ -1,0 +1,1255 @@
+{
+  "schema_version": 2,
+  "dataset": "clippy-v1",
+  "dataset_version": "1.1.0",
+  "dataset_corpus": {
+    "name": "clippy",
+    "source": "https://github.com/rust-lang/rust-clippy",
+    "commit": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+    "allowed_path": "book/src/development"
+  },
+  "records_evaluated": 15,
+  "corpus": {
+    "name": "clippy",
+    "url": "https://github.com/rust-lang/rust-clippy.git",
+    "commit": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+    "license": "MIT OR Apache-2.0",
+    "allowed_path": "book/src/development",
+    "fetched_at": "2026-08-14T11:05:17.729521+00:00"
+  },
+  "index_schema_version": 2,
+  "provenance": {
+    "dataset": {
+      "name": "clippy-v1",
+      "version": "1.1.0",
+      "corpus": {
+        "name": "clippy",
+        "source": "https://github.com/rust-lang/rust-clippy",
+        "commit": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+        "allowed_path": "book/src/development"
+      }
+    },
+    "corpus": {
+      "name": "clippy",
+      "url": "https://github.com/rust-lang/rust-clippy.git",
+      "commit": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+      "license": "MIT OR Apache-2.0",
+      "allowed_path": "book/src/development",
+      "fetched_at": "2026-08-14T11:05:17.729521+00:00"
+    },
+    "index": {
+      "schema_version": 2,
+      "generation": "155e178d339748cda6d4f51c61c879c9",
+      "collection": "tracerag",
+      "embedding": {
+        "provider": "ollama",
+        "model": "nomic-embed-text",
+        "dimension": 768
+      },
+      "chunking_version": "structural-v1",
+      "preprocessing_version": "parser-v1",
+      "active_collection": "tracerag__155e178d339748cd",
+      "bm25_artifact": "bm25/generations/155e178d339748cda6d4f51c61c879c9.json",
+      "source_state_artifact": "source-state/generations/155e178d339748cda6d4f51c61c879c9.json",
+      "corpus_provenance": {
+        "name": "clippy",
+        "url": "https://github.com/rust-lang/rust-clippy.git",
+        "commit": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+        "license": "MIT OR Apache-2.0",
+        "allowed_path": "book/src/development",
+        "fetched_at": "2026-08-14T11:05:17.729521+00:00"
+      }
+    },
+    "cache": {
+      "path": "embedding-cache",
+      "max_bytes": 536870912,
+      "embedding_model": "nomic-embed-text"
+    }
+  },
+  "models": {
+    "embedding": "nomic-embed-text",
+    "generation": "qwen3:4b"
+  },
+  "config": {
+    "top_k": 5,
+    "min_retrieval_score": 0.72,
+    "model_context": 2048
+  },
+  "metrics": {
+    "citation_validity": 1.0,
+    "recall_at_5": 1.0,
+    "factuality": 1.0
+  },
+  "diagnostics": {
+    "in_scope_cases": 12,
+    "out_of_scope_cases": 3,
+    "out_of_scope_refusal_accuracy": 1.0,
+    "generated_answers": 12
+  },
+  "factuality_method": "deterministic expected-fact proxy; semantic review recorded in docs/manual-review-clippy.md",
+  "release_gate": {
+    "citation_validity": true,
+    "recall_at_5": true,
+    "factuality": true
+  },
+  "cases": [
+    {
+      "id": "c01",
+      "question": "How do I get the Clippy source code?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "book/src/development/basics.md",
+          "heading": "basics for hacking on clippy > get the code"
+        }
+      ],
+      "expected_facts": [
+        "source code"
+      ],
+      "matched_target": {
+        "source": "book/src/development/basics.md",
+        "heading": "basics for hacking on clippy > get the code",
+        "rank": 5
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "This will explain the basics on how to get the source code and how to compile and test the code. [1] [Adding Lints]: adding_lints.md [Common Tools]: common_tools_writing_lints.md - [Basics for hacking on Clippy](#basics-for-hacking-on-clippy) - [Get the Code](#get-the-code) - [Building and Testing](#building-and-testing) - [`cargo dev`](#cargo-dev) - [lintcheck](#lintcheck) - [PR](#pr) - [Common Abbreviations](#common-abbreviations) - [Install from source](#install-from-source) [2]",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "book/src/development/README.md",
+          "chunk_index": 1,
+          "heading_path": "Clippy Development > Getting started",
+          "content_hash": "82f8341061d61c8fe41d24869554c8d2a80a300f2b8c64f943158c6af7895222",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "10eca4e4a02894eb7b970d2e7fb989bc20a4e80263d2b7236f5897626a2c63fd",
+          "score": 0.016393,
+          "preview": "If this is your first time contributing to Clippy, you should first read the\n[Basics docs](basics.md). This will explain the basics on how to get the source\ncode and how to compile and test the code."
+        },
+        {
+          "citation": 2,
+          "source": "book/src/development/basics.md",
+          "chunk_index": 0,
+          "heading_path": "Basics for hacking on Clippy",
+          "content_hash": "ba005367d0c780ec3fadbaea8f20f70470473038288b7406949a37b02a5dca41",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "114aa9a462d8aae44cc95f742c78869ca732e61f6cd7a049ae82edc64dc63646",
+          "score": 0.015591,
+          "preview": "This document explains the basics for hacking on Clippy. Besides others, this\nincludes how to build and test Clippy. For a more in depth description on the\ncodebase take a look at [Adding Lints] or [Common Tools].\n\n[Adding Lints]: adding_lints.md\n[Common Tools]: common_tools_writing_lints.md\n\n- [Bas"
+        },
+        {
+          "citation": 3,
+          "source": "book/src/development/basics.md",
+          "chunk_index": 22,
+          "heading_path": "runs the `dogfood` tests > Install from source",
+          "content_hash": "726be618185c6320870712fb8f565e4318cee9af5e3c1ba2192081614c76e608",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "114aa9a462d8aae44cc95f742c78869ca732e61f6cd7a049ae82edc64dc63646",
+          "score": 0.014286,
+          "preview": "If you are hacking on Clippy and want to install it from source, do the\nfollowing:\n\nFrom the Clippy project root, run the following command to build the Clippy\nbinaries and copy them into the toolchain directory. This will create a new\ntoolchain called `clippy` by default, see `cargo dev setup toolc"
+        },
+        {
+          "citation": 4,
+          "source": "book/src/development/infrastructure/book.md",
+          "chunk_index": 0,
+          "heading_path": "The Clippy Book",
+          "content_hash": "caaf3acee38f02d273375f1e74aa1dcd930edc5e4754e04036df895bb8c3f215",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "dcf22ccdd837aef8a79a72059a87a47ff4b029d7f8ffa625e8abcfec27687eba",
+          "score": 0.014221,
+          "preview": "This document explains how to make additions and changes to the Clippy book, the\nguide to Clippy that you're reading right now. The Clippy book is formatted with\n[Markdown](https://www.markdownguide.org) and generated by\n[mdBook](https://github.com/rust-lang/mdBook).\n\n- [Get mdBook](#get-mdbook)\n- ["
+        },
+        {
+          "citation": 5,
+          "source": "book/src/development/basics.md",
+          "chunk_index": 1,
+          "heading_path": "Basics for hacking on Clippy > Get the Code",
+          "content_hash": "c3ee423d6bdfbd94a8f631c8335135fe6d62d6767f63c531dc44250a43efa813",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "114aa9a462d8aae44cc95f742c78869ca732e61f6cd7a049ae82edc64dc63646",
+          "score": 0.008871,
+          "preview": "First, make sure you have checked out the latest version of Clippy. If this is\nyour first time working on Clippy, create a fork of the repository and clone it\nafterwards with the following command:\n\n```bash\ngit clone git@github.com: /rust-clippy\n```\n\nIf you've already cloned Clippy in the past, upda"
+        }
+      ],
+      "latency_ms": 94276.24,
+      "failure_class": null
+    },
+    {
+      "id": "c02",
+      "question": "How can I build and test Clippy?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "book/src/development/basics.md",
+          "heading": "push to the master branch of your fork > building and testing"
+        }
+      ],
+      "expected_facts": [
+        "test"
+      ],
+      "matched_target": {
+        "source": "book/src/development/basics.md",
+        "heading": "push to the master branch of your fork > building and testing",
+        "rank": 1
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "To build and test Clippy, run `cargo build` and `cargo test` [1].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "book/src/development/basics.md",
+          "chunk_index": 7,
+          "heading_path": "push to the master branch of your fork > Building and Testing",
+          "content_hash": "7845384c9b7d6e9f3c6c508160def141f2fdfcd645ba5c1aa270e7ba0fb118d5",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "114aa9a462d8aae44cc95f742c78869ca732e61f6cd7a049ae82edc64dc63646",
+          "score": 0.016393,
+          "preview": "You can build and test Clippy like every other Rust project:\n\n```bash\ncargo build  # builds Clippy\ncargo test   # tests Clippy\n```\n\nSince Clippy's test suite is pretty big, there are some commands that only run a\nsubset of Clippy's tests:\n\n```bash"
+        },
+        {
+          "citation": 2,
+          "source": "book/src/development/README.md",
+          "chunk_index": 1,
+          "heading_path": "Clippy Development > Getting started",
+          "content_hash": "82f8341061d61c8fe41d24869554c8d2a80a300f2b8c64f943158c6af7895222",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "10eca4e4a02894eb7b970d2e7fb989bc20a4e80263d2b7236f5897626a2c63fd",
+          "score": 0.016014,
+          "preview": "If this is your first time contributing to Clippy, you should first read the\n[Basics docs](basics.md). This will explain the basics on how to get the source\ncode and how to compile and test the code."
+        },
+        {
+          "citation": 3,
+          "source": "book/src/development/basics.md",
+          "chunk_index": 0,
+          "heading_path": "Basics for hacking on Clippy",
+          "content_hash": "ba005367d0c780ec3fadbaea8f20f70470473038288b7406949a37b02a5dca41",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "114aa9a462d8aae44cc95f742c78869ca732e61f6cd7a049ae82edc64dc63646",
+          "score": 0.015988,
+          "preview": "This document explains the basics for hacking on Clippy. Besides others, this\nincludes how to build and test Clippy. For a more in depth description on the\ncodebase take a look at [Adding Lints] or [Common Tools].\n\n[Adding Lints]: adding_lints.md\n[Common Tools]: common_tools_writing_lints.md\n\n- [Bas"
+        },
+        {
+          "citation": 4,
+          "source": "book/src/development/README.md",
+          "chunk_index": 3,
+          "heading_path": "Clippy Development > Writing code",
+          "content_hash": "9a699ee6b8fead43be8212966af7c4c11007788bfa03fa9ef485c7e66561a74d",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "10eca4e4a02894eb7b970d2e7fb989bc20a4e80263d2b7236f5897626a2c63fd",
+          "score": 0.013583,
+          "preview": "If you have done the basic setup, it's time to start hacking.\n\nThe [Adding lints](adding_lints.md) chapter is a walk through on how to add a\nnew lint to Clippy. This is also interesting if you just want to fix a lint,\nbecause it also covers how to test lints and gives an overview of the bigger\npictu"
+        },
+        {
+          "citation": 5,
+          "source": "book/src/development/basics.md",
+          "chunk_index": 11,
+          "heading_path": "only run dogfood tests > `cargo dev`",
+          "content_hash": "564502c56629cfd8493c70118673859c0a24972975b3f4ff639926a0512bd578",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "114aa9a462d8aae44cc95f742c78869ca732e61f6cd7a049ae82edc64dc63646",
+          "score": 0.008594,
+          "preview": "Clippy has some dev tools to make working on Clippy more convenient. These tools\ncan be accessed through the `cargo dev` command. Available tools are listed\nbelow. To get more information about these commands, just call them with\n`--help`.\n\n```bash"
+        }
+      ],
+      "latency_ms": 70436.58,
+      "failure_class": null
+    },
+    {
+      "id": "c03",
+      "question": "What is cargo dev used for in Clippy development?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "book/src/development/basics.md",
+          "heading": "only run dogfood tests > cargo dev"
+        }
+      ],
+      "expected_facts": [
+        "cargo dev"
+      ],
+      "matched_target": {
+        "source": "book/src/development/basics.md",
+        "heading": "only run dogfood tests > cargo dev",
+        "rank": 5
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "cargo dev is a Clippy development command for tasks like updating lints and blessing code, as evidenced by subcommands such as `cargo dev update_lints` and `cargo dev bless` [2].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "book/src/development/proposals/roadmap-2021.md",
+          "chunk_index": 19,
+          "heading_path": "Explanation > Internal > Development > Dev-Tools",
+          "content_hash": "b30b4ddb6adafa875c37583a1e58991a88955a6b531dde5405089ddf2ffa2637",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "74668ae4e989ed62c7a5f346f6862e27bb57cf9e97cae8162f9925a21afe799a",
+          "score": 0.016393,
+          "preview": "There's already `cargo dev` which makes Clippy development easier and more\npleasant. This can still be expanded, so that it covers more areas of the\ndevelopment process.\n\n- [#5394](https://github.com/rust-lang/rust-clippy/issues/5394)"
+        },
+        {
+          "citation": 2,
+          "source": "book/src/development/proposals/roadmap-2021.md",
+          "chunk_index": 21,
+          "heading_path": "Explanation > Internal > Development > `rustc` integration",
+          "content_hash": "250abac5c9facbfeefbb78ba3d05e3586cadd6b26988977095dc192d0daa7623",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "74668ae4e989ed62c7a5f346f6862e27bb57cf9e97cae8162f9925a21afe799a",
+          "score": 0.015115,
+          "preview": "Recently Clippy was integrated with `git subtree` into the `rust-lang/rust`\nrepository. This made syncing between the two repositories easier. A\n`#[non_exhaustive]` list of things that still can be improved is:\n\n1. Use the same `rustfmt` version and configuration as `rustc`.\n2. Make `cargo dev` work"
+        },
+        {
+          "citation": 3,
+          "source": "book/src/development/writing_tests.md",
+          "chunk_index": 0,
+          "heading_path": "Testing",
+          "content_hash": "cd97657f94bb3ceb6c88b9b2c827fc40f4aaeb7d7f3e299120f04a854c77ece7",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "d1c21743bf7f5d2c69db07e2ad5e88e7538788f8b87fd1cd06991208d4c06c68",
+          "score": 0.014889,
+          "preview": "Developing lints for Clippy is a Test-Driven Development (TDD) process because\nour first task before implementing any logic for a new lint is to write some test cases."
+        },
+        {
+          "citation": 4,
+          "source": "book/src/development/basics.md",
+          "chunk_index": 22,
+          "heading_path": "runs the `dogfood` tests > Install from source",
+          "content_hash": "726be618185c6320870712fb8f565e4318cee9af5e3c1ba2192081614c76e608",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "114aa9a462d8aae44cc95f742c78869ca732e61f6cd7a049ae82edc64dc63646",
+          "score": 0.014583,
+          "preview": "If you are hacking on Clippy and want to install it from source, do the\nfollowing:\n\nFrom the Clippy project root, run the following command to build the Clippy\nbinaries and copy them into the toolchain directory. This will create a new\ntoolchain called `clippy` by default, see `cargo dev setup toolc"
+        },
+        {
+          "citation": 5,
+          "source": "book/src/development/basics.md",
+          "chunk_index": 11,
+          "heading_path": "only run dogfood tests > `cargo dev`",
+          "content_hash": "564502c56629cfd8493c70118673859c0a24972975b3f4ff639926a0512bd578",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "114aa9a462d8aae44cc95f742c78869ca732e61f6cd7a049ae82edc64dc63646",
+          "score": 0.008871,
+          "preview": "Clippy has some dev tools to make working on Clippy more convenient. These tools\ncan be accessed through the `cargo dev` command. Available tools are listed\nbelow. To get more information about these commands, just call them with\n`--help`.\n\n```bash"
+        }
+      ],
+      "latency_ms": 49741.64,
+      "failure_class": null
+    },
+    {
+      "id": "c04",
+      "question": "What are the steps for adding a new lint?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "book/src/development/adding_lints.md",
+          "heading": "adding a new lint"
+        }
+      ],
+      "expected_facts": [
+        "lint"
+      ],
+      "matched_target": {
+        "source": "book/src/development/adding_lints.md",
+        "heading": "adding a new lint",
+        "rank": 1
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "The first step is defining and registering the lint in Clippy's codebase. Use `cargo dev new_lint` for automatic registration or manually add to `early_lint_methods!`/`late_lint_methods!` macros [2][3].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "book/src/development/adding_lints.md",
+          "chunk_index": 0,
+          "heading_path": "Adding a new lint",
+          "content_hash": "376d33da3cfddd71181001281cd7edd9f8532d60622f9d465e4fb810623242dd",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "dfffc4a61b2573ceb7d606443eafc9cb198f4719c68e4abaff440766974ce92c",
+          "score": 0.015604,
+          "preview": "You are probably here because you want to add a new lint to Clippy. If this is\nthe first time you're contributing to Clippy, this document guides you through\ncreating an example lint from scratch.\n\nTo get started, we will create a lint that detects functions called `foo`,\nbecause that's clearly a no"
+        },
+        {
+          "citation": 2,
+          "source": "book/src/development/adding_lints.md",
+          "chunk_index": 19,
+          "heading_path": "Then in `/path/to/project` you can run > Lint registration",
+          "content_hash": "58ca16348cdb9fb7a8924e1f10f89fef914d8448b4ed25dd73f39c661f236071",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "dfffc4a61b2573ceb7d606443eafc9cb198f4719c68e4abaff440766974ce92c",
+          "score": 0.014152,
+          "preview": "When using `cargo dev new_lint`, the lint is automatically registered and\nnothing more has to be done.\n\nWhen declaring a new lint by hand and `cargo dev update_lints` is used, the lint\npass may have to be registered manually by adding an entry to the\n`early_lint_methods!` macro invocation in `clippy"
+        },
+        {
+          "citation": 3,
+          "source": "book/src/development/defining_lints.md",
+          "chunk_index": 0,
+          "heading_path": "Define New Lints",
+          "content_hash": "84f0c0e557fc7cae3ca41e7373213c4c2019e5c7ab956ad229b93aa89d342541",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "48540e89b9d2d25124eb0aadb3850b8cd236ec1e95fd5059d4514af1e4f35136",
+          "score": 0.00873,
+          "preview": "The first step in the journey of a new lint is the definition\nand registration of the lint in Clippy's codebase.\nWe can use the Clippy dev tools to handle this step since setting up the\nlint involves some boilerplate code."
+        },
+        {
+          "citation": 4,
+          "source": "book/src/development/defining_lints.md",
+          "chunk_index": 3,
+          "heading_path": "Define New Lints > Add and Register the Lint",
+          "content_hash": "5401808e9baaa7d356f1344b93ee867dfeee74b8620e7c2abb185572bec1d0ca",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "48540e89b9d2d25124eb0aadb3850b8cd236ec1e95fd5059d4514af1e4f35136",
+          "score": 0.008594,
+          "preview": "Now that a name is chosen, we shall register `foo_functions` as a lint to the\ncodebase. There are two ways to register a lint."
+        },
+        {
+          "citation": 5,
+          "source": "book/src/development/adding_lints.md",
+          "chunk_index": 1,
+          "heading_path": "Adding a new lint",
+          "content_hash": "393a6fd0ecfcb730e376b3ce4aed3bd6350e4bcd62a5e7438bb8888f6498ea84",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "dfffc4a61b2573ceb7d606443eafc9cb198f4719c68e4abaff440766974ce92c",
+          "score": 0.008333,
+          "preview": "ation](#lint-registration)\n  - [Lint passes](#lint-passes)\n  - [Emitting a lint](#emitting-a-lint)\n  - [Adding the lint logic](#adding-the-lint-logic)\n  - [Specifying the lint's minimum supported Rust version (MSRV)](#specifying-the-lints-minimum-supported-rust-version-msrv)\n  - [Author lint](#autho"
+        }
+      ],
+      "latency_ms": 110905.03,
+      "failure_class": null
+    },
+    {
+      "id": "c05",
+      "question": "Where are Clippy lint tests located?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "book/src/development/adding_lints.md",
+          "heading": "adding a new lint > defining our lint > tests location"
+        }
+      ],
+      "expected_facts": [
+        "tests"
+      ],
+      "matched_target": {
+        "source": "book/src/development/adding_lints.md",
+        "heading": "adding a new lint > defining our lint > tests location",
+        "rank": 5
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Clippy lint tests for configuration are located in `tests/ui-toml` [2].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "book/src/development/writing_tests.md",
+          "chunk_index": 1,
+          "heading_path": "Testing > Develop Lints with Tests",
+          "content_hash": "b19409cd0244ee5f5592521f42e0a8e98aaac283a64d09fb4607d463937e3f7d",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "d1c21743bf7f5d2c69db07e2ad5e88e7538788f8b87fd1cd06991208d4c06c68",
+          "score": 0.016248,
+          "preview": "When we develop Clippy, we enter a complex and chaotic realm full of\nprogrammatic issues, stylistic errors, illogical code and non-adherence to convention.\nTests are the first layer of order we can leverage to define when and where\nwe want a new lint to trigger or not.\n\nMoreover, writing tests first"
+        },
+        {
+          "citation": 2,
+          "source": "book/src/development/writing_tests.md",
+          "chunk_index": 8,
+          "heading_path": "Testing > `toml` Tests",
+          "content_hash": "40a6a856a22d1906eb64bd9455d63c11561dddec6ac203358036325e6d98b573",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "d1c21743bf7f5d2c69db07e2ad5e88e7538788f8b87fd1cd06991208d4c06c68",
+          "score": 0.015365,
+          "preview": "Some lints can be configured through a `clippy.toml` file. Those configuration\nvalues are tested in `tests/ui-toml`.\n\nTo add a new test there, create a new directory and add the files:\n\n- `clippy.toml`: Put here the configuration value you want to test.\n- `lint_name.rs`: A test file where you put th"
+        },
+        {
+          "citation": 3,
+          "source": "book/src/development/adding_lints.md",
+          "chunk_index": 45,
+          "heading_path": "Then in `/path/to/project` you can run > Adding configuration to a lint",
+          "content_hash": "fc101ca512965975a18d973534f6063e16527df3310886f4463c87644a4f9a0c",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "dfffc4a61b2573ceb7d606443eafc9cb198f4719c68e4abaff440766974ce92c",
+          "score": 0.01461,
+          "preview": "linted by Clippy. The test can otherwise be written as usual.\n\n5. Update [Lint Configuration](../lint_configuration.md)\n\n   Run `cargo bless --test config-metadata` to generate documentation changes for the book.\n\n[`clippy_config::conf`]: https://github.com/rust-lang/rust-clippy/blob/master/clippy_c"
+        },
+        {
+          "citation": 4,
+          "source": "book/src/development/adding_lints.md",
+          "chunk_index": 0,
+          "heading_path": "Adding a new lint",
+          "content_hash": "376d33da3cfddd71181001281cd7edd9f8532d60622f9d465e4fb810623242dd",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "dfffc4a61b2573ceb7d606443eafc9cb198f4719c68e4abaff440766974ce92c",
+          "score": 0.014475,
+          "preview": "You are probably here because you want to add a new lint to Clippy. If this is\nthe first time you're contributing to Clippy, this document guides you through\ncreating an example lint from scratch.\n\nTo get started, we will create a lint that detects functions called `foo`,\nbecause that's clearly a no"
+        },
+        {
+          "citation": 5,
+          "source": "book/src/development/adding_lints.md",
+          "chunk_index": 7,
+          "heading_path": "Adding a new lint > Defining Our Lint > Tests Location",
+          "content_hash": "5bd2aa03b84b0ac78b85a71572ea718602a434981127fe4622962fcb1142fe5e",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "dfffc4a61b2573ceb7d606443eafc9cb198f4719c68e4abaff440766974ce92c",
+          "score": 0.014175,
+          "preview": "Both commands will create a file: `tests/ui/foo_functions.rs`. For cargo lints,\ntwo project hierarchies (fail/pass) will be created by default under `tests/ui-cargo`.\n\nNext, we'll open up these files and add our lint!"
+        }
+      ],
+      "latency_ms": 36555.64,
+      "failure_class": null
+    },
+    {
+      "id": "c06",
+      "question": "How are suggestions and automatic fixes emitted?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "book/src/development/emitting_lints.md",
+          "heading": "emitting a lint > suggestions: automatic fixes > applicability"
+        },
+        {
+          "source": "book/src/development/emitting_lints.md",
+          "heading": "emitting a lint > suggestions: automatic fixes > example"
+        }
+      ],
+      "expected_facts": [
+        "suggestions"
+      ],
+      "matched_target": {
+        "source": "book/src/development/emitting_lints.md",
+        "heading": "emitting a lint > suggestions: automatic fixes > applicability",
+        "rank": 1
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Suggestions are emitted via `span_lint_and_sugg` with applicability (e.g., `MachineApplicable` [1], [3]). Automatic fixes use `rustfix` to apply suggestions to test files and compare with `.fixed` files [2].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "book/src/development/emitting_lints.md",
+          "chunk_index": 6,
+          "heading_path": "Emitting a lint > Suggestions: Automatic fixes > Applicability",
+          "content_hash": "21822684c4c3a03175abe6160aa4e7cebb96a30c88615c8cb7b126954faf82c6",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "6aee569e61c20146be8d3fdf94a524e65edd030f0b87da6e099d9175e53b5152",
+          "score": 0.015939,
+          "preview": "**Not all suggestions are always right**, some of them require human\nsupervision, that's why we have [Applicability][applicability].\n\nApplicability indicates confidence in the correctness of the suggestion, some\nare always right (`Applicability::MachineApplicable`), but we use\n`Applicability::MaybeI"
+        },
+        {
+          "citation": 2,
+          "source": "book/src/development/writing_tests.md",
+          "chunk_index": 11,
+          "heading_path": "Testing > Rustfix Tests",
+          "content_hash": "55d07df00b364c5a8769537b0b3c5222499f271b8e19e48c9a009c937a9e902f",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "d1c21743bf7f5d2c69db07e2ad5e88e7538788f8b87fd1cd06991208d4c06c68",
+          "score": 0.015467,
+          "preview": "If the lint you are working on is making use of structured suggestions,\n[`rustfix`] will apply the suggestions from the lint to the test file code and\ncompare that to the contents of a `.fixed` file.\n\nStructured suggestions tell a user how to fix or re-write certain code that has\nbeen linted with [`"
+        },
+        {
+          "citation": 3,
+          "source": "book/src/development/emitting_lints.md",
+          "chunk_index": 7,
+          "heading_path": "Emitting a lint > Suggestions: Automatic fixes > Example",
+          "content_hash": "0261c34e568b9beeb1580bc951049e8fb783d7c39cf891b5c46e9efdfdb11d76",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "6aee569e61c20146be8d3fdf94a524e65edd030f0b87da6e099d9175e53b5152",
+          "score": 0.014952,
+          "preview": "The same lint `LINT_NAME` but that emits a suggestion would look something like this:\n\n```rust\nimpl<'tcx> LateLintPass<'tcx> for LintName {\n    fn check_expr(&mut self, cx: &LateContext<'tcx>, expr: &'tcx Expr<'_>)  {\n        // Imagine that `some_lint_expr_logic` checks for requirements for emittin"
+        },
+        {
+          "citation": 4,
+          "source": "book/src/development/adding_lints.md",
+          "chunk_index": 12,
+          "heading_path": "Adding a new lint > Rustfix tests",
+          "content_hash": "d327ba57d54c545567746067417e62a22eb5252f6943fa26bc6fc9d5bc48e421",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "dfffc4a61b2573ceb7d606443eafc9cb198f4719c68e4abaff440766974ce92c",
+          "score": 0.014778,
+          "preview": "If the lint you are working on is making use of structured suggestions, the test\nwill create a `.fixed` file by running [rustfix] for that test.\nRustfix will apply the suggestions\nfrom the lint to the code of the test file and compare that to the contents of a\n`.fixed` file.\n\nUse `cargo bless` to au"
+        },
+        {
+          "citation": 5,
+          "source": "book/src/development/writing_tests.md",
+          "chunk_index": 7,
+          "heading_path": "Testing > Clippy UI Tests > `cargo bless`",
+          "content_hash": "9ba8c1c648f23584035abbbf24e00e503f3ed8c25459a13522e44ca73526b9bf",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "d1c21743bf7f5d2c69db07e2ad5e88e7538788f8b87fd1cd06991208d4c06c68",
+          "score": 0.01471,
+          "preview": "Once we are satisfied with the output, we need to run this command to\ngenerate or update the `.stderr` file for our lint:\n\n```sh\n$ TESTNAME=foo_functions cargo uibless\n```\n\nThis writes the emitted lint suggestions and fixes to the `.stderr` file, with\nthe reason for the lint, suggested fixes, and li"
+        }
+      ],
+      "latency_ms": 56918.33,
+      "failure_class": null
+    },
+    {
+      "id": "c07",
+      "question": "What is the difference between EarlyLintPass and LateLintPass?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "book/src/development/lint_passes.md",
+          "heading": "lint passes"
+        },
+        {
+          "source": "book/src/development/lint_passes.md",
+          "heading": "lint passes > earlylintpass"
+        },
+        {
+          "source": "book/src/development/lint_passes.md",
+          "heading": "lint passes > latelintpass > example for latelintpass"
+        }
+      ],
+      "expected_facts": [
+        "EarlyLintPass"
+      ],
+      "matched_target": {
+        "source": "book/src/development/lint_passes.md",
+        "heading": "lint passes",
+        "rank": 1
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "EarlyLintPass operates only on the Abstract Syntax Tree (AST) without type or symbol information [3]. LateLintPass has access to type and symbol information via the HIR (Higher-Order IR) level [1]. EarlyLintPass uses AST nodes by position only, while LateLintPass enables inspection of other nodes requiring type context [2].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "book/src/development/lint_passes.md",
+          "chunk_index": 0,
+          "heading_path": "Lint passes",
+          "content_hash": "1bcc1600dfb699e24e93117ba776599d6bc255635b945c18203a238054d6dce9",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "cfd59537360b0b8741191bf885d3326b4b82db1b339a7d338f94f0fb7595fefa",
+          "score": 0.016393,
+          "preview": "Before working on the logic of a new lint, there is an important decision\nthat every Clippy developer must make: to use\n[`EarlyLintPass`][early_lint_pass] or [`LateLintPass`][late_lint_pass].\n\nIn short, the `LateLintPass` has access to type and symbol information while the\n`EarlyLintPass` doesn't. I"
+        },
+        {
+          "citation": 2,
+          "source": "book/src/development/lint_passes.md",
+          "chunk_index": 6,
+          "heading_path": "Lint passes > `LateLintPass` > Example for `LateLintPass`",
+          "content_hash": "a82213c65c7fb4c75c88ddbb47afe4ba728996c6006f0e2313737c36c1b82bcc",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "cfd59537360b0b8741191bf885d3326b4b82db1b339a7d338f94f0fb7595fefa",
+          "score": 0.015689,
+          "preview": "n a `LateLintPass`, specifically because we often need to check\nnot only for syntactic issues but also type information.\n\nAnother limitation of the `EarlyLintPass` is that the nodes are only identified\nby their position in the AST. This means that you can't just get an `id` and\nrequest a certain nod"
+        },
+        {
+          "citation": 3,
+          "source": "book/src/development/lint_passes.md",
+          "chunk_index": 1,
+          "heading_path": "Lint passes > `EarlyLintPass`",
+          "content_hash": "6d75390b18e2ea534ebe86b89f46676cd473e41caeddc2325be453eaa8248c6d",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "cfd59537360b0b8741191bf885d3326b4b82db1b339a7d338f94f0fb7595fefa",
+          "score": 0.015493,
+          "preview": "If you examine the documentation on [`EarlyLintPass`][early_lint_pass] closely,\nyou'll see that every method defined for this trait utilizes a\n[`EarlyContext`][early_context]. In `EarlyContext`'s documentation, it states:\n\n> Context for lint checking of the AST, after expansion, before lowering to H"
+        },
+        {
+          "citation": 4,
+          "source": "book/src/development/adding_lints.md",
+          "chunk_index": 21,
+          "heading_path": "Then in `/path/to/project` you can run > Lint passes",
+          "content_hash": "89d577273ebaae78cf52d085e13cb80ef189942a2d65032a7ecf839168a22a22",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "dfffc4a61b2573ceb7d606443eafc9cb198f4719c68e4abaff440766974ce92c",
+          "score": 0.015,
+          "preview": "Writing a lint that only checks for the name of a function means that we only\nhave to deal with the AST and don't have to deal with the type system at all.\nThis is good, because it makes writing this particular lint less complicated.\n\nWe have to make this decision with every new Clippy lint. It boil"
+        },
+        {
+          "citation": 5,
+          "source": "book/src/development/lint_passes.md",
+          "chunk_index": 3,
+          "heading_path": "Lint passes > `EarlyLintPass` > Example for `EarlyLintPass`",
+          "content_hash": "32f21984d5a34072511d82fba573427a85c1e08346add92fcd2b321a51986576",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "cfd59537360b0b8741191bf885d3326b4b82db1b339a7d338f94f0fb7595fefa",
+          "score": 0.014925,
+          "preview": "Take a look at the following code:\n\n```rust\nlet x = OurUndefinedType;\nx.non_existing_method();\n```\n\nFrom the AST perspective, both lines are \"grammatically\" correct.\nThe assignment uses a `let` and ends with a semicolon. The invocation\nof a method looks fine, too. As programmers, we might raise a fe"
+        }
+      ],
+      "latency_ms": 45606.68,
+      "failure_class": null
+    },
+    {
+      "id": "c08",
+      "question": "How should Clippy UI tests be written?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "book/src/development/writing_tests.md",
+          "heading": "testing > clippy ui tests"
+        }
+      ],
+      "expected_facts": [
+        "UI tests"
+      ],
+      "matched_target": {
+        "source": "book/src/development/writing_tests.md",
+        "heading": "testing > clippy ui tests",
+        "rank": 1
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Clippy UI tests should be written as plain Rust files in the `tests/ui/` directory containing code to check. Each test outputs Clippy's diagnostics, which are compared against a generated `.stderr` file (auto-created via `cargo bless`). The test code includes comments marking expected diagnostics with `//~^` [1][3]. No manual `.stderr` files are required.",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "book/src/development/writing_tests.md",
+          "chunk_index": 2,
+          "heading_path": "Testing > Clippy UI Tests",
+          "content_hash": "bf5cb00a65f46a7b33b8fda9f9e0bb7a611ad9350115cfb61b36116f568d1a81",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "d1c21743bf7f5d2c69db07e2ad5e88e7538788f8b87fd1cd06991208d4c06c68",
+          "score": 0.015835,
+          "preview": "We use **UI tests** for testing in Clippy. These UI tests check that the output\nof Clippy is exactly as we expect it to be. Each test is just a plain Rust file\nthat contains the code we want to check.\n\nThe output of Clippy is compared against a `.stderr` file. Note that you don't\nhave to create this"
+        },
+        {
+          "citation": 2,
+          "source": "book/src/development/writing_tests.md",
+          "chunk_index": 5,
+          "heading_path": "Testing > Clippy UI Tests > Write Test Cases",
+          "content_hash": "2a286c95bdef95b1db08b7c2927a1d7d25dc5bca6e5146ef4ebd3b5707bd2219",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "d1c21743bf7f5d2c69db07e2ad5e88e7538788f8b87fd1cd06991208d4c06c68",
+          "score": 0.015385,
+          "preview": "/ui/foo_functions.rs:9:10\n  |\n9 |     //~^ foo_functions\n  |          ^^^^^^^^^^^^^ expected because of this pattern\n  |\n\nerror: diagnostic code `clippy::foo_functions` not found on line 16\n  --> tests/ui/foo_functions.rs:17:10\n   |\n17 |     //~^ foo_functions\n   |          ^^^^^^^^^^^^^ expected be"
+        },
+        {
+          "citation": 3,
+          "source": "book/src/development/adding_lints.md",
+          "chunk_index": 8,
+          "heading_path": "Adding a new lint > Testing",
+          "content_hash": "df66a8900e2c810bc6a2e19423a48f9cd59259b313c17d7114c9cbb7d7bf7182",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "dfffc4a61b2573ceb7d606443eafc9cb198f4719c68e4abaff440766974ce92c",
+          "score": 0.015119,
+          "preview": "Let's write some tests first that we can execute while we iterate on our lint.\n\nClippy uses UI tests for testing. UI tests check that the output of Clippy is\nexactly as expected. Each test is just a plain Rust file that contains the code\nwe want to check. The output of Clippy is compared against a `"
+        },
+        {
+          "citation": 4,
+          "source": "book/src/development/writing_tests.md",
+          "chunk_index": 6,
+          "heading_path": "Testing > Clippy UI Tests > Example output",
+          "content_hash": "c3d008f6ac5c3a275dc0c5885864c67a5984072ba618335c18e356a7b3a811bf",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "d1c21743bf7f5d2c69db07e2ad5e88e7538788f8b87fd1cd06991208d4c06c68",
+          "score": 0.014574,
+          "preview": "As our `foo_functions` lint is tested, the output would look something like this:\n\n```\nfailures:\n---- compile_test stdout ----\nnormalized stderr:\nerror: function called \"foo\"\n  --> tests/ui/foo_functions.rs:6:12\n   |\nLL |     pub fn foo(&self) {}\n   |            ^^^\n   |\n   = note: `-D clippy::foo-f"
+        },
+        {
+          "citation": 5,
+          "source": "book/src/development/README.md",
+          "chunk_index": 1,
+          "heading_path": "Clippy Development > Getting started",
+          "content_hash": "82f8341061d61c8fe41d24869554c8d2a80a300f2b8c64f943158c6af7895222",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "10eca4e4a02894eb7b970d2e7fb989bc20a4e80263d2b7236f5897626a2c63fd",
+          "score": 0.013784,
+          "preview": "If this is your first time contributing to Clippy, you should first read the\n[Basics docs](basics.md). This will explain the basics on how to get the source\ncode and how to compile and test the code."
+        }
+      ],
+      "latency_ms": 54981.97,
+      "failure_class": null
+    },
+    {
+      "id": "c09",
+      "question": "How does Clippy handle macros and expansions?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "book/src/development/macro_expansions.md",
+          "heading": "dealing with macros and expansions"
+        },
+        {
+          "source": "book/src/development/macro_expansions.md",
+          "heading": "dealing with macros and expansions > how to work with macros > the isfromprocmacro function"
+        }
+      ],
+      "expected_facts": [
+        "macros"
+      ],
+      "matched_target": {
+        "source": "book/src/development/macro_expansions.md",
+        "heading": "dealing with macros and expansions",
+        "rank": 1
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Clippy ignores macro-expanded code by default due to its dynamic nature [1]. Since Clippy processes code with macros already expanded and desugared, this causes false positives [2]. To handle expansions, Clippy uses `span.from_expansion()` to check if a span originates from macro expansion [2]. Proc macros present special challenges as Clippy cannot reliably distinguish them from user code [3].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "book/src/development/macro_expansions.md",
+          "chunk_index": 0,
+          "heading_path": "Dealing with macros and expansions",
+          "content_hash": "56fee5324f3e31783d8d4f157c709a668a73b92ee7913e7a5ebe37f9de174fe6",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "78c2b0efc8ba05fdb6094467503d25637835c26485fdd89cb66fbfa37cf07cf4",
+          "score": 0.016274,
+          "preview": "Sometimes we might encounter Rust macro expansions while working with Clippy.\nWhile macro expansions are not as dramatic and profound as the expansion\nof our universe, they can certainly bring chaos to the orderly world\nof code and logic.\n\nThe general rule of thumb is that we should ignore code with"
+        },
+        {
+          "citation": 2,
+          "source": "book/src/development/common_tools_writing_lints.md",
+          "chunk_index": 11,
+          "heading_path": "Common tools for writing lints > Dealing with macros and expansions",
+          "content_hash": "c516eae2582d7e1e125c407952f1fa63db0e0e4f37fcc94d68cb37ba3d7ab72e",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "8c2ce7158a9a78199fb41ac44d7dade4549fdb728fe72439338d2f2f9debcedb",
+          "score": 0.016248,
+          "preview": "Keep in mind that macros are already expanded and desugaring is already applied\nto the code representation that you are working with in Clippy. This\nunfortunately causes a lot of false positives because macro expansions are\n\"invisible\" unless you actively check for them. Generally speaking, code wit"
+        },
+        {
+          "citation": 3,
+          "source": "book/src/development/macro_expansions.md",
+          "chunk_index": 10,
+          "heading_path": "Dealing with macros and expansions > How to Work with Macros > The `is_from_proc_macro` function",
+          "content_hash": "f01af887bcacdaf318729841dfb2739360187e1f9cc5091ac363010f25a11a9b",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "78c2b0efc8ba05fdb6094467503d25637835c26485fdd89cb66fbfa37cf07cf4",
+          "score": 0.014889,
+          "preview": "A common point of confusion is the existence of [`is_from_proc_macro`]\nand how it differs from the other [`in_external_macro`]/[`from_expansion`] functions.\n\nWhile [`in_external_macro`] and [`from_expansion`] both work perfectly fine for detecting expanded code\nfrom *declarative* macros (i.e. `macro"
+        },
+        {
+          "citation": 4,
+          "source": "book/src/development/infrastructure/book.md",
+          "chunk_index": 0,
+          "heading_path": "The Clippy Book",
+          "content_hash": "caaf3acee38f02d273375f1e74aa1dcd930edc5e4754e04036df895bb8c3f215",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "dcf22ccdd837aef8a79a72059a87a47ff4b029d7f8ffa625e8abcfec27687eba",
+          "score": 0.013963,
+          "preview": "This document explains how to make additions and changes to the Clippy book, the\nguide to Clippy that you're reading right now. The Clippy book is formatted with\n[Markdown](https://www.markdownguide.org) and generated by\n[mdBook](https://github.com/rust-lang/mdBook).\n\n- [Get mdBook](#get-mdbook)\n- ["
+        },
+        {
+          "citation": 5,
+          "source": "book/src/development/macro_expansions.md",
+          "chunk_index": 11,
+          "heading_path": "Dealing with macros and expansions > How to Work with Macros > The `is_from_proc_macro` function",
+          "content_hash": "1492f6612257de2db844077ad6c6440b016f9d9910567ab9f2d6fd54b8946030",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "78c2b0efc8ba05fdb6094467503d25637835c26485fdd89cb66fbfa37cf07cf4",
+          "score": 0.008594,
+          "preview": "that comes from such a proc macro from code that the user wrote directly,\nand [`in_external_macro`] will return `false`.\n\nThis is usually not an issue for the compiler and actually helps proc macro authors create better error messages,\nas it allows associating parts of the expansion with parts of th"
+        }
+      ],
+      "latency_ms": 32128.54,
+      "failure_class": null
+    },
+    {
+      "id": "c10",
+      "question": "How can a lint inspect Rust types?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "book/src/development/common_tools_writing_lints.md",
+          "heading": "common tools for writing lints > checking for a specific type"
+        },
+        {
+          "source": "book/src/development/defining_lints.md",
+          "heading": "define new lints > lint types"
+        }
+      ],
+      "expected_facts": [
+        "types"
+      ],
+      "matched_target": {
+        "source": "book/src/development/defining_lints.md",
+        "heading": "define new lints > lint types",
+        "rank": 1
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Lints inspect Rust types by checking expression types via three methods: diagnostic items [2], lang items [2], and a third method (base type only).",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "book/src/development/defining_lints.md",
+          "chunk_index": 1,
+          "heading_path": "Define New Lints > Lint types",
+          "content_hash": "5d2e6c03697cde8df7d8ad03dbc1dbad4444c7a2233a5b36fdcb62084874b65e",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "48540e89b9d2d25124eb0aadb3850b8cd236ec1e95fd5059d4514af1e4f35136",
+          "score": 0.015393,
+          "preview": "A lint type is the category of items and expressions in which your lint focuses on.\n\nAs of the writing of this documentation update, there are 11 _types_ of lints\nbesides the numerous standalone lints living under `clippy_lints/src/`:\n\n- `cargo`\n- `casts`\n- `functions`\n- `loops`\n- `matches`\n- `metho"
+        },
+        {
+          "citation": 2,
+          "source": "book/src/development/common_tools_writing_lints.md",
+          "chunk_index": 5,
+          "heading_path": "Common tools for writing lints > Checking for a specific type",
+          "content_hash": "6c55c728268e0f4802cee4658d03b4d6aa3dc786245a2275d1737d90b04c868e",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "8c2ce7158a9a78199fb41ac44d7dade4549fdb728fe72439338d2f2f9debcedb",
+          "score": 0.009016,
+          "preview": "There are three ways to check if an expression type is a specific type we want\nto check for. All of these methods only check for the base type, generic\narguments have to be checked separately.\n\n```rust\nuse clippy_utils::{paths, sym};\nuse clippy_utils::res::MaybeDef;\nuse rustc_hir::LangItem;\n\nimpl La"
+        },
+        {
+          "citation": 3,
+          "source": "book/src/development/trait_checking.md",
+          "chunk_index": 0,
+          "heading_path": "Trait Checking",
+          "content_hash": "ca898bbdc5890f9d307a171b679a6a855dd93049c9ce001b2bbf63e8b7b171e7",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "453b46d9ca9cdee87093a4f3afc6a9c1368b84f5e082b220e986dbc09906e5f0",
+          "score": 0.00873,
+          "preview": "Besides [type checking](type_checking.md), we might want to examine if\na specific type `Ty` implements certain trait when implementing a lint.\nThere are three approaches to achieve this, depending on if the target trait\nthat we want to examine has a [diagnostic item][diagnostic_items],\n[lang item][l"
+        },
+        {
+          "citation": 4,
+          "source": "book/src/development/common_tools_writing_lints.md",
+          "chunk_index": 1,
+          "heading_path": "Common tools for writing lints",
+          "content_hash": "7c3d5545e425b6e3416d37b8f205882c1e9f24f92adc2314c521683cbee59e99",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "8c2ce7158a9a78199fb41ac44d7dade4549fdb728fe72439338d2f2f9debcedb",
+          "score": 0.008594,
+          "preview": "ic method](#checking-if-a-type-defines-a-specific-method)\n  - [Dealing with macros](#dealing-with-macros-and-expansions)\n\nUseful Rustc dev guide links:\n- [Stages of compilation](https://rustc-dev-guide.rust-lang.org/compiler-src.html#the-main-stages-of-compilation)\n- [Diagnostic items](https://rustc"
+        },
+        {
+          "citation": 5,
+          "source": "book/src/development/proposals/roadmap-2021.md",
+          "chunk_index": 17,
+          "heading_path": "Explanation > Internal > Development > Process for New and Existing Lints",
+          "content_hash": "5850789bc33aeec1858b20d4145a3da0f8fdfcc9582b5bae19ae8ffbc5806895",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "74668ae4e989ed62c7a5f346f6862e27bb57cf9e97cae8162f9925a21afe799a",
+          "score": 0.008462,
+          "preview": "As already mentioned above, classifying new lints gets quite hard, because the\nprobability of a buggy lint getting into stable is quite high. A process should\nbe implemented on how to classify lints. In addition, a test system should be\ndeveloped to find out which lints are currently problematic in "
+        }
+      ],
+      "latency_ms": 73528.13,
+      "failure_class": null
+    },
+    {
+      "id": "c11",
+      "question": "What are the duties of the Clippy team?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "book/src/development/the_team.md",
+          "heading": "the team > clippy-contributors > duties"
+        }
+      ],
+      "expected_facts": [
+        "duties"
+      ],
+      "matched_target": {
+        "source": "book/src/development/the_team.md",
+        "heading": "the team > clippy-contributors > duties",
+        "rank": 3
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Clippy team members are assigned tasks from the 2021 roadmap topics (improving usability/reliability, contributor experience, and processes) and complete them via implementation or mentorship [2]. Duties include monitoring PRs and assisting with reviews, though this is encouraged rather than mandatory [3].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "book/src/development/the_team.md",
+          "chunk_index": 0,
+          "heading_path": "The team",
+          "content_hash": "1e5a50fbf95daaa86881f458882770183c5e17a4fba97d3d775675c8af3f2aa3",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "ae27f84f6a2edb4b87fa6f5503ea6f8f494b7a72dc4c22bbce34422a0f9526a9",
+          "score": 0.015988,
+          "preview": "Everyone who contributes to Clippy makes the project what it is. Collaboration\nand discussions are the lifeblood of every open-source project. Clippy has a\nvery flat hierarchy. The teams mainly have additional access rights to the repo.\n\nThis document outlines the onboarding process, as well as duti"
+        },
+        {
+          "citation": 2,
+          "source": "book/src/development/proposals/roadmap-2021.md",
+          "chunk_index": 0,
+          "heading_path": "Summary",
+          "content_hash": "d9a6029b1ffe2b5342568c764990b17a1198db2cb43ae5aa9e0409937fecd0da",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "74668ae4e989ed62c7a5f346f6862e27bb57cf9e97cae8162f9925a21afe799a",
+          "score": 0.015178,
+          "preview": "This Roadmap lays out the plans for Clippy in 2021:\n\n- Improving usability and reliability\n- Improving experience of contributors and maintainers\n- Develop and specify processes\n\nMembers of the Clippy team will be assigned tasks from one or more of these\ntopics. The team member is then responsible t"
+        },
+        {
+          "citation": 3,
+          "source": "book/src/development/the_team.md",
+          "chunk_index": 4,
+          "heading_path": "The team > Clippy-Contributors > Duties",
+          "content_hash": "6de35edf01e835f8de83ad51ecb3c1e7ffe0704b5d5c7b311e10daf8d016cc62",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "ae27f84f6a2edb4b87fa6f5503ea6f8f494b7a72dc4c22bbce34422a0f9526a9",
+          "score": 0.015016,
+          "preview": "g party.\n\n    You might close a PR with the `I-inactive-closed` label if the author is\n    busy or wants to abandon it. If the reviewer is busy, the PR can be\n    reassigned to someone else.\n\n    Checkout:   to\n    monitor PRs.\n\nWhile not part of their duties, contributors are encouraged to review P"
+        },
+        {
+          "citation": 4,
+          "source": "book/src/development/proposals/roadmap-2021.md",
+          "chunk_index": 10,
+          "heading_path": "Explanation > Internal",
+          "content_hash": "eec53e1da254a84cb74a60669815a0aa9f5838840f306e2020e3b75711d597aa",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "74668ae4e989ed62c7a5f346f6862e27bb57cf9e97cae8162f9925a21afe799a",
+          "score": 0.014827,
+          "preview": "(The end of) 2020 has shown, that Clippy has to think about the available\nresources, especially regarding management and maintenance of the project. This\nsection address issues affecting team members and contributors."
+        },
+        {
+          "citation": 5,
+          "source": "book/src/development/the_team.md",
+          "chunk_index": 3,
+          "heading_path": "The team > Clippy-Contributors > Duties",
+          "content_hash": "e6bdd9ba4747f28384be0bfc2e25b347ccfa2a402d09f179557317b6e930797e",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "ae27f84f6a2edb4b87fa6f5503ea6f8f494b7a72dc4c22bbce34422a0f9526a9",
+          "score": 0.014493,
+          "preview": "This team exists to make contributing easier for regular members. It doesn't\ncarry any duties that need to be done. However, we want to encourage members of\nthis group to help with triaging, which can include:\n\n1. **Labeling issues**\n\n    For the `good first issue` label, it can still be good to use"
+        }
+      ],
+      "latency_ms": 33385.87,
+      "failure_class": null
+    },
+    {
+      "id": "c12",
+      "question": "How do I check whether an expression calls a specific method?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "book/src/development/method_checking.md",
+          "heading": "method checking > checking if an expr is calling a specific method"
+        },
+        {
+          "source": "book/src/development/common_tools_writing_lints.md",
+          "heading": "common tools for writing lints > checking if an expr is calling a specific method"
+        }
+      ],
+      "expected_facts": [
+        "method"
+      ],
+      "matched_target": {
+        "source": "book/src/development/method_checking.md",
+        "heading": "method checking > checking if an expr is calling a specific method",
+        "rank": 1
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Suppose we have an `expr`, we can check whether it calls a specific method, e.g. [1] Starting with an `expr`, you can check whether it is calling a specific method `some_method`: ```rust impl<'tcx> LateLintPass<'tcx> for MyStructLint { fn check_expr(&mut self, cx: &LateContext<'tcx>, expr: &'tcx hir::Expr<'_>) { // Check our expr is calling a method\u2026 [3]",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "book/src/development/method_checking.md",
+          "chunk_index": 1,
+          "heading_path": "Method Checking > Checking if an `expr` is calling a specific method",
+          "content_hash": "18e8851820b3cd2b2b00be84979e0224c8a6a0122ff781ef2d16b9ae359f7cbd",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "f4d9c366efefe4d4f15417ff7a5ebf840ba665276ae3d98b9d695a0ea9fa7d75",
+          "score": 0.016248,
+          "preview": "Suppose we have an `expr`, we can check whether it calls a specific\nmethod, e.g. `our_fancy_method`, by performing a pattern match on\nthe [`ExprKind`] that we can access from `expr.kind`:\n\n```rust\nuse rustc_hir as hir;\nuse rustc_lint::{LateContext, LateLintPass};\nuse clippy_utils::res::{MaybeDef, Ma"
+        },
+        {
+          "citation": 2,
+          "source": "book/src/development/method_checking.md",
+          "chunk_index": 0,
+          "heading_path": "Method Checking",
+          "content_hash": "6506a75f5216f1a69c9f8a0edee4752ee7c70b97d96e5f69a781fa1fc0f47401",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "f4d9c366efefe4d4f15417ff7a5ebf840ba665276ae3d98b9d695a0ea9fa7d75",
+          "score": 0.016159,
+          "preview": "In some scenarios we might want to check for methods when developing\na lint. There are two kinds of questions that we might be curious about:\n\n-   Invocation: Does an expression call a specific method?\n-   Definition: Does an `impl` define a method?"
+        },
+        {
+          "citation": 3,
+          "source": "book/src/development/common_tools_writing_lints.md",
+          "chunk_index": 4,
+          "heading_path": "Common tools for writing lints > Checking if an expr is calling a specific method",
+          "content_hash": "efa1b3a53faeea9d5d89d47f8a615374e911e7c8c8e2c54ab225dccfd77efe7d",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "8c2ce7158a9a78199fb41ac44d7dade4549fdb728fe72439338d2f2f9debcedb",
+          "score": 0.015988,
+          "preview": "Starting with an `expr`, you can check whether it is calling a specific method\n`some_method`:\n\n```rust\nimpl<'tcx> LateLintPass<'tcx> for MyStructLint {\n    fn check_expr(&mut self, cx: &LateContext<'tcx>, expr: &'tcx hir::Expr<'_>) {\n        // Check our expr is calling a method\n        if let hir::"
+        },
+        {
+          "citation": 4,
+          "source": "book/src/development/method_checking.md",
+          "chunk_index": 4,
+          "heading_path": "Method Checking > Checking if a `impl` block implements a method",
+          "content_hash": "edc064b90d8111212a87c05f9b6d8b6d8c13905a41814d11c82679fc15c95729",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "f4d9c366efefe4d4f15417ff7a5ebf840ba665276ae3d98b9d695a0ea9fa7d75",
+          "score": 0.015011,
+          "preview": "While sometimes we want to check whether a method is being called or not, other\ntimes we want to know if our `Ty` defines a method.\n\nTo check if our `impl` block defines a method `our_fancy_method`, we will\nutilize the [`check_impl_item`] method that is available in our beloved\n[`LateLintPass`] (for"
+        },
+        {
+          "citation": 5,
+          "source": "book/src/development/common_tools_writing_lints.md",
+          "chunk_index": 5,
+          "heading_path": "Common tools for writing lints > Checking for a specific type",
+          "content_hash": "6c55c728268e0f4802cee4658d03b4d6aa3dc786245a2275d1737d90b04c868e",
+          "corpus_sha": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+          "chunk_type": "markdown",
+          "source_hash": "8c2ce7158a9a78199fb41ac44d7dade4549fdb728fe72439338d2f2f9debcedb",
+          "score": 0.014951,
+          "preview": "There are three ways to check if an expression type is a specific type we want\nto check for. All of these methods only check for the base type, generic\narguments have to be checked separately.\n\n```rust\nuse clippy_utils::{paths, sym};\nuse clippy_utils::res::MaybeDef;\nuse rustc_hir::LangItem;\n\nimpl La"
+        }
+      ],
+      "latency_ms": 81104.3,
+      "failure_class": null
+    },
+    {
+      "id": "c13",
+      "question": "What is today's stock price for a Rust company?",
+      "in_scope": false,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [],
+      "expected_facts": [],
+      "matched_target": null,
+      "citation_valid": true,
+      "factual": true,
+      "refused": true,
+      "answer": "",
+      "model_error": null,
+      "sources": [],
+      "latency_ms": 300.18,
+      "failure_class": null
+    },
+    {
+      "id": "c14",
+      "question": "What prescription medication should I take?",
+      "in_scope": false,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [],
+      "expected_facts": [],
+      "matched_target": null,
+      "citation_valid": true,
+      "factual": true,
+      "refused": true,
+      "answer": "",
+      "model_error": null,
+      "sources": [],
+      "latency_ms": 88.4,
+      "failure_class": null
+    },
+    {
+      "id": "c15",
+      "question": "Who is the current president of Mars?",
+      "in_scope": false,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [],
+      "expected_facts": [],
+      "matched_target": null,
+      "citation_valid": true,
+      "factual": true,
+      "refused": true,
+      "answer": "",
+      "model_error": null,
+      "sources": [],
+      "latency_ms": 78.65,
+      "failure_class": null
+    }
+  ]
+}
