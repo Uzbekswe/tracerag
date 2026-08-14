@@ -197,7 +197,10 @@ class Ingestor:
 
                 if all_embeddings and state is not None and not rebuild:
                     dimension = len(all_embeddings[0])
-                    if dimension != state.embedding.dimension:
+                    if (
+                        state.embedding.dimension is not None
+                        and dimension != state.embedding.dimension
+                    ):
                         raise IncompatibleIndexError(
                             "embedding dimension is incompatible; run "
                             "tracerag ingest PATH --rebuild"
@@ -228,31 +231,9 @@ class Ingestor:
                 if staged:
                     dimension = (
                         state.embedding.dimension
-                        if state is not None and not rebuild
+                        if state is not None and not rebuild and state.embedding.dimension is not None
                         else (len(all_embeddings[0]) if all_embeddings else None)
                     )
-                    if dimension is None:
-                        self._discard_stage(stage_vectors, stage_lexical)
-                        self._finish_summary(
-                            reporter,
-                            IngestSummary(
-                                discovered=len(files),
-                                indexed=len(work),
-                                indexed_with_chunks=sum(bool(chunks) for _, chunks in parsed),
-                                empty=sum(not chunks for _, chunks in parsed),
-                                changed=changed,
-                                skipped=skipped,
-                                missing=len(missing),
-                                pruned=len(missing) if prune_confirmed else 0,
-                                unsupported=unsupported,
-                                chunks_embedded=cache_misses,
-                                cache_hits=cache_hits,
-                                cache_misses=cache_misses,
-                                active_generation=active_generation,
-                                elapsed_ms=(time.perf_counter() - started) * 1000,
-                            ),
-                        )
-                        return len(work), len(all_chunks)
                     prepared = transaction.prepare(
                         generation=generation,
                         collection_name=stage_collection,

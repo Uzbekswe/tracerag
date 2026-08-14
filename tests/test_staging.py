@@ -2,7 +2,9 @@ from pathlib import Path
 
 import chromadb
 import pytest
+from typer.testing import CliRunner
 
+import tracerag.cli as cli_module
 from tracerag.config import Settings
 from tracerag.errors import PruneConfirmationRequired
 from tracerag.generation_store import GenerationTransaction
@@ -12,6 +14,8 @@ from tracerag.ollama import OllamaError
 from tracerag.service import RAGService
 from tracerag.source_state import SourceStateStore
 from tracerag.store import BM25Store, VectorStore
+
+runner = CliRunner()
 
 
 class FakeOllama:
@@ -80,21 +84,42 @@ def test_successful_ingest_persists_generation_scoped_source_state(tmp_path: Pat
     assert SourceStateStore(source_state_path).load()
 
 
-@pytest.mark.xfail(strict=True, reason="P1: persist an initial generation with zero chunks")
 def test_initial_all_empty_corpus_persists_authoritative_empty_source_state(
     tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     settings = _settings(tmp_path)
     root = tmp_path / "docs"
     empty = root / "empty.md"
     root.mkdir()
     empty.write_text("", encoding="utf-8")
+    provenance = CorpusProvenance(
+        name="fastapi",
+        url="https://github.com/fastapi/fastapi.git",
+        commit="f" * 40,
+        license="MIT",
+        allowed_path="docs/en/docs",
+    )
 
-    processed, chunks = _ingestor(settings, FakeOllama()).ingest(root)
+    processed, chunks = _ingestor(settings, FakeOllama()).ingest(
+        root,
+        corpus_sha=provenance.commit,
+        corpus_provenance=provenance,
+    )
 
     assert (processed, chunks) == (1, 0)
     state = IndexStateStore(settings.index_state_path).load()
     assert state is not None
+    assert state.embedding.dimension is None
+    assert state.corpus_provenance == provenance
+    monkeypatch.setattr(cli_module, "Settings", lambda **_: settings)
+    result = runner.invoke(
+        cli_module.app,
+        ["documents", "--verbose"],
+        color=False,
+        terminal_width=240,
+    )
+    assert result.exit_code == 0
     documents = RAGService(settings).documents()
     assert documents == [
         {
@@ -106,6 +131,27 @@ def test_initial_all_empty_corpus_persists_authoritative_empty_source_state(
             "status": "empty",
         }
     ]
+    assert "empty" in result.output
+
+
+def test_empty_generation_can_later_establish_embedding_dimension(tmp_path: Path) -> None:
+    settings = _settings(tmp_path)
+    root = tmp_path / "docs"
+    empty = root / "empty.md"
+    root.mkdir()
+    empty.write_text("", encoding="utf-8")
+
+    _ingestor(settings, FakeOllama()).ingest(root)
+    empty.write_text("# Added later\n\nnew evidence", encoding="utf-8")
+
+    _ingestor(settings, FakeOllama()).ingest(root)
+
+    state = IndexStateStore(settings.index_state_path).load()
+    assert state is not None
+    assert state.embedding.dimension == 2
+    documents = RAGService(settings).documents()
+    assert documents[0]["status"] == "current"
+    assert documents[0]["chunks"] > 0
 
 
 def test_ingest_persists_path_bound_corpus_provenance(tmp_path: Path) -> None:

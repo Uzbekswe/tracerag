@@ -179,7 +179,7 @@ or answer behavior.
 - Ruff and the full deterministic suite pass without Ollama.
 - No runtime model, retrieval threshold, or evidence file changes.
 
-**Status:** `not started`
+**Status:** `complete`
 
 ### P2 — Measure and decide the local vector backend
 

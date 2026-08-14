@@ -35,7 +35,7 @@ class GenerationTransaction:
         source_records: dict[str, SourceRecord],
         embedding_provider: str,
         embedding_model: str,
-        embedding_dimension: int,
+        embedding_dimension: int | None,
         corpus_provenance: CorpusProvenance | None = None,
     ) -> PreparedGeneration:
         source_state_path = self.settings.source_state_generations_path / f"{generation}.json"

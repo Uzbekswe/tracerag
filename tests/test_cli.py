@@ -2,7 +2,6 @@ import json
 import re
 from pathlib import Path
 
-import pytest
 from rich.console import Console
 from typer.testing import CliRunner
 
@@ -74,7 +73,6 @@ def test_documents_verbose_retains_source_diagnosis(tmp_path: Path, monkeypatch)
     assert "Content hash" in result.output
 
 
-@pytest.mark.xfail(strict=True, reason="P1: move service construction into the CLI error boundary")
 def test_documents_incompatible_index_prints_rebuild_guidance(
     tmp_path: Path, monkeypatch
 ) -> None:

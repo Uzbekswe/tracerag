@@ -95,3 +95,12 @@ P0 freezes and reproduces the baseline. P1 must implement the two failing
 regressions. The Chroma advisory, transaction redesign, supply-chain changes,
 GitHub security settings, pushes, tags, and repository visibility remain out of
 scope for P0.
+
+## P1 result
+
+P1 converted both strict reproduction tests into passing behavioral tests. The
+incompatible-index command now reports the rebuild instruction without a
+traceback. An all-empty profiled corpus now activates a generation with
+authoritative source state, corpus provenance, a `null` embedding dimension,
+and an `empty` document status. A later non-empty update establishes the actual
+embedding dimension. No Ollama request or model-backed evaluation was used.

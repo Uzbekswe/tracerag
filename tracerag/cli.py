@@ -309,20 +309,19 @@ def documents(
 ) -> None:
     """List indexed source documents."""
     settings = Settings(collection=collection) if collection else Settings()
-    items = RAGService(settings).documents()
-    if verbose:
-        table = Table("Source", "Chunks", "Status", "Content hash")
-        for item in items:
-            table.add_row(
-                str(item["source"]),
-                str(item["chunks"]),
-                str(item["status"]),
-                str(item["content_hash"])[:12],
-            )
-        console.print(table)
-        return
-
     try:
+        items = RAGService(settings).documents()
+        if verbose:
+            table = Table("Source", "Chunks", "Status", "Content hash")
+            for item in items:
+                table.add_row(
+                    str(item["source"]),
+                    str(item["chunks"]),
+                    str(item["status"]),
+                    str(item["content_hash"])[:12],
+                )
+            console.print(table)
+            return
         identity = IndexStateStore(settings.index_state_path).load()
     except IndexCompatibilityError as exc:
         console.print(f"[red]Error:[/red] {exc}")
