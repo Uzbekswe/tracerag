@@ -89,13 +89,13 @@ flowchart LR
   parse --> identity["Content + index identity"]
   identity --> cache["Versioned embedding cache"]
   cache --> embed["Ollama nomic-embed-text"]
-  embed --> stage["Staged Chroma + BM25 generation"]
+  embed --> stage["Staged SQLite vectors + BM25 generation"]
   parse --> stage
   stage --> activate["Atomic active-index manifest"]
   question["tracerag ask"] --> retrieve["Hybrid RRF retriever"]
-  activate --> chroma[("Active Chroma")]
+  activate --> vectors[("Active SQLite vectors")]
   activate --> bm25["Active BM25 index"]
-  retrieve --> chroma
+  retrieve --> vectors
   retrieve --> bm25
   retrieve --> gate{"Evidence threshold"}
   gate -->|supported| prompt["Cited prompt"] --> model["Ollama qwen3:4b"] --> answer["Answer + sources"]

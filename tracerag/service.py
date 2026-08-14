@@ -25,7 +25,7 @@ class RAGService:
             default_collection=self.settings.collection,
             default_bm25_path=self.settings.bm25_path,
         )
-        self.vectors = VectorStore(self.settings.chroma_path, active_collection)
+        self.vectors = VectorStore(self.settings.vector_path, active_collection)
         self.lexical = BM25Store(active_bm25)
         self.retriever = Retriever(
             self.vectors, self.lexical, self.ollama, self.settings.embed_model, self.settings.top_k

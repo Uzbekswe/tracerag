@@ -111,8 +111,7 @@ class Ingestor:
                 state=state,
                 legacy_path=self.settings.source_state_path,
             )
-            source_store = SourceStateStore(source_state_path)
-            records = {} if rebuild else source_store.load()
+            records = {} if rebuild else SourceStateStore(source_state_path).load()
             files = self.files(path)
             self._emit(reporter, "discovery", discovered=len(files))
             changes = ChangePlanner.plan(files, records, path, corpus_sha=corpus_sha)
@@ -146,200 +145,114 @@ class Ingestor:
                 )
                 return 0, 0
 
-            staged = self._supports_generations()
-            old_collection = getattr(self.vectors, "collection_name", None)
-            old_bm25_path = getattr(self.lexical, "path", self.settings.bm25_path)
-            stage_vectors = self.vectors
-            stage_lexical = self.lexical
-            generation = IndexStateStore.new_generation()
-            stage_collection = self._stage_collection_name(generation)
-            stage_bm25_path = self.settings.bm25_generations_path / f"{generation}.json"
-            activated = False
-            prepared: PreparedGeneration | None = None
-            transaction = GenerationTransaction(self.settings, state_store)
-            active_generation = state.generation if state is not None else None
-            if staged:
-                stage_vectors = VectorStore(self.settings.chroma_path, stage_collection)
-                stage_lexical = BM25Store(stage_bm25_path)
-                self._emit(
-                    reporter,
-                    "staging",
-                    generation=generation,
-                    collection=stage_collection,
+            old_chunks: list[Chunk] = []
+            old_embeddings: list[list[float]] = []
+            if not rebuild and self.vectors.has_data():
+                old_chunks, old_embeddings = self.vectors.export()
+            source_payload: dict[str, tuple[list[Chunk], list[list[float]]]] = {}
+            for chunk, embedding in zip(old_chunks, old_embeddings, strict=True):
+                chunks, embeddings = source_payload.setdefault(chunk.source, ([], []))
+                chunks.append(chunk)
+                embeddings.append(embedding)
+
+            parsed: list[tuple[FileChange, list[Chunk]]] = []
+            self._emit(reporter, "parsing", files=len(work))
+            for change in work:
+                parsed.append(
+                    (
+                        change,
+                        parse_document(
+                            change.path,
+                            self.settings.chunk_size,
+                            self.settings.chunk_overlap,
+                            corpus_sha,
+                        ),
+                    )
                 )
 
-            try:
-                if staged and not rebuild and self.vectors.has_data():
-                    chunks, embeddings = self.vectors.export()
-                    stage_vectors.import_chunks(chunks, embeddings)
-
-                if rebuild and not staged:
-                    self._reset_index()
-
-                parsed: list[tuple[FileChange, list[Chunk]]] = []
-                self._emit(reporter, "parsing", files=len(work))
-                for change in work:
-                    chunks = parse_document(
-                        change.path,
-                        self.settings.chunk_size,
-                        self.settings.chunk_overlap,
-                        corpus_sha,
+            new_chunks = [chunk for _, chunks in parsed for chunk in chunks]
+            known_dimension = None if rebuild or state is None else state.embedding.dimension
+            all_embeddings, cache_hits, cache_misses = self._embed_chunks(
+                new_chunks, known_dimension, path, reporter
+            )
+            if all_embeddings and state is not None and not rebuild:
+                dimension = len(all_embeddings[0])
+                if state.embedding.dimension is not None and dimension != state.embedding.dimension:
+                    raise IncompatibleIndexError(
+                        "embedding dimension is incompatible; run "
+                        "tracerag ingest PATH --rebuild"
                     )
-                    parsed.append((change, chunks))
 
-                all_chunks = [chunk for _, chunks in parsed for chunk in chunks]
-                known_dimension = (
-                    None if rebuild or state is None else state.embedding.dimension
+            offset = 0
+            updated_records = dict(records)
+            for change, chunks in parsed:
+                embeddings = all_embeddings[offset : offset + len(chunks)]
+                offset += len(chunks)
+                source_payload[change.source] = (chunks, embeddings)
+                updated_records[change.source] = SourceRecord(
+                    source=change.source,
+                    relative_path=change.relative_path,
+                    source_hash=change.source_hash,
+                    corpus_sha=corpus_sha,
+                    chunk_count=len(chunks),
                 )
-                all_embeddings, cache_hits, cache_misses = self._embed_chunks(
-                    all_chunks, known_dimension, path, reporter
-                )
+            if prune_confirmed:
+                for change in missing:
+                    source_payload.pop(change.source, None)
+                    updated_records.pop(change.source, None)
 
-                if all_embeddings and state is not None and not rebuild:
-                    dimension = len(all_embeddings[0])
-                    if (
-                        state.embedding.dimension is not None
-                        and dimension != state.embedding.dimension
-                    ):
-                        raise IncompatibleIndexError(
-                            "embedding dimension is incompatible; run "
-                            "tracerag ingest PATH --rebuild"
-                        )
-
-                offset = 0
-                updated_records = dict(records)
-                for change, chunks in parsed:
-                    embeddings = all_embeddings[offset : offset + len(chunks)]
-                    offset += len(chunks)
-                    stage_vectors.replace_source(change.source, chunks, embeddings)
-                    updated_records[change.source] = SourceRecord(
-                        source=change.source,
-                        relative_path=change.relative_path,
-                        source_hash=change.source_hash,
-                        corpus_sha=corpus_sha,
-                        chunk_count=len(chunks),
-                    )
-                if prune_confirmed:
-                    for change in missing:
-                        stage_vectors.replace_source(change.source, [], [])
-                        updated_records.pop(change.source, None)
-
-                staged_chunks = stage_vectors.all_chunks()
-                if work or (prune_confirmed and missing):
-                    stage_lexical.save(staged_chunks)
-
-                if staged:
-                    dimension = (
-                        state.embedding.dimension
-                        if state is not None and not rebuild and state.embedding.dimension is not None
-                        else (len(all_embeddings[0]) if all_embeddings else None)
-                    )
-                    prepared = transaction.prepare(
-                        generation=generation,
-                        collection_name=stage_collection,
-                        bm25_path=stage_bm25_path,
-                        source_records=updated_records,
-                        embedding_provider="ollama",
-                        embedding_model=self.settings.embed_model,
-                        embedding_dimension=dimension,
-                        corpus_provenance=corpus_provenance,
-                    )
-                    transaction.activate(prepared)
-                    active_generation = prepared.identity.generation
-                    activated = True
-                    self._emit(reporter, "activation", generation=prepared.identity.generation)
-                    self._cleanup_previous_generation(
-                        old_collection,
-                        old_bm25_path,
-                        source_state_path,
-                        stage_collection,
-                        stage_bm25_path,
-                        prepared.source_state_path,
-                    )
-                    self._emit(reporter, "cleanup", generation=prepared.identity.generation)
-                else:
-                    if work or (prune_confirmed and missing):
-                        self.lexical.save(self.vectors.all_chunks())
-                        source_store.save(updated_records)
-
-                if not staged and all_embeddings:
-                    identity = IndexStateStore.new(
-                        collection=self.settings.collection,
-                        embedding_provider="ollama",
-                        embedding_model=self.settings.embed_model,
-                        embedding_dimension=len(all_embeddings[0]),
-                    )
-                    state_store.save(identity)
-                    active_generation = identity.generation
-                self._finish_summary(
-                    reporter,
-                    IngestSummary(
-                        discovered=len(files),
-                        indexed=len(work),
-                        indexed_with_chunks=sum(bool(chunks) for _, chunks in parsed),
-                        empty=sum(not chunks for _, chunks in parsed),
-                        changed=changed,
-                        skipped=skipped,
-                        missing=len(missing),
-                        pruned=len(missing) if prune_confirmed else 0,
-                        unsupported=unsupported,
-                        chunks_embedded=cache_misses,
-                        cache_hits=cache_hits,
-                        cache_misses=cache_misses,
-                        active_generation=active_generation,
-                        elapsed_ms=(time.perf_counter() - started) * 1000,
-                    ),
-                )
-                return len(work), len(all_chunks)
-            except BaseException:
-                if staged and not activated:
-                    self._discard_stage(stage_vectors, stage_lexical)
-                    transaction.discard(prepared)
-                raise
-
-    def _supports_generations(self) -> bool:
-        return all(
-            hasattr(self.vectors, name)
-            for name in ("export", "import_chunks", "delete")
-        )
-
-    def _stage_collection_name(self, generation: str) -> str:
-        suffix = f"__{generation[:16]}"
-        return f"{self.settings.collection[: 63 - len(suffix)]}{suffix}"
-
-    @staticmethod
-    def _discard_stage(stage_vectors, stage_lexical) -> None:
-        try:
-            if hasattr(stage_vectors, "delete"):
-                stage_vectors.delete()
-        finally:
-            if hasattr(stage_lexical, "clear"):
-                stage_lexical.clear()
-
-    def _cleanup_previous_generation(
-        self,
-        old_collection: str | None,
-        old_bm25_path: Path,
-        old_source_state_path: Path,
-        new_collection: str,
-        new_bm25_path: Path,
-        new_source_state_path: Path,
-    ) -> None:
-        if old_collection and old_collection != new_collection and hasattr(self.vectors, "delete"):
-            try:
-                self.vectors.delete()
-            except Exception:  # pragma: no cover - cleanup is best effort after activation
-                logger.warning("could not clean previous Chroma generation", exc_info=True)
-        if old_bm25_path != new_bm25_path:
-            try:
-                old_bm25_path.unlink(missing_ok=True)
-            except OSError:  # pragma: no cover - cleanup is best effort after activation
-                logger.warning("could not clean previous BM25 generation", exc_info=True)
-        if old_source_state_path != new_source_state_path:
-            try:
-                old_source_state_path.unlink(missing_ok=True)
-            except OSError:  # pragma: no cover - cleanup is best effort after activation
-                logger.warning("could not clean previous source state", exc_info=True)
+            snapshot_chunks: list[Chunk] = []
+            snapshot_embeddings: list[list[float]] = []
+            for source in sorted(source_payload):
+                chunks, embeddings = source_payload[source]
+                ordered = sorted(zip(chunks, embeddings, strict=True), key=lambda item: item[0].chunk_id)
+                snapshot_chunks.extend(chunk for chunk, _ in ordered)
+                snapshot_embeddings.extend(embedding for _, embedding in ordered)
+            dimension = (
+                len(snapshot_embeddings[0])
+                if snapshot_embeddings
+                else (state.embedding.dimension if state is not None and not rebuild else None)
+            )
+            prepared = PreparedGeneration(
+                chunks=tuple(snapshot_chunks),
+                embeddings=tuple(tuple(vector) for vector in snapshot_embeddings),
+                source_records=updated_records,
+                embedding_provider="ollama",
+                embedding_model=self.settings.embed_model,
+                embedding_dimension=dimension,
+                corpus_provenance=corpus_provenance,
+            )
+            self._emit(reporter, "staging", files=len(work), chunks=len(snapshot_chunks))
+            outcome = GenerationTransaction(self.settings, state_store).execute(prepared, state)
+            self._emit(reporter, "activation", generation=outcome.identity.generation)
+            self._emit(
+                reporter,
+                "cleanup",
+                generation=outcome.identity.generation,
+                warnings=list(outcome.warnings),
+            )
+            self.vectors = VectorStore(self.settings.vector_path, outcome.identity.active_collection)
+            self.lexical = BM25Store(self.settings.data_dir / outcome.identity.bm25_artifact)
+            self._finish_summary(
+                reporter,
+                IngestSummary(
+                    discovered=len(files),
+                    indexed=len(work),
+                    indexed_with_chunks=sum(bool(chunks) for _, chunks in parsed),
+                    empty=sum(not chunks for _, chunks in parsed),
+                    changed=changed,
+                    skipped=skipped,
+                    missing=len(missing),
+                    pruned=len(missing) if prune_confirmed else 0,
+                    unsupported=unsupported,
+                    chunks_embedded=cache_misses,
+                    cache_hits=cache_hits,
+                    cache_misses=cache_misses,
+                    active_generation=outcome.identity.generation,
+                    elapsed_ms=(time.perf_counter() - started) * 1000,
+                ),
+            )
+            return len(work), len(new_chunks)
 
     def _embed_chunks(
         self,
@@ -447,11 +360,3 @@ class Ingestor:
         else:
             lexical_data = bool(getattr(self.lexical, "load", list)())
         return vector_data or lexical_data
-
-    def _reset_index(self) -> None:
-        reset = getattr(self.vectors, "reset", None)
-        if callable(reset):
-            reset()
-        clear = getattr(self.lexical, "clear", None)
-        if callable(clear):
-            clear()

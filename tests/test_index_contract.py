@@ -120,7 +120,7 @@ def test_invalid_manifest_requires_rebuild_and_rebuild_replaces_it(
 
     state = IndexStateStore(settings.index_state_path).load()
     assert state is not None
-    assert state.schema_version == 2
+    assert state.schema_version == 3
 
 
 def test_index_manifest_round_trips_typed_corpus_provenance(tmp_path: Path) -> None:
@@ -152,7 +152,7 @@ def test_rebuild_authorizes_legacy_replacement_and_writes_state(
 ) -> None:
     source = tmp_path / "guide.md"
     source.write_text("# Guide\n\ncontent", encoding="utf-8")
-    ingestor, vectors, lexical, _ = _ingestor(
+    ingestor, _, _, _ = _ingestor(
         tmp_path,
         vectors=FakeVectors(has_data=True),
         lexical=FakeLexical(has_data=True),
@@ -162,8 +162,6 @@ def test_rebuild_authorizes_legacy_replacement_and_writes_state(
 
     ingestor.ingest(source, rebuild=True)
 
-    assert vectors.reset_called
-    assert lexical.clear_called
     state = IndexStateStore(ingestor.settings.index_state_path).load()
     assert state is not None
     assert state.collection == ingestor.settings.collection
@@ -219,7 +217,7 @@ def test_rebuild_authorizes_incompatible_manifest_replacement(
 ) -> None:
     source = tmp_path / "guide.md"
     source.write_text("# Guide\n\ncontent", encoding="utf-8")
-    ingestor, vectors, lexical, _ = _ingestor(
+    ingestor, _, _, _ = _ingestor(
         tmp_path,
         vectors=FakeVectors(has_data=True),
         lexical=FakeLexical(has_data=True),
@@ -238,8 +236,6 @@ def test_rebuild_authorizes_incompatible_manifest_replacement(
 
     ingestor.ingest(source, rebuild=True)
 
-    assert vectors.reset_called
-    assert lexical.clear_called
     assert IndexStateStore(ingestor.settings.index_state_path).load().embedding.model == (
         ingestor.settings.embed_model
     )

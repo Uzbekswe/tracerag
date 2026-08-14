@@ -18,7 +18,7 @@ from .benchmark import run_benchmark
 from .cache import EmbeddingCache
 from .config import Settings
 from .corpus import CORPUS_PROFILES, fetch_clippy, fetch_fastapi, resolve_corpus_context
-from .errors import IndexCompatibilityError, PruneConfirmationRequired
+from .errors import GenerationTransactionError, IndexCompatibilityError, PruneConfirmationRequired
 from .evaluation import DatasetValidationError, compare_baseline, run_evaluation
 from .index_state import IndexStateStore
 from .ingest import Ingestor, IngestSummary
@@ -287,7 +287,7 @@ def ingest(
             reporter=reporter,
             corpus_provenance=corpus_context.provenance if corpus_context else None,
         )
-    except (IndexCompatibilityError, OllamaError, OSError, ValueError) as exc:
+    except (GenerationTransactionError, IndexCompatibilityError, OllamaError, OSError, ValueError) as exc:
         reporter.stop()
         console.print(f"[red]Error:[/red] {exc}")
         raise typer.Exit(1) from exc

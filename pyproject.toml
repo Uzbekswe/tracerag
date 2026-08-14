@@ -10,7 +10,6 @@ readme = "README.md"
 requires-python = ">=3.13,<3.14"
 license = { text = "MIT" }
 dependencies = [
-  "chromadb>=1.0,<2",
   "httpx>=0.28,<1",
   "pypdf>=5,<7",
   "pydantic-settings>=2.8,<3",
