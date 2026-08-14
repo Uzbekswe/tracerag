@@ -2,8 +2,8 @@
 
 ## Status
 
-**P0–P7 implementation is complete on the private release branch. P8 remains
-owner-approved public visibility work.**
+**P0–P8 are complete. TraceRAG v1.2 is public with an owner-approved,
+reviewed release candidate and reproducible public verification.**
 
 This file is the source of truth for the audit-remediation and public-release
 session that follows TraceRAG v1.1. Implement exactly one milestone at a time.
@@ -465,7 +465,19 @@ Do not continue until the owner explicitly says to make the repository public.
 - `v1.1.0` remains unchanged and `v1.2.0` points to the accepted public release.
 - No post-publication emergency correction is required.
 
-**Status:** `not started`
+**Release evidence**
+
+- The repository is public and anonymous `git ls-remote` and raw README/license
+  requests succeed.
+- The default `main` branch is the reviewed merge, and public CI plus CodeQL
+  checks pass on the final security workflow change.
+- Dependabot alerts/security updates and secret-scanning push protection are
+  enabled. The CodeQL workflow uploads findings with least-privilege
+  `security-events: write` permission.
+- The tracked tree contains no generated corpus, local data, model, cache,
+  database, pickle, credential, or workstation-specific path.
+
+**Status:** `complete`
 
 ## Final completion checklist
 
@@ -477,8 +489,8 @@ Do not continue until the owner explicitly says to make the repository public.
 - [x] P5 focused maintainability cleanup finished
 - [x] P6 GitHub security automation and portfolio documentation finished
 - [x] P7 private release candidate merged with all gates passing
-- [ ] Owner explicitly approved public visibility
-- [ ] P8 anonymous public verification and `v1.2.0` release finished
+- [x] Owner explicitly approved public visibility
+- [x] P8 anonymous public verification and `v1.2.0` release finished
 
 ## Implementation handoff
 
