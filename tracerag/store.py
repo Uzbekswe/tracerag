@@ -7,15 +7,75 @@ from pathlib import Path
 import chromadb
 
 from .models import Chunk
+from .persistence import atomic_write_json
 
 
 class VectorStore:
     def __init__(self, path: Path, collection: str) -> None:
         self.path = path
+        self.collection_name = collection
         self.path.mkdir(parents=True, exist_ok=True)
         self.client = chromadb.PersistentClient(path=str(path))
         self.collection = self.client.get_or_create_collection(
             collection, metadata={"hnsw:space": "cosine"}
+        )
+
+    def has_data(self) -> bool:
+        return self.collection.count() > 0
+
+    def reset(self) -> None:
+        self.client.delete_collection(self.collection_name)
+        self.collection = self.client.get_or_create_collection(
+            self.collection_name, metadata={"hnsw:space": "cosine"}
+        )
+
+    def delete(self) -> None:
+        self.client.delete_collection(self.collection_name)
+
+    def export(self) -> tuple[list[Chunk], list[list[float]]]:
+        result = self.collection.get(
+            include=["documents", "metadatas", "embeddings"]
+        )
+        chunks: list[Chunk] = []
+        embeddings: list[list[float]] = []
+        raw_embeddings = result.get("embeddings")
+        if raw_embeddings is None:
+            raw_embeddings = []
+        for index, (chunk_id, text, metadata) in enumerate(
+            zip(
+                result.get("ids", []),
+                result.get("documents", []),
+                result.get("metadatas", []),
+                strict=False,
+            )
+        ):
+            metadata = metadata or {}
+            chunks.append(
+                Chunk(
+                    chunk_id=str(chunk_id),
+                    text=str(text),
+                    source=str(metadata.get("source", "")),
+                    chunk_index=int(metadata.get("chunk_index", 0)),
+                    heading_path=str(metadata.get("heading_path", "")),
+                    content_hash=str(metadata.get("content_hash", "")),
+                    corpus_sha=str(metadata.get("corpus_sha", "")),
+                    chunk_type=str(metadata.get("chunk_type", "text")),
+                    source_hash=str(metadata.get("source_hash", "")),
+                )
+            )
+            embeddings.append([float(value) for value in raw_embeddings[index]])
+        return chunks, embeddings
+
+    def import_chunks(self, chunks: list[Chunk], embeddings: list[list[float]]) -> None:
+        if not chunks:
+            return
+        if len(chunks) != len(embeddings):
+            raise ValueError("chunk and embedding counts must match")
+        self.collection.upsert(
+            ids=[chunk.chunk_id for chunk in chunks],
+            documents=[chunk.text for chunk in chunks],
+            embeddings=embeddings,
+            metadatas=[chunk.metadata() for chunk in chunks],
         )
 
     def replace_source(
@@ -123,10 +183,19 @@ class BM25Store:
         self.path = path
 
     def save(self, chunks: list[Chunk]) -> None:
-        self.path.parent.mkdir(parents=True, exist_ok=True)
-        self.path.write_text(
-            json.dumps([chunk.__dict__ for chunk in chunks], indent=2), encoding="utf-8"
-        )
+        atomic_write_json(self.path, [chunk.__dict__ for chunk in chunks])
+
+    def has_data(self) -> bool:
+        if not self.path.exists():
+            return False
+        try:
+            value = json.loads(self.path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            return True
+        return bool(value)
+
+    def clear(self) -> None:
+        self.path.unlink(missing_ok=True)
 
     def load(self) -> list[Chunk]:
         if not self.path.exists():

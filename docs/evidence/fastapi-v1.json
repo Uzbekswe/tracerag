@@ -1,0 +1,3337 @@
+{
+  "schema_version": 2,
+  "dataset": "fastapi-v1",
+  "dataset_version": "1.1.0",
+  "dataset_corpus": {
+    "name": "fastapi",
+    "source": "https://github.com/fastapi/fastapi",
+    "commit": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+    "allowed_path": "docs/en/docs"
+  },
+  "records_evaluated": 40,
+  "corpus": {
+    "name": "fastapi",
+    "url": "https://github.com/fastapi/fastapi.git",
+    "commit": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+    "license": "MIT",
+    "allowed_path": "docs/en/docs",
+    "fetched_at": "2026-08-14T10:24:56.891872+00:00"
+  },
+  "index_schema_version": 2,
+  "provenance": {
+    "dataset": {
+      "name": "fastapi-v1",
+      "version": "1.1.0",
+      "corpus": {
+        "name": "fastapi",
+        "source": "https://github.com/fastapi/fastapi",
+        "commit": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+        "allowed_path": "docs/en/docs"
+      }
+    },
+    "corpus": {
+      "name": "fastapi",
+      "url": "https://github.com/fastapi/fastapi.git",
+      "commit": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+      "license": "MIT",
+      "allowed_path": "docs/en/docs",
+      "fetched_at": "2026-08-14T10:24:56.891872+00:00"
+    },
+    "index": {
+      "schema_version": 2,
+      "generation": "e0efee77f2694aa292fd7ecd83588b26",
+      "collection": "tracerag",
+      "embedding": {
+        "provider": "ollama",
+        "model": "nomic-embed-text",
+        "dimension": 768
+      },
+      "chunking_version": "structural-v1",
+      "preprocessing_version": "parser-v1",
+      "active_collection": "tracerag__e0efee77f2694aa2",
+      "bm25_artifact": "bm25/generations/e0efee77f2694aa292fd7ecd83588b26.json",
+      "source_state_artifact": "source-state/generations/e0efee77f2694aa292fd7ecd83588b26.json",
+      "corpus_provenance": {
+        "name": "fastapi",
+        "url": "https://github.com/fastapi/fastapi.git",
+        "commit": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+        "license": "MIT",
+        "allowed_path": "docs/en/docs",
+        "fetched_at": "2026-08-14T10:24:56.891872+00:00"
+      }
+    },
+    "cache": {
+      "path": "embedding-cache",
+      "max_bytes": 536870912,
+      "embedding_model": "nomic-embed-text"
+    }
+  },
+  "models": {
+    "embedding": "nomic-embed-text",
+    "generation": "qwen3:4b"
+  },
+  "config": {
+    "top_k": 5,
+    "min_retrieval_score": 0.72,
+    "model_context": 2048
+  },
+  "metrics": {
+    "citation_validity": 1.0,
+    "recall_at_5": 1.0,
+    "factuality": 0.9714285714285714
+  },
+  "diagnostics": {
+    "in_scope_cases": 35,
+    "out_of_scope_cases": 5,
+    "out_of_scope_refusal_accuracy": 1.0,
+    "generated_answers": 35
+  },
+  "factuality_method": "deterministic expected-fact proxy; semantic review recorded in docs/manual-review-fastapi.md",
+  "release_gate": {
+    "citation_validity": true,
+    "recall_at_5": true,
+    "factuality": true
+  },
+  "cases": [
+    {
+      "id": "f01",
+      "question": "What kind of web framework is FastAPI?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/index.md",
+          "heading": "fastapi"
+        }
+      ],
+      "expected_facts": [
+        "web framework"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/index.md",
+        "heading": "fastapi",
+        "rank": 1
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "FastAPI is a modern, high-performance web framework for building APIs with Python based on standard Python type hints [1].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/index.md",
+          "chunk_index": 1,
+          "heading_path": "FastAPI { #fastapi }",
+          "content_hash": "d717369a176383cc66fa1cad21487dc6fd5d69fff9441208a5a4e198c6217b2c",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "bf32745c71b889d99db6587bc052ac5c616ffb3a5e0e9c8fd2b5f2b536f68418",
+          "score": 0.015939,
+          "preview": "FastAPI framework, high performance, easy to learn, fast to code, ready for production \n \n \n \n     \n \n \n     \n \n \n     \n \n \n     \n \n \n\n---\n\n**Documentation**: [https://fastapi.tiangolo.com](https://fastapi.tiangolo.com)\n\n**Source Code**: [https://github.com/fastapi/fastapi](https://github.com/fastap"
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/external-links.md",
+          "chunk_index": 1,
+          "heading_path": "External Links",
+          "content_hash": "3c8f06b28a0838b327126c4459185903abcb656644fb25df0202e5d9b925df04",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "169ce77a08238c80a1ef51ba77ebf14c542bc4e641830789d7604a9ce38d76d8",
+          "score": 0.014932,
+          "preview": "**FastAPI** has a great community constantly growing.\n\nThere are many posts, articles, tools, and projects related to **FastAPI**.\n\nYou could easily use a search engine or video platform to find many resources related to FastAPI.\n\n/// note\n\nBefore, this page used to list links to external articles.\n"
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/features.md",
+          "chunk_index": 2,
+          "heading_path": "Features { #features } > FastAPI features { #fastapi-features } > Automatic docs { #automatic-docs }",
+          "content_hash": "34f1cbb401a06bd19537256e9759679afbb3e0690cfe5d5933c2548e9ea88117",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "74a53c59b8a98155e3298cc17c4d36144bd179f5548dbbeebe2eb0123cd7f7fc",
+          "score": 0.014221,
+          "preview": "Interactive API documentation and exploration web user interfaces. As the framework is based on OpenAPI, there are multiple options, 2 included by default.\n\n* [**Swagger UI**](https://github.com/swagger-api/swagger-ui), with interactive exploration, call and test your API directly from the browser.\n"
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/index.md",
+          "chunk_index": 10,
+          "heading_path": "FastAPI { #fastapi } > Requirements { #requirements }",
+          "content_hash": "fc824f2a1e3a69c2e8013eaca65f433a4b84da66d90fbfe5c3f4794c01669c19",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "bf32745c71b889d99db6587bc052ac5c616ffb3a5e0e9c8fd2b5f2b536f68418",
+          "score": 0.008871,
+          "preview": "FastAPI stands on the shoulders of giants:\n\n* [Starlette](https://starlette.dev/) for the web parts.\n* [Pydantic](https://pydantic.dev/docs/) for the data parts."
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/reference/index.md",
+          "chunk_index": 0,
+          "heading_path": "Reference",
+          "content_hash": "6ab1d199eaeed5d6b23b6f032cd148c1b12055b99cb8a23d6ddd9cb3f3c4719e",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "153c1466906b1b0b31ac74273b1da7a1887b9384e2ec386b56051dd51d650afa",
+          "score": 0.00873,
+          "preview": "Here's the reference or code API, the classes, functions, parameters, attributes, and\nall the FastAPI parts you can use in your applications.\n\nIf you want to **learn FastAPI** you are much better off reading the\n[FastAPI Tutorial](https://fastapi.tiangolo.com/tutorial/)."
+        }
+      ],
+      "latency_ms": 59278.89,
+      "failure_class": null
+    },
+    {
+      "id": "f02",
+      "question": "What command installs FastAPI with pip?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/tutorial/index.md",
+          "heading": "tutorial - user guide { #tutorial-user-guide } > install fastapi"
+        }
+      ],
+      "expected_facts": [
+        "pip install"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/tutorial/index.md",
+        "heading": "tutorial - user guide { #tutorial-user-guide } > install fastapi",
+        "rank": 2
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "pip install \"fastapi[standard]\" [2]",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/release-notes.md",
+          "chunk_index": 550,
+          "heading_path": "Release Notes > 0.112.0 (2024-08-02) > Breaking Changes",
+          "content_hash": "a4949627c37da873f0a06da9d84f9ef5e7ec5851276f922ad3c648701252e497",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "fb63572e6b4e43b6372710b578089571cf9ce800c7783ca270d0d3fcc507997d",
+          "score": 0.015517,
+          "preview": "* \u267b\ufe0f Add support for `pip install \"fastapi[standard]\"` with standard dependencies and `python -m fastapi`. PR [#11935](https://github.com/fastapi/fastapi/pull/11935) by [@tiangolo](https://github.com/tiangolo)."
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/tutorial/index.md",
+          "chunk_index": 6,
+          "heading_path": "Tutorial - User Guide { #tutorial-user-guide } > Install FastAPI { #install-fastapi }",
+          "content_hash": "d21929102fafc6d7095cc08f05232e28636a6ffb856e82aa36d1866ecd795b50",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "22d619c9497c8e88094fdba2b297c91ed29b21459b658a3586ae39a95fd65335",
+          "score": 0.015354,
+          "preview": "ges manually, create and activate a virtual environment and then install FastAPI with `pip install \"fastapi[standard]\"`.\n\nRead the [Virtual Environments guide](https://tiangolo.com/guides/virtual-environments/) for the detailed steps.\n\n///"
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/fastapi-cli.md",
+          "chunk_index": 0,
+          "heading_path": "FastAPI CLI { #fastapi-cli }",
+          "content_hash": "ce1247b0374504f7626377b46a242e3c4fbdd92765133a280313a5790b75e0b8",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "ad3860dd30364ab774324d61580dd2b7b175e28a0a3fbd3fc1b2c5ec779ffe3f",
+          "score": 0.014827,
+          "preview": "**FastAPI  CLI ** is a command line program that you can use to serve your FastAPI app, manage your FastAPI project, and more.\n\nWhen you add FastAPI to your project (e.g. with `uv add \"fastapi[standard]\"`), it comes with a command line program you can run in the terminal.\n\nTo run your FastAPI app fo"
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/tutorial/index.md",
+          "chunk_index": 5,
+          "heading_path": "Tutorial - User Guide { #tutorial-user-guide } > Install FastAPI { #install-fastapi }",
+          "content_hash": "3e8ff2a81021c7f932cde0e519352967ffe2549a4546ee505e17365dbdd5a604",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "22d619c9497c8e88094fdba2b297c91ed29b21459b658a3586ae39a95fd65335",
+          "score": 0.014626,
+          "preview": "s/projects/sync/). `uv` does this automatically when you add a package.\n\n///\n\n/// details | FastAPI installation options\n\nWhen you install with `uv add \"fastapi[standard]\"` it comes with some default optional standard dependencies, including `fastapi-cloud-cli`, which allows you to deploy to [FastAP"
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/release-notes.md",
+          "chunk_index": 553,
+          "heading_path": "Release Notes > 0.112.0 (2024-08-02) > Breaking Changes > Technical Details",
+          "content_hash": "ef032db625989e7dafc0bb4bd0bb604177602c03116c598c9799ba94cc51de2e",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "fb63572e6b4e43b6372710b578089571cf9ce800c7783ca270d0d3fcc507997d",
+          "score": 0.014464,
+          "preview": "Before this, `fastapi` would include the standard dependencies, with Uvicorn and the `fastapi-cli`, etc.\n\nAnd `fastapi-slim` would not include those standard dependencies.\n\nNow `fastapi` doesn't include those standard dependencies unless you install with `pip install \"fastapi[standard]\"`.\n\nBefore, y"
+        }
+      ],
+      "latency_ms": 27240.15,
+      "failure_class": null
+    },
+    {
+      "id": "f03",
+      "question": "How do I create a first FastAPI application?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/tutorial/first-steps.md",
+          "heading": "first steps { #first-steps } > recap, step by step { #recap-step-by-step } > step 2: create a fastapi \"instance\""
+        }
+      ],
+      "expected_facts": [
+        "FastAPI"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/tutorial/first-steps.md",
+        "heading": "first steps { #first-steps } > recap, step by step { #recap-step-by-step } > step 2: create a fastapi \"instance\"",
+        "rank": 1
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Create `main.py` with `app = FastAPI()` [1]. Run development server via `uv run fastapi dev` [2] or `fastapi dev` [3].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/tutorial/first-steps.md",
+          "chunk_index": 17,
+          "heading_path": "First Steps { #first-steps } > Recap, step by step { #recap-step-by-step } > Step 2: create a `FastAPI` \"instance\" { #step-2-create-a-fastapi-instance }",
+          "content_hash": "758fa72abe3031ce9b71c8bd7727e8e0647411746868171912867c12abddeecb",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "ecc419c9e4ccf1e996db0b196301aab93a8f43d52ddc59a180d4e88f8290c858",
+          "score": 0.009016,
+          "preview": "{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}\n\nHere the `app` variable will be an \"instance\" of the class `FastAPI`.\n\nThis will be the main point of interaction to create all your API."
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/tutorial/first-steps.md",
+          "chunk_index": 0,
+          "heading_path": "First Steps { #first-steps }",
+          "content_hash": "742c7ecd2cce34972335ec647bb14b3b6b24b1005d9c7a59b1f7264364e52615",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "ecc419c9e4ccf1e996db0b196301aab93a8f43d52ddc59a180d4e88f8290c858",
+          "score": 0.008871,
+          "preview": "The simplest FastAPI file could look like this:\n\n{* ../../docs_src/first_steps/tutorial001_py310.py *}\n\nCopy that to a file `main.py`.\n\n/// tip\n\nFastAPI has an [official extension for VS Code](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) (and Cursor), which provide"
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/fastapi-cli.md",
+          "chunk_index": 0,
+          "heading_path": "FastAPI CLI { #fastapi-cli }",
+          "content_hash": "ce1247b0374504f7626377b46a242e3c4fbdd92765133a280313a5790b75e0b8",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "ad3860dd30364ab774324d61580dd2b7b175e28a0a3fbd3fc1b2c5ec779ffe3f",
+          "score": 0.00873,
+          "preview": "**FastAPI  CLI ** is a command line program that you can use to serve your FastAPI app, manage your FastAPI project, and more.\n\nWhen you add FastAPI to your project (e.g. with `uv add \"fastapi[standard]\"`), it comes with a command line program you can run in the terminal.\n\nTo run your FastAPI app fo"
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/tutorial/index.md",
+          "chunk_index": 0,
+          "heading_path": "Tutorial - User Guide { #tutorial-user-guide }",
+          "content_hash": "1e5ef8d317ec7ce94cae3b96fcfa254bb75508347356959072b58c73cafde7ee",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "22d619c9497c8e88094fdba2b297c91ed29b21459b658a3586ae39a95fd65335",
+          "score": 0.008462,
+          "preview": "This tutorial shows you how to use **FastAPI** with most of its features, step by step.\n\nEach section gradually builds on the previous ones, but it's structured to separate topics, so that you can go directly to any specific one to solve your specific API needs.\n\nIt is also built to work as a future"
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/tutorial/first-steps.md",
+          "chunk_index": 27,
+          "heading_path": "First Steps { #first-steps } > Recap { #recap }",
+          "content_hash": "e680bf91b867bda3135f96a335972909a499da93a1ad18d65c9c53f84fc74e5a",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "ecc419c9e4ccf1e996db0b196301aab93a8f43d52ddc59a180d4e88f8290c858",
+          "score": 0.008333,
+          "preview": "* Import `FastAPI`.\n* Create an `app` instance.\n* Write a **path operation decorator** using decorators like `@app.get(\"/\")`.\n* Define a **path operation function**; for example, `def root(): ...`.\n* Run the development server using the command `fastapi dev`.\n* Optionally deploy your app with `fasta"
+        }
+      ],
+      "latency_ms": 51832.42,
+      "failure_class": null
+    },
+    {
+      "id": "f04",
+      "question": "How are path operation decorators used?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/tutorial/path-operation-configuration.md",
+          "heading": "path operation configuration"
+        }
+      ],
+      "expected_facts": [
+        "path operation"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/tutorial/path-operation-configuration.md",
+        "heading": "path operation configuration",
+        "rank": 2
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Path operation decorators configure and add metadata for path operations by passing parameters to them [1]. These parameters are passed directly to the path operation decorator, not to the path operation function [2].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/tutorial/path-operation-configuration.md",
+          "chunk_index": 8,
+          "heading_path": "Path Operation Configuration { #path-operation-configuration } > Recap { #recap }",
+          "content_hash": "84d06a469267d8eb8a0af0f9d198246d1ca4b3dbdbd0e7e7dfe1059f1b6f2f5c",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "4dd48d33514d52d997bbee269a3c293d70619af1ed9799545a2714010914cad6",
+          "score": 0.015346,
+          "preview": "You can configure and add metadata for your *path operations* easily by passing parameters to the *path operation decorators*."
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/tutorial/path-operation-configuration.md",
+          "chunk_index": 0,
+          "heading_path": "Path Operation Configuration { #path-operation-configuration }",
+          "content_hash": "a9868e072ff609ff778916204615a7bc0c4719c83977353c909837fbf3ed190b",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "4dd48d33514d52d997bbee269a3c293d70619af1ed9799545a2714010914cad6",
+          "score": 0.015181,
+          "preview": "There are several parameters that you can pass to your *path operation decorator* to configure it.\n\n/// warning\n\nNotice that these parameters are passed directly to the *path operation decorator*, not to your *path operation function*.\n\n///"
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/tutorial/dependencies/dependencies-in-path-operation-decorators.md",
+          "chunk_index": 8,
+          "heading_path": "Dependencies in path operation decorators { #dependencies-in-path-operation-decorators } > Global Dependencies { #global-dependencies }",
+          "content_hash": "30fac99681ad832f8b343392bdf25e2a4624d72ded74881d713d06865502d1da",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "69f61187f2a466880ee6471070d6516965c25f4d749b1a202b84a790a8ec8b8c",
+          "score": 0.014209,
+          "preview": "Next we will see how to add dependencies to the whole `FastAPI` application, so that they apply to each *path operation*."
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/tutorial/dependencies/dependencies-in-path-operation-decorators.md",
+          "chunk_index": 0,
+          "heading_path": "Dependencies in path operation decorators { #dependencies-in-path-operation-decorators }",
+          "content_hash": "9c3608ed9d53a917df09fed2b7a53388209940447daa77f5af98117bb12c452d",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "69f61187f2a466880ee6471070d6516965c25f4d749b1a202b84a790a8ec8b8c",
+          "score": 0.008871,
+          "preview": "In some cases you don't really need the return value of a dependency inside your *path operation function*.\n\nOr the dependency doesn't return a value.\n\nBut you still need it to be executed/solved.\n\nFor those cases, instead of declaring a *path operation function* parameter with `Depends`, you can ad"
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/tutorial/dependencies/dependencies-in-path-operation-decorators.md",
+          "chunk_index": 1,
+          "heading_path": "Dependencies in path operation decorators { #dependencies-in-path-operation-decorators } > Add `dependencies` to the *path operation decorator* { #add-dependencies-to-the-path-operation-decorator }",
+          "content_hash": "445956de56a0ffe006202d97f94056375af7d1a0625afa9dc91c50dcc4171842",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "69f61187f2a466880ee6471070d6516965c25f4d749b1a202b84a790a8ec8b8c",
+          "score": 0.00873,
+          "preview": "The *path operation decorator* receives an optional argument `dependencies`.\n\nIt should be a `list` of `Depends()`:\n\n{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[19] *}\n\nThese dependencies will be executed/solved the same way as normal dependencies. But their value (if they return any) "
+        }
+      ],
+      "latency_ms": 37469.42,
+      "failure_class": null
+    },
+    {
+      "id": "f05",
+      "question": "How does FastAPI use Pydantic models for request and response data?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/tutorial/response-model.md",
+          "heading": "response model - return type { #response-model-return-type } > return type and data filtering { #return-type-and-data-filtering } > fastapi data filtering"
+        }
+      ],
+      "expected_facts": [
+        "Pydantic"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/tutorial/response-model.md",
+        "heading": "response model - return type { #response-model-return-type } > return type and data filtering { #return-type-and-data-filtering } > fastapi data filtering",
+        "rank": 2
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "FastAPI uses Pydantic for request/response data handling, supporting both explicit Pydantic models and standard dataclasses internally [1]. This enables data validation, serialization, and documentation [1]. For responses, FastAPI enforces data filtering to return only declared fields via Pydantic [2]. Form data processing also relies on Pydantic models with `Form` parameters [3].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/advanced/dataclasses.md",
+          "chunk_index": 0,
+          "heading_path": "Using Dataclasses { #using-dataclasses }",
+          "content_hash": "affcdd0aedf9c9d0b2ae6fa377dd6a08e330469873437b7aac519025b7cba6a2",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "38f32efa3334d83fc25fc798d898896af10eca2327b23514db459422fbc8f7df",
+          "score": 0.016014,
+          "preview": "FastAPI is built on top of **Pydantic**, and I have been showing you how to use Pydantic models to declare requests and responses.\n\nBut FastAPI also supports using [`dataclasses`](https://docs.python.org/3/library/dataclasses.html) the same way:\n\n{* ../../docs_src/dataclasses_/tutorial001_py310.py h"
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/tutorial/response-model.md",
+          "chunk_index": 13,
+          "heading_path": "Response Model - Return Type { #response-model-return-type } > Return Type and Data Filtering { #return-type-and-data-filtering } > FastAPI Data Filtering { #fastapi-data-filtering }",
+          "content_hash": "5f7f4dd4fcd64f2460240031bbbcc58e300ff5b11b3c01116a92e202360a07d0",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "40893b055f60ae81f2d149c6159ef98555ca05845d210a4c88f3824d66092be1",
+          "score": 0.014731,
+          "preview": "Now, for FastAPI, it will see the return type and make sure that what you return includes **only** the fields that are declared in the type.\n\nFastAPI does several things internally with Pydantic to make sure that those same rules of class inheritance are not used for the returned data filtering, oth"
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/tutorial/request-form-models.md",
+          "chunk_index": 1,
+          "heading_path": "Form Models { #form-models } > Pydantic Models for Forms { #pydantic-models-for-forms }",
+          "content_hash": "0017e39b831e8ad5612ad7a39edea9429395e7fcadabc57a0508037bb4be3d61",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "bcec1fddb980a64032025accea8b6b6fb32c6c6f3bc3c1168a194a466d52b0f8",
+          "score": 0.013996,
+          "preview": "You just need to declare a **Pydantic model** with the fields you want to receive as **form fields**, and then declare the parameter as `Form`:\n\n{* ../../docs_src/request_form_models/tutorial001_an_py310.py hl[9:11,15] *}\n\n**FastAPI** will **extract** the data for **each field** from the **form data"
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/tutorial/cookie-param-models.md",
+          "chunk_index": 1,
+          "heading_path": "Cookie Parameter Models { #cookie-parameter-models } > Cookies with a Pydantic Model { #cookies-with-a-pydantic-model }",
+          "content_hash": "a4bd4f0bd40a8bb8edfb924d0d00fc42b3e7322b24593a2ada3a2e811f2131fa",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "e808d80d6e95cc4874b51a2ea79937c8457b41e71617d7b39ee12f7617077086",
+          "score": 0.013639,
+          "preview": "Declare the **cookie** parameters that you need in a **Pydantic model**, and then declare the parameter as `Cookie`:\n\n{* ../../docs_src/cookie_param_models/tutorial001_an_py310.py hl[9:12,16] *}\n\n**FastAPI** will **extract** the data for **each field** from the **cookies** received in the request an"
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/tutorial/header-param-models.md",
+          "chunk_index": 1,
+          "heading_path": "Header Parameter Models { #header-parameter-models } > Header Parameters with a Pydantic Model { #header-parameters-with-a-pydantic-model }",
+          "content_hash": "f07ef52e4a5355bb8618997454cd3b46e292518b58c92eb5e4489dbea5abdf4e",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "75ef8dbca7fb9f6bf47dca078d7d7b764dbad54181e5e8420b36d8420327afe0",
+          "score": 0.013514,
+          "preview": "Declare the **header parameters** that you need in a **Pydantic model**, and then declare the parameter as `Header`:\n\n{* ../../docs_src/header_param_models/tutorial001_an_py310.py hl[9:14,18] *}\n\n**FastAPI** will **extract** the data for **each field** from the **headers** in the request and give yo"
+        }
+      ],
+      "latency_ms": 52504.06,
+      "failure_class": null
+    },
+    {
+      "id": "f06",
+      "question": "How do query parameters work?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/tutorial/query-params.md",
+          "heading": "query parameters"
+        }
+      ],
+      "expected_facts": [
+        "query"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/tutorial/query-params.md",
+        "heading": "query parameters",
+        "rank": 1
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Query parameters are key-value pairs after `?` in a URL, separated by `&` [1]. They are automatically interpreted as query parameters when declared in function parameters [1]. FastAPI extracts and validates them against specified types, supporting data parsing, validation, and documentation [1]. Required parameters must be included in the URL [2].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/tutorial/query-params.md",
+          "chunk_index": 0,
+          "heading_path": "Query Parameters { #query-parameters }",
+          "content_hash": "ddf09ba8de70267163830ee43824cfeb50a7f21923207f23fe00b3cf05f5a1e3",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "e521d3e41fd4b3c57adfcecadfd97fe68e64a20ea88fa6bee117bba4e183ec71",
+          "score": 0.015538,
+          "preview": "When you declare other function parameters that are not part of the path parameters, they are automatically interpreted as \"query\" parameters.\n\n{* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}\n\nThe query is the set of key-value pairs that go after the `?` in a URL, separated by `&` chara"
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/tutorial/query-params.md",
+          "chunk_index": 6,
+          "heading_path": "Query Parameters { #query-parameters } > Required query parameters { #required-query-parameters }",
+          "content_hash": "d3fe40224deb7f67ec0371f10e79d8f0c4e3b311de80360905760b8ac9308f92",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "e521d3e41fd4b3c57adfcecadfd97fe68e64a20ea88fa6bee117bba4e183ec71",
+          "score": 0.014925,
+          "preview": "required\",\n      \"input\": null\n    }\n  ]\n}\n```\n\nAs `needy` is a required parameter, you would need to set it in the URL:\n\n```\nhttp://127.0.0.1:8000/items/foo-item?needy=sooooneedy\n```\n\n...this would work:\n\n```JSON\n{\n    \"item_id\": \"foo-item\",\n    \"needy\": \"sooooneedy\"\n}\n```\n\nAnd of course, you can d"
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/tutorial/query-param-models.md",
+          "chunk_index": 1,
+          "heading_path": "Query Parameter Models { #query-parameter-models } > Query Parameters with a Pydantic Model { #query-parameters-with-a-pydantic-model }",
+          "content_hash": "1d5fbbe6b6764e6d7433038fe7a138d6dbf9e265cfa4788fb8cff525f2a1e194",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "31dbf1ca437d4d3d520bc8aa0b3a6ac5639d101a8f060e2063244d3b4c368349",
+          "score": 0.014894,
+          "preview": "Declare the **query parameters** that you need in a **Pydantic model**, and then declare the parameter as `Query`:\n\n{* ../../docs_src/query_param_models/tutorial001_an_py310.py hl[9:13,17] *}\n\n**FastAPI** will **extract** the data for **each field** from the **query parameters** in the request and g"
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/tutorial/header-params.md",
+          "chunk_index": 0,
+          "heading_path": "Header Parameters { #header-parameters }",
+          "content_hash": "05c935353ee54955194dd66c70564e6edad2f8f581ea85d3a451c4d75220f0a3",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "353c4df2c4e729fea065892556ce92b71c406d3147fd4fa8d8158ac0cda23e0f",
+          "score": 0.013639,
+          "preview": "You can define Header parameters the same way you define `Query`, `Path` and `Cookie` parameters."
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/tutorial/query-params-str-validations.md",
+          "chunk_index": 17,
+          "heading_path": "Query Parameters and String Validations { #query-parameters-and-string-validations } > Query parameter list / multiple values { #query-parameter-list-multiple-values }",
+          "content_hash": "c65824f523c60f000d11b6209f27a6f27310a4290dfb865ac94361eb9cd8f1be",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "5abf0c57ed2195f1c2117bbeaa527a08e5070ef777c7e579e8a11bf6eb6c826d",
+          "score": 0.008871,
+          "preview": "like in the example above, you need to explicitly use `Query`, otherwise it would be interpreted as a request body.\n\n///\n\nThe interactive API docs will update accordingly, to allow multiple values:"
+        }
+      ],
+      "latency_ms": 48968.65,
+      "failure_class": null
+    },
+    {
+      "id": "f07",
+      "question": "How do path parameters work?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/tutorial/path-params.md",
+          "heading": "path parameters"
+        }
+      ],
+      "expected_facts": [
+        "path"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/tutorial/path-params.md",
+        "heading": "path parameters",
+        "rank": 3
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Path parameters use Python format string syntax (e.g., `item_id` in `/items/{item_id}`) and are passed as function arguments. For example, `/items/foo` returns `{\"item_id\":\"foo\"}` [3].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/tutorial/path-params.md",
+          "chunk_index": 17,
+          "heading_path": "Path Parameters { #path-parameters } > Path parameters containing paths { #path-parameters-containing-paths } > OpenAPI support { #openapi-support }",
+          "content_hash": "b60d7ec8e2d77cd78a73f8ac19e96a550dd25b69a7e656222f77c3e5ab3b131f",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "81e09015b7a5c40e460eca9939da240a66f8a9efd88ad21c7992146337426fea",
+          "score": 0.015465,
+          "preview": "OpenAPI doesn't support a way to declare a *path parameter* to contain a *path* inside, as that could lead to scenarios that are difficult to test and define.\n\nNevertheless, you can still do it in **FastAPI**, using one of the internal tools from Starlette.\n\nAnd the docs would still work, although n"
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/tutorial/path-params-numeric-validations.md",
+          "chunk_index": 0,
+          "heading_path": "Path Parameters and Numeric Validations { #path-parameters-and-numeric-validations }",
+          "content_hash": "b08d68867138fdd37f5c1c10deb52c6da272dbf11e0d732bf5d53effbd8bf027",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "56c3e95531b6dea480130b30c525cfa1388cfdde159e7429845fedd392fc6fe5",
+          "score": 0.014462,
+          "preview": "In the same way that you can declare more validations and metadata for query parameters with `Query`, you can declare the same type of validations and metadata for path parameters with `Path`."
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/tutorial/path-params.md",
+          "chunk_index": 0,
+          "heading_path": "Path Parameters { #path-parameters }",
+          "content_hash": "8c410381a38cacafa153f4c3f0328650d5d0dd96ccd343bb4c3b7dfeae462270",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "81e09015b7a5c40e460eca9939da240a66f8a9efd88ad21c7992146337426fea",
+          "score": 0.009016,
+          "preview": "You can declare path \"parameters\" or \"variables\" with the same syntax used by Python format strings:\n\n{* ../../docs_src/path_params/tutorial001_py310.py hl[6:7] *}\n\nThe value of the path parameter `item_id` will be passed to your function as the argument `item_id`.\n\nSo, if you run this example and g"
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/tutorial/path-params.md",
+          "chunk_index": 16,
+          "heading_path": "Path Parameters { #path-parameters } > Path parameters containing paths { #path-parameters-containing-paths }",
+          "content_hash": "dab11b303a4bd52ca14e75b16754651bf9af628c5b54d383e0bb3bdac62d828d",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "81e09015b7a5c40e460eca9939da240a66f8a9efd88ad21c7992146337426fea",
+          "score": 0.008871,
+          "preview": "Let's say you have a *path operation* with a path `/files/{file_path}`.\n\nBut you need `file_path` itself to contain a *path*, like `home/johndoe/myfile.txt`.\n\nSo, the URL for that file would be something like: `/files/home/johndoe/myfile.txt`."
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/tutorial/path-params.md",
+          "chunk_index": 11,
+          "heading_path": "Path Parameters { #path-parameters } > Predefined values { #predefined-values } > Check the docs { #check-the-docs }",
+          "content_hash": "8cc94dd8900b77b4e61df3abf348dde825175cc1a54cca3c96f8164f87d60f94",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "81e09015b7a5c40e460eca9939da240a66f8a9efd88ad21c7992146337426fea",
+          "score": 0.00873,
+          "preview": "Because the available values for the *path parameter* are predefined, the interactive docs can show them nicely:"
+        }
+      ],
+      "latency_ms": 41166.68,
+      "failure_class": null
+    },
+    {
+      "id": "f08",
+      "question": "How do request bodies work?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/tutorial/body.md",
+          "heading": "request body"
+        }
+      ],
+      "expected_facts": [
+        "body"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/tutorial/body.md",
+        "heading": "request body",
+        "rank": 3
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Request bodies are client-sent data to APIs, declared using Pydantic models. Clients typically send bodies with POST, PUT, DELETE, or PATCH requests. GET requests may include bodies but this is non-standard per specifications. [3]",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/tutorial/body-multiple-params.md",
+          "chunk_index": 0,
+          "heading_path": "Body - Multiple Parameters { #body-multiple-parameters }",
+          "content_hash": "8d67e31d82cd29814581d1d46ca79eb623ff53782e7b6adce59175ee800ac694",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "be8df903354461511052ae4bb75665268747039ab64d3fe872124870f7f09280",
+          "score": 0.014462,
+          "preview": "Now that we have seen how to use `Path` and `Query`, let's see more advanced uses of request body declarations."
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/how-to/custom-request-and-route.md",
+          "chunk_index": 6,
+          "heading_path": "Custom Request and APIRoute class { #custom-request-and-apiroute-class } > Accessing the request body in an exception handler { #accessing-the-request-body-in-an-exception-handler }",
+          "content_hash": "bf0bea8d9a5264deb7b912d052b058d25c142de284c28548c36a01765cf14bc9",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "ce338d8ed72e10227f8a446876ce409714f9b646f58000512c2ba84f3ce096e8",
+          "score": 0.014161,
+          "preview": "/// tip\n\nTo solve this same problem, it's probably a lot easier to use the `body` in a custom handler for `RequestValidationError` ([Handling Errors](../tutorial/handling-errors.md#use-the-requestvalidationerror-body)).\n\nBut this example is still valid and it shows how to interact with the internal "
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/tutorial/body.md",
+          "chunk_index": 0,
+          "heading_path": "Request Body { #request-body }",
+          "content_hash": "bb90e29cd08c22f7076431a41a3bd625143ddcd1b0c8ef92116e329e1913e23b",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "1a3e0f7b9220dcee9a7379c999d57b49e126ed07725dbbc5566ee1278d4ec670",
+          "score": 0.009016,
+          "preview": "When you need to send data from a client (let's say, a browser) to your API, you send it as a **request body**.\n\nA **request** body is data sent by the client to your API. A **response** body is the data your API sends to the client.\n\nYour API almost always has to send a **response** body. But clien"
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/tutorial/body.md",
+          "chunk_index": 1,
+          "heading_path": "Request Body { #request-body }",
+          "content_hash": "421ef4501c5e497ba18926ed0a58b32eab24e451dc32f325569b3e63ddf08361",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "1a3e0f7b9220dcee9a7379c999d57b49e126ed07725dbbc5566ee1278d4ec670",
+          "score": 0.008871,
+          "preview": "fined behavior in the specifications, nevertheless, it is supported by FastAPI, only for very complex/extreme use cases.\n\nAs it is discouraged, the interactive docs with Swagger UI won't show the documentation for the body when using `GET`, and proxies in the middle might not support it.\n\n///"
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/tutorial/body.md",
+          "chunk_index": 9,
+          "heading_path": "Request Body { #request-body } > Use the model { #use-the-model }",
+          "content_hash": "10feb53813319e2468e298f3eaa38aa413778a3c6d00cb86a726fa25c053472a",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "1a3e0f7b9220dcee9a7379c999d57b49e126ed07725dbbc5566ee1278d4ec670",
+          "score": 0.00873,
+          "preview": "Inside of the function, you can access all the attributes of the model object directly:\n\n{* ../../docs_src/body/tutorial002_py310.py *}"
+        }
+      ],
+      "latency_ms": 32323.77,
+      "failure_class": null
+    },
+    {
+      "id": "f09",
+      "question": "How do response models work?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/tutorial/response-model.md",
+          "heading": "response model - return type { #response-model-return-type } > other return type annotations { #other-return-type-annotations } > annotate a response subclass"
+        }
+      ],
+      "expected_facts": [
+        "response"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/tutorial/response-model.md",
+        "heading": "response model - return type { #response-model-return-type } > other return type annotations { #other-return-type-annotations } > annotate a response subclass",
+        "rank": 1
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Response models work by defining return types via `response_model` in path operation decorators to filter private data [2], with `response_model_exclude_unset` returning only explicitly set values [2]. They also support `response_model_include` and `response_model_exclude` parameters to control field inclusion in responses [3]. Subclasses of `Response` (e.g., `RedirectResponse`) are automatically handled by FastAPI [1].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/tutorial/response-model.md",
+          "chunk_index": 17,
+          "heading_path": "Response Model - Return Type { #response-model-return-type } > Other Return Type Annotations { #other-return-type-annotations } > Annotate a Response Subclass { #annotate-a-response-subclass }",
+          "content_hash": "cdf2d1a7d5fd364e52e50159c76b340e9c5ef839c7ffcffd14e8a8803c51b779",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "40893b055f60ae81f2d149c6159ef98555ca05845d210a4c88f3824d66092be1",
+          "score": 0.015178,
+          "preview": "You can also use a subclass of `Response` in the type annotation:\n\n{* ../../docs_src/response_model/tutorial003_03_py310.py hl[8:9] *}\n\nThis will also work because `RedirectResponse` is a subclass of `Response`, and FastAPI will automatically handle this simple case."
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/tutorial/response-model.md",
+          "chunk_index": 27,
+          "heading_path": "Response Model - Return Type { #response-model-return-type } > Recap { #recap }",
+          "content_hash": "f942d6933c3f4c6877f5f13bed39ccacfcda3127a4a6913b5b5a755c8036c9b5",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "40893b055f60ae81f2d149c6159ef98555ca05845d210a4c88f3824d66092be1",
+          "score": 0.009016,
+          "preview": "Use the *path operation decorator's* parameter `response_model` to define response models and especially to ensure private data is filtered out.\n\nUse `response_model_exclude_unset` to return only the values explicitly set."
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/tutorial/response-model.md",
+          "chunk_index": 25,
+          "heading_path": "Response Model - Return Type { #response-model-return-type } > Response Model encoding parameters { #response-model-encoding-parameters } > `response_model_include` and `response_model_exclude` { #response-model-include-and-response-model-exclude }",
+          "content_hash": "b0c6b247a3bf398b52727a32756d2f484eafcf15c732214b07d630960a8db7b9",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "40893b055f60ae81f2d149c6159ef98555ca05845d210a4c88f3824d66092be1",
+          "score": 0.008871,
+          "preview": "_model_by_alias` that works similarly.\n\n///\n\n{* ../../docs_src/response_model/tutorial005_py310.py hl[29,35] *}\n\n/// tip\n\nThe syntax `{\"name\", \"description\"}` creates a `set` with those two values.\n\nIt is equivalent to `set([\"name\", \"description\"])`.\n\n///"
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/tutorial/response-model.md",
+          "chunk_index": 26,
+          "heading_path": "Response Model - Return Type { #response-model-return-type } > Response Model encoding parameters { #response-model-encoding-parameters } > `response_model_include` and `response_model_exclude` { #response-model-include-and-response-model-exclude } > Using `list`s instead of `set`s { #using-lists-instead-of-sets }",
+          "content_hash": "a0116043f10461a0f37e9bacdb77e82dd04e42443d15a4509e83d367ed6a5e49",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "40893b055f60ae81f2d149c6159ef98555ca05845d210a4c88f3824d66092be1",
+          "score": 0.00873,
+          "preview": "If you forget to use a `set` and use a `list` or `tuple` instead, FastAPI will still convert it to a `set` and it will work correctly:\n\n{* ../../docs_src/response_model/tutorial006_py310.py hl[29,35] *}"
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/advanced/response-directly.md",
+          "chunk_index": 4,
+          "heading_path": "Return a Response Directly { #return-a-response-directly } > How a Response Model Works { #how-a-response-model-works }",
+          "content_hash": "ce5a9251ce74745eb56d1bf57fca60afdf7a84b9732d4a4de3e0bfae1e8a8b85",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "ed930c2b190cecb99a336152e072e7430efa2b99afb5d47c741805965b361003",
+          "score": 0.008594,
+          "preview": "When you declare a [Response Model - Return Type](../tutorial/response-model.md) in a path operation, **FastAPI** will use it to serialize the data to JSON, using Pydantic.\n\n{* ../../docs_src/response_model/tutorial001_01_py310.py hl[16,21] *}\n\nAs that will happen on the Rust side, the performance w"
+        }
+      ],
+      "latency_ms": 32650.44,
+      "failure_class": null
+    },
+    {
+      "id": "f10",
+      "question": "How do status codes get configured?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/tutorial/response-status-code.md",
+          "heading": "response status code"
+        }
+      ],
+      "expected_facts": [
+        "status"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/tutorial/response-status-code.md",
+        "heading": "response status code",
+        "rank": 5
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Status codes are configured by importing `fastapi.status` for named constants [1] or directly setting `status_code` in response objects like `JSONResponse` [3].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/reference/status.md",
+          "chunk_index": 0,
+          "heading_path": "Status Codes",
+          "content_hash": "16bb5519509611bb5db8612b314fd9b27e69ef18a30c5c269981dc56f3250b5a",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "9b7a73cf2afbb76cc22678027f5240c6c676b65bd0ba68a06586e1fe75d86ac3",
+          "score": 0.015412,
+          "preview": "You can import the `status` module from `fastapi`:\n\n```python\nfrom fastapi import status\n```\n\n`status` is provided directly by Starlette.\n\nIt contains a group of named constants (variables) with integer status codes.\n\nFor example:\n\n* 200: `status.HTTP_200_OK`\n* 403: `status.HTTP_403_FORBIDDEN`\n* etc"
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/tutorial/response-status-code.md",
+          "chunk_index": 2,
+          "heading_path": "Response Status Code { #response-status-code } > About HTTP status codes { #about-http-status-codes }",
+          "content_hash": "ffe88e47505a64f17363e74b4824a90c6a88c1aba43125f9ad89400cffc9401a",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "44c62f134437997178668480503cc1cdfc55b45367ce8a66beff89c839aa896a",
+          "score": 0.015119,
+          "preview": "/// note\n\nIf you already know what HTTP status codes are, skip to the next section.\n\n///\n\nIn HTTP, you send a numeric status code of 3 digits as part of the response.\n\nThese status codes have an associated name to help recognize them, but the important part is the number.\n\nIn short:\n\n* `100 - 199` a"
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/advanced/additional-status-codes.md",
+          "chunk_index": 1,
+          "heading_path": "Additional Status Codes { #additional-status-codes } > Additional status codes { #additional-status-codes_1 }",
+          "content_hash": "b31d59ed616bfcacd951631356507ab266e2e5898b259c5d467bf3ec02127d2e",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "218eeb0ab9773ffc01143085b4ade9991c289334f09526a4d74087049a2de445",
+          "score": 0.015005,
+          "preview": "If you want to return additional status codes apart from the main one, you can do that by returning a `Response` directly, like a `JSONResponse`, and set the additional status code directly.\n\nFor example, let's say that you want to have a *path operation* that allows updating items, and returns HTTP"
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/tutorial/response-status-code.md",
+          "chunk_index": 3,
+          "heading_path": "Response Status Code { #response-status-code } > About HTTP status codes { #about-http-status-codes }",
+          "content_hash": "afb8177b9262ee4b9983b0ae13dedc285b1f8d617a808b28d62bd9177da39e76",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "44c62f134437997178668480503cc1cdfc55b45367ce8a66beff89c839aa896a",
+          "score": 0.014286,
+          "preview": "no content to return to the client, and so the response must not have a body.\n* **`300 - 399`** are for \"Redirection\".  Responses with these status codes may or may not have a body, except for `304`, \"Not Modified\", which must not have one.\n* **`400 - 499`** are for \"Client error\" responses. These a"
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/tutorial/response-status-code.md",
+          "chunk_index": 1,
+          "heading_path": "Response Status Code { #response-status-code }",
+          "content_hash": "daf847b612d549b3b74e8bca00e5e2bc5a34e1a4cad64e7f0ecc9b7af96ebc39",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "44c62f134437997178668480503cc1cdfc55b45367ce8a66beff89c839aa896a",
+          "score": 0.014052,
+          "preview": "status code in the response.\n* Document it as such in the OpenAPI schema (and so, in the user interfaces):\n\n \n\n/// note\n\nSome response codes (see the next section) indicate that the response does not have a body.\n\nFastAPI knows this, and will produce OpenAPI docs that state there is no response body"
+        }
+      ],
+      "latency_ms": 36973.23,
+      "failure_class": null
+    },
+    {
+      "id": "f11",
+      "question": "How do headers get declared?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/tutorial/header-params.md",
+          "heading": "header parameters"
+        }
+      ],
+      "expected_facts": [
+        "header"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/tutorial/header-params.md",
+        "heading": "header parameters",
+        "rank": 3
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Headers are declared using `Response` parameter in path operation functions for response headers [1]. For request headers, use `Header` parameter with same structure as `Path`, `Query`, and `Cookie` [2][3]. This allows defining defaults and validation while distinguishing headers from query parameters.",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/advanced/response-headers.md",
+          "chunk_index": 0,
+          "heading_path": "Response Headers { #response-headers } > Use a `Response` parameter { #use-a-response-parameter }",
+          "content_hash": "eae408ec0359520ec505be7dcc2bfcb6197b3bd8f910248e0476ab4c2170ce65",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "ff783f7a73905b1ac4fca980dfaa09782af510cc038e193512a1c675e33591e0",
+          "score": 0.015005,
+          "preview": "You can declare a parameter of type `Response` in your *path operation function* (as you can do for cookies).\n\nAnd then you can set headers in that *temporary* response object.\n\n{* ../../docs_src/response_headers/tutorial002_py310.py hl[1, 7:8] *}\n\nAnd then you can return any object you need, as you"
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/tutorial/header-params.md",
+          "chunk_index": 2,
+          "heading_path": "Header Parameters { #header-parameters } > Declare `Header` parameters { #declare-header-parameters }",
+          "content_hash": "f12e2cf7de30575ddd57e9668369489964e126214c124717efe681cc856e46e4",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "353c4df2c4e729fea065892556ce92b71c406d3147fd4fa8d8158ac0cda23e0f",
+          "score": 0.009016,
+          "preview": "Then declare the header parameters using the same structure as with `Path`, `Query` and `Cookie`.\n\nYou can define the default value as well as all the extra validation or annotation parameters:\n\n{* ../../docs_src/header_params/tutorial001_an_py310.py hl[9] *}\n\n/// note | Technical Details\n\n`Header` "
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/tutorial/header-params.md",
+          "chunk_index": 0,
+          "heading_path": "Header Parameters { #header-parameters }",
+          "content_hash": "05c935353ee54955194dd66c70564e6edad2f8f581ea85d3a451c4d75220f0a3",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "353c4df2c4e729fea065892556ce92b71c406d3147fd4fa8d8158ac0cda23e0f",
+          "score": 0.008871,
+          "preview": "You can define Header parameters the same way you define `Query`, `Path` and `Cookie` parameters."
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/tutorial/header-params.md",
+          "chunk_index": 6,
+          "heading_path": "Header Parameters { #header-parameters } > Recap { #recap }",
+          "content_hash": "3c3930248541c7f0087b88a602c308ddf0aa5e195402b87d2666d4e782b85d2c",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "353c4df2c4e729fea065892556ce92b71c406d3147fd4fa8d8158ac0cda23e0f",
+          "score": 0.00873,
+          "preview": "Declare headers with `Header`, using the same common pattern as `Query`, `Path` and `Cookie`.\n\nAnd don't worry about underscores in your variables, **FastAPI** will take care of converting them."
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/tutorial/header-params.md",
+          "chunk_index": 1,
+          "heading_path": "Header Parameters { #header-parameters } > Import `Header` { #import-header }",
+          "content_hash": "3056c30eab4ac344eee867452bc6f1fe548dbb55b73b36c9c634bbd469c619f9",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "353c4df2c4e729fea065892556ce92b71c406d3147fd4fa8d8158ac0cda23e0f",
+          "score": 0.008594,
+          "preview": "First import `Header`:\n\n{* ../../docs_src/header_params/tutorial001_an_py310.py hl[3] *}"
+        }
+      ],
+      "latency_ms": 41517.12,
+      "failure_class": null
+    },
+    {
+      "id": "f12",
+      "question": "How do cookies get declared?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/tutorial/cookie-params.md",
+          "heading": "cookie parameters { #cookie-parameters } > declare cookie parameters"
+        }
+      ],
+      "expected_facts": [
+        "cookie"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/tutorial/cookie-params.md",
+        "heading": "cookie parameters { #cookie-parameters } > declare cookie parameters",
+        "rank": 3
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Cookies are declared in FastAPI by setting them in a `Response` parameter within path operation functions [1], or using `Cookie` parameter models with Pydantic for route handlers [2]. This allows cookies to be included in the temporary response object before finalization.",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/advanced/response-cookies.md",
+          "chunk_index": 0,
+          "heading_path": "Response Cookies { #response-cookies } > Use a `Response` parameter { #use-a-response-parameter }",
+          "content_hash": "0d55485166cf93245313107079ef63f57ad70c145912f613a8a4b027a7df315b",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "9a28cf8fcb42035459b8134128991a8c31c20646039378aaa997bcc1309352af",
+          "score": 0.015517,
+          "preview": "You can declare a parameter of type `Response` in your *path operation function*.\n\nAnd then you can set cookies in that *temporary* response object.\n\n{* ../../docs_src/response_cookies/tutorial002_py310.py hl[1, 8:9] *}\n\nAnd then you can return any object you need, as you normally would (a `dict`, a"
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/release-notes.md",
+          "chunk_index": 496,
+          "heading_path": "Release Notes > 0.115.0 (2024-09-17) > Highlights > `Cookie` Parameter Models",
+          "content_hash": "5e2281d0eda157ddde942cd0b8114b572317155c82856f2d646c2cb645402d7f",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "fb63572e6b4e43b6372710b578089571cf9ce800c7783ca270d0d3fcc507997d",
+          "score": 0.014589,
+          "preview": "Use Pydantic models for `Cookie` parameters:\n\n```python\nfrom typing import Annotated\n\nfrom fastapi import Cookie, FastAPI\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\nclass Cookies(BaseModel):\n    session_id: str\n    fatebook_tracker: str | None = None\n    googall_tracker: str | None = None\n\n@ap"
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/tutorial/cookie-params.md",
+          "chunk_index": 3,
+          "heading_path": "Cookie Parameters { #cookie-parameters } > Declare `Cookie` parameters { #declare-cookie-parameters }",
+          "content_hash": "773aecb539d34342ca9aaa7fc7d753ead9f37e40efbb8c9d4a0c7247f1bca7c6",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "790d67721fc8000801a48d0e8b4892a152388e12c4b7a2a58780dd73d0c68c28",
+          "score": 0.014462,
+          "preview": "owsers handle cookies** in special ways and behind the scenes, they **don't** easily allow **JavaScript** to touch them.\n\nIf you go to the **API docs UI** at `/docs` you will be able to see the **documentation** for cookies for your *path operations*.\n\nBut even if you **fill the data** and click \"Ex"
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/tutorial/cookie-param-models.md",
+          "chunk_index": 3,
+          "heading_path": "Cookie Parameter Models { #cookie-parameter-models } > Forbid Extra Cookies { #forbid-extra-cookies }",
+          "content_hash": "0cf05119cf5fcc19b6cd30ccff6092aefa070b9540ebec53ebba6643bf2b84c6",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "e808d80d6e95cc4874b51a2ea79937c8457b41e71617d7b39ee12f7617077086",
+          "score": 0.014338,
+          "preview": "In some special use cases (probably not very common), you might want to **restrict** the cookies that you want to receive.\n\nYour API now has the power to control its own  cookie consent . \ud83e\udd2a\ud83c\udf6a\n\nYou can use Pydantic's model configuration to `forbid` any `extra` fields:\n\n{* ../../docs_src/cookie_param_m"
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/advanced/response-cookies.md",
+          "chunk_index": 1,
+          "heading_path": "Response Cookies { #response-cookies } > Return a `Response` directly { #return-a-response-directly }",
+          "content_hash": "f156620ff4e5c90bdf403b213d75771f9b87dea4e59a06cd86dbfcd8f514c4d1",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "9a28cf8fcb42035459b8134128991a8c31c20646039378aaa997bcc1309352af",
+          "score": 0.013671,
+          "preview": "You can also create cookies when returning a `Response` directly in your code.\n\nTo do that, you can create a response as described in [Return a Response Directly](response-directly.md).\n\nThen set Cookies in it, and then return it:\n\n{* ../../docs_src/response_cookies/tutorial001_py310.py hl[10:12] *}"
+        }
+      ],
+      "latency_ms": 36153.05,
+      "failure_class": null
+    },
+    {
+      "id": "f13",
+      "question": "How does dependency injection work?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/tutorial/dependencies/index.md",
+          "heading": "dependencies { #dependencies } > first steps"
+        }
+      ],
+      "expected_facts": [
+        "dependency"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/tutorial/dependencies/index.md",
+        "heading": "dependencies { #dependencies } > first steps",
+        "rank": 1
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Dependency injection in FastAPI executes dependencies before path operation functions and injects their results, with the framework handling the execution process. This allows functions to \"depend\" on other operations that run prior, providing required data without direct calls. Other frameworks operate similarly [2].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/tutorial/dependencies/index.md",
+          "chunk_index": 2,
+          "heading_path": "Dependencies { #dependencies } > First Steps { #first-steps }",
+          "content_hash": "36f1bdecddd36846f9511ff546b51e6fbd066ce3f4cfbc4b74c7031a1106dbb3",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "83319cc87297bb0959c5721a112133e6a3cd19900163c348a8ee6cf4818cd21f",
+          "score": 0.015971,
+          "preview": "Let's see a very simple example. It will be so simple that it is not very useful, for now.\n\nBut this way we can focus on how the **Dependency Injection** system works."
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/tutorial/dependencies/index.md",
+          "chunk_index": 12,
+          "heading_path": "Dependencies { #dependencies } > Simple usage { #simple-usage }",
+          "content_hash": "57a08216d25732f826dfcd3142cfcf146f143f2f3e5411a77b1094f837974fc3",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "83319cc87297bb0959c5721a112133e6a3cd19900163c348a8ee6cf4818cd21f",
+          "score": 0.015761,
+          "preview": "If you look at it, *path operation functions* are declared to be used whenever a *path* and *operation* matches, and then **FastAPI** takes care of calling the function with the correct parameters, extracting the data from the request.\n\nActually, all (or most) of the web frameworks work in this same"
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/tutorial/dependencies/classes-as-dependencies.md",
+          "chunk_index": 0,
+          "heading_path": "Classes as Dependencies { #classes-as-dependencies }",
+          "content_hash": "3a2c6f79b1402e217ea684db35f1096330a13752b175c1e2a1bedd384a91fe9d",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "ddfad2447ac9a678dc7a41d4985f6b958edb75812465accab0c3c46161029aa5",
+          "score": 0.015604,
+          "preview": "Before diving deeper into the **Dependency Injection** system, let's upgrade the previous example."
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/tutorial/dependencies/index.md",
+          "chunk_index": 1,
+          "heading_path": "Dependencies { #dependencies } > What is \"Dependency Injection\" { #what-is-dependency-injection }",
+          "content_hash": "90c94196a51b70478c778397cad6c8fc2e1db3dfbff4d2879303381a2e4cab71",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "83319cc87297bb0959c5721a112133e6a3cd19900163c348a8ee6cf4818cd21f",
+          "score": 0.015538,
+          "preview": "**\"Dependency Injection\"** means, in programming, that there is a way for your code (in this case, your *path operation functions*) to declare things that it requires to work and use: \"dependencies\".\n\nAnd then, that system (in this case **FastAPI**) will take care of doing whatever is needed to prov"
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/tutorial/dependencies/index.md",
+          "chunk_index": 15,
+          "heading_path": "Dependencies { #dependencies } > Simple and Powerful { #simple-and-powerful }",
+          "content_hash": "14e470ffccc0090e5a35b3931547b534578c867d4a583615713af87aa3b3f00c",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "83319cc87297bb0959c5721a112133e6a3cd19900163c348a8ee6cf4818cd21f",
+          "score": 0.015209,
+          "preview": "Although the hierarchical dependency injection system is very simple to define and use, it's still very powerful.\n\nYou can define dependencies that in turn can define dependencies themselves.\n\nIn the end, a hierarchical tree of dependencies is built, and the **Dependency Injection** system takes car"
+        }
+      ],
+      "latency_ms": 37035.06,
+      "failure_class": null
+    },
+    {
+      "id": "f14",
+      "question": "How are security dependencies configured?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/reference/dependencies.md",
+          "heading": "dependencies - depends() and security() > security()"
+        }
+      ],
+      "expected_facts": [
+        "security"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/reference/dependencies.md",
+        "heading": "dependencies - depends() and security() > security()",
+        "rank": 1
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Security dependencies are configured using `Security()` for OAuth2 scopes [1] or `Depends()` for general security [3]. `Security` can be used in the decorator's `dependencies` parameter with `scopes` [2].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/reference/dependencies.md",
+          "chunk_index": 1,
+          "heading_path": "Dependencies - `Depends()` and `Security()` > `Security()`",
+          "content_hash": "f3c2f0e7c15d02651e4db8690f048bd384b2b6386bac6abd2beeda2de10be6ed",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "7c4376a61fa086d3d8cfbfe59e80e401ba50aaf6149a0fec4c1d457008841444",
+          "score": 0.015266,
+          "preview": "For many scenarios, you can handle security (authorization, authentication, etc.) with dependencies, using `Depends()`.\n\nBut when you want to also declare OAuth2 scopes, you can use `Security()` instead of `Depends()`.\n\nYou can import `Security()` directly from `fastapi`:\n\n```python\nfrom fastapi imp"
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/advanced/security/oauth2-scopes.md",
+          "chunk_index": 21,
+          "heading_path": "OAuth2 scopes { #oauth2-scopes } > `Security` in decorator `dependencies` { #security-in-decorator-dependencies }",
+          "content_hash": "11a08ef52de9de2a42fd5b352eca5121319ba9e2915ae9df51d48869f009bd18",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "c8e866d22d766b9473958b91c0231c2547ded1f323207ca1c64609df2b36bb5e",
+          "score": 0.014952,
+          "preview": "The same way you can define a `list` of `Depends` in the decorator's `dependencies` parameter (as explained in [Dependencies in path operation decorators](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md)), you could also use `Security` with `scopes` there."
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/reference/dependencies.md",
+          "chunk_index": 0,
+          "heading_path": "Dependencies - `Depends()` and `Security()` > `Depends()`",
+          "content_hash": "9e4b94a1be5d8d12dc2cdeae8501fca332aa13628cca8ddfe215537402b4fe9b",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "7c4376a61fa086d3d8cfbfe59e80e401ba50aaf6149a0fec4c1d457008841444",
+          "score": 0.00873,
+          "preview": "Dependencies are handled mainly with the special function `Depends()` that takes a callable.\n\nHere is the reference for it and its parameters.\n\nYou can import it directly from `fastapi`:\n\n```python\nfrom fastapi import Depends\n```\n\n::: fastapi.Depends"
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/deployment/concepts.md",
+          "chunk_index": 2,
+          "heading_path": "Deployments Concepts { #deployments-concepts } > Security - HTTPS { #security-https }",
+          "content_hash": "13b75663e3a5819182dca4e486a4b7cf2960cbf66b1f9364421683aae6f21f22",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "cd6e86bb5725fed1807b343a17b302ea8b1106b9049326b63707de499e2ee606",
+          "score": 0.008594,
+          "preview": "In the [previous chapter about HTTPS](https.md) we learned about how HTTPS provides encryption for your API.\n\nWe also saw that HTTPS is normally provided by a component **external** to your application server, a **TLS Termination Proxy**.\n\nAnd there has to be something in charge of **renewing the HT"
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/tutorial/dependencies/dependencies-in-path-operation-decorators.md",
+          "chunk_index": 4,
+          "heading_path": "Dependencies in path operation decorators { #dependencies-in-path-operation-decorators } > Dependencies errors and return values { #dependencies-errors-and-return-values } > Dependency requirements { #dependency-requirements }",
+          "content_hash": "8efe6222bf177da39044e541bfcae897e4993da5ee0364fd9ba427485f0bd322",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "69f61187f2a466880ee6471070d6516965c25f4d749b1a202b84a790a8ec8b8c",
+          "score": 0.008333,
+          "preview": "They can declare request requirements (like headers) or other sub-dependencies:\n\n{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[8,13] *}"
+        }
+      ],
+      "latency_ms": 68933.02,
+      "failure_class": null
+    },
+    {
+      "id": "f15",
+      "question": "How do OAuth2 scopes work?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/advanced/security/oauth2-scopes.md",
+          "heading": "oauth2 scopes"
+        }
+      ],
+      "expected_facts": [
+        "OAuth2"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/advanced/security/oauth2-scopes.md",
+        "heading": "oauth2 scopes",
+        "rank": 1
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "OAuth2 scopes are permission strings (without spaces) defined in the OAuth2 specification [3]. They represent specific access rights, such as `users:read` or Google's `https://www.googleapis.com/auth/drive` [3]. Major providers like Google and Facebook use scopes to grant applications precise permissions during authentication [1]. FastAPI integrates scopes for fine-grained authorization in API documentation and endpoints [1].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/advanced/security/oauth2-scopes.md",
+          "chunk_index": 0,
+          "heading_path": "OAuth2 scopes { #oauth2-scopes }",
+          "content_hash": "916fb3545b6c3b91e0bb5023347c37a88a14ecfdc3d041f9da5e3b11575cf8bd",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "c8e866d22d766b9473958b91c0231c2547ded1f323207ca1c64609df2b36bb5e",
+          "score": 0.016393,
+          "preview": "You can use OAuth2 scopes directly with **FastAPI**, they are integrated to work seamlessly.\n\nThis would allow you to have a more fine-grained permission system, following the OAuth2 standard, integrated into your OpenAPI application (and the API docs).\n\nOAuth2 with scopes is the mechanism used by m"
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/advanced/security/oauth2-scopes.md",
+          "chunk_index": 1,
+          "heading_path": "OAuth2 scopes { #oauth2-scopes }",
+          "content_hash": "81beeeaf43665835564a7d668233bdfd3ac8fca852a6a1efc833c7648eb5391d",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "c8e866d22d766b9473958b91c0231c2547ded1f323207ca1c64609df2b36bb5e",
+          "score": 0.016014,
+          "preview": "FastAPI** application.\n\n/// warning\n\nThis is a more or less advanced section. If you are just starting, you can skip it.\n\nYou don't necessarily need OAuth2 scopes, and you can handle authentication and authorization however you want.\n\nBut OAuth2 with scopes can be nicely integrated into your API (wi"
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/advanced/security/oauth2-scopes.md",
+          "chunk_index": 2,
+          "heading_path": "OAuth2 scopes { #oauth2-scopes } > OAuth2 scopes and OpenAPI { #oauth2-scopes-and-openapi }",
+          "content_hash": "455ff1a515a05f9962ea28747cde09332638cc8ea53b66cd73249d9cd003a25c",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "c8e866d22d766b9473958b91c0231c2547ded1f323207ca1c64609df2b36bb5e",
+          "score": 0.015068,
+          "preview": "The OAuth2 specification defines \"scopes\" as a list of strings separated by spaces.\n\nThe content of each of these strings can have any format, but should not contain spaces.\n\nThese scopes represent \"permissions\".\n\nIn OpenAPI (e.g. the API docs), you can define \"security schemes\".\n\nWhen one of these "
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/advanced/security/oauth2-scopes.md",
+          "chunk_index": 4,
+          "heading_path": "OAuth2 scopes { #oauth2-scopes } > Global view { #global-view }",
+          "content_hash": "fc95d370421f30873e0028f4799fa63502e3185174ba3890b6deed3805ceb5c1",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "c8e866d22d766b9473958b91c0231c2547ded1f323207ca1c64609df2b36bb5e",
+          "score": 0.014762,
+          "preview": "First, let's quickly see the parts that change from the examples in the main **Tutorial - User Guide** for [OAuth2 with Password (and hashing), Bearer with JWT tokens](../../tutorial/security/oauth2-jwt.md). Now using OAuth2 scopes:\n\n{* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65"
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/advanced/security/oauth2-scopes.md",
+          "chunk_index": 5,
+          "heading_path": "OAuth2 scopes { #oauth2-scopes } > OAuth2 Security scheme { #oauth2-security-scheme }",
+          "content_hash": "84439373f4e268b42b02aef384345ac6ba391c38afd3f76973c018b18bd6205c",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "c8e866d22d766b9473958b91c0231c2547ded1f323207ca1c64609df2b36bb5e",
+          "score": 0.01405,
+          "preview": "The first change is that now we are declaring the OAuth2 security scheme with two available scopes, `me` and `items`.\n\nThe `scopes` parameter receives a `dict` with each scope as a key and the description as the value:\n\n{* ../../docs_src/security/tutorial005_an_py310.py hl[63:66] *}\n\nBecause we are "
+        }
+      ],
+      "latency_ms": 42554.49,
+      "failure_class": null
+    },
+    {
+      "id": "f16",
+      "question": "How do background tasks work?",
+      "in_scope": true,
+      "status": "fail",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/tutorial/background-tasks.md",
+          "heading": "background tasks { #background-tasks } > dependency injection"
+        }
+      ],
+      "expected_facts": [
+        "BackgroundTasks"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/tutorial/background-tasks.md",
+        "heading": "background tasks { #background-tasks } > dependency injection",
+        "rank": 1
+      },
+      "citation_valid": true,
+      "factual": false,
+      "refused": false,
+      "answer": "Background tasks run asynchronously after responses via `.add_task()` in path operations [2]. They integrate with dependency injection for shared objects across path functions, sub-dependencies, etc. [1]",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/tutorial/background-tasks.md",
+          "chunk_index": 4,
+          "heading_path": "Background Tasks { #background-tasks } > Dependency Injection { #dependency-injection }",
+          "content_hash": "9ca3e26456a394cfc4f788a89f8b5b70b3249abf1ccf8ce1d3a580ef1146d34c",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "7a34e7a4a7bd2cb9e0b465588b77cf007b0a5c8bdcf7530ff3619ff6b3642468",
+          "score": 0.015346,
+          "preview": "Using `BackgroundTasks` also works with the dependency injection system, you can declare a parameter of type `BackgroundTasks` at multiple levels: in a *path operation function*, in a dependency (dependable), in a sub-dependency, etc.\n\n**FastAPI** knows what to do in each case and how to reuse the s"
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/tutorial/background-tasks.md",
+          "chunk_index": 3,
+          "heading_path": "Background Tasks { #background-tasks } > Add the background task { #add-the-background-task }",
+          "content_hash": "af0f883eefcb79d3828f74ff267d11e2d3501802eae33e995bc455de16accf10",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "7a34e7a4a7bd2cb9e0b465588b77cf007b0a5c8bdcf7530ff3619ff6b3642468",
+          "score": 0.015209,
+          "preview": "Inside of your *path operation function*, pass your task function to the *background tasks* object with the method `.add_task()`:\n\n{* ../../docs_src/background_tasks/tutorial001_py310.py hl[14] *}\n\n`.add_task()` receives as arguments:\n\n* A task function to be run in the background (`write_notificati"
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/tutorial/background-tasks.md",
+          "chunk_index": 6,
+          "heading_path": "Background Tasks { #background-tasks } > Caveat { #caveat }",
+          "content_hash": "686b9d67a2559013dc518274eb9ba60a4243d696e8a83c764595f9bf5c54ecab",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "7a34e7a4a7bd2cb9e0b465588b77cf007b0a5c8bdcf7530ff3619ff6b3642468",
+          "score": 0.015079,
+          "preview": "If you need to perform heavy background computation and you don't necessarily need it to be run by the same process (for example, you don't need to share memory, variables, etc), you might benefit from using other bigger tools like [Celery](https://docs.celeryq.dev).\n\nThey tend to require more compl"
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/release-notes.md",
+          "chunk_index": 8,
+          "heading_path": "Release Notes > 0.141.1 (2026-07-29) > Fixes",
+          "content_hash": "5fbe6b8ffed2ba024c5c125c88aae67f5b8d774f0f19cdc5ee6cbe6551a064f9",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "fb63572e6b4e43b6372710b578089571cf9ce800c7783ca270d0d3fcc507997d",
+          "score": 0.014675,
+          "preview": "* \ud83d\udc1b Fix support for background tasks and headers from dependencies in `app.frontend()`. PR [#16105](https://github.com/fastapi/fastapi/pull/16105) by [@tiangolo](https://github.com/tiangolo)."
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/release-notes.md",
+          "chunk_index": 710,
+          "heading_path": "Release Notes > 0.106.0 (2023-12-25) > Breaking Changes",
+          "content_hash": "9af69df163acb180c074c5d1e81bbeea39c8494b63b2fd4447192d9d9c7dcf45",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "fb63572e6b4e43b6372710b578089571cf9ce800c7783ca270d0d3fcc507997d",
+          "score": 0.014575,
+          "preview": "Using resources from dependencies with `yield` in background tasks is no longer supported.\n\nThis change is what supports the new features, read below. \ud83e\udd13"
+        }
+      ],
+      "latency_ms": 36869.04,
+      "failure_class": "unsupported_claim"
+    },
+    {
+      "id": "f17",
+      "question": "How do middleware components work?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/tutorial/middleware.md",
+          "heading": "middleware"
+        }
+      ],
+      "expected_facts": [
+        "middleware"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/tutorial/middleware.md",
+        "heading": "middleware",
+        "rank": 2
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Middleware functions process each request before path operations and each response after, modifying or handling them as they pass through the application pipeline [2].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/tutorial/middleware.md",
+          "chunk_index": 6,
+          "heading_path": "Middleware { #middleware } > Other middlewares { #other-middlewares }",
+          "content_hash": "a3c953d13f232e34a26a453ab1313ff678c3a825f5ec4a2dcfab2cd45307a572",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "58cb232d288a5bdfa6f91680f6615520748884e17463059a1f28e78273563c39",
+          "score": 0.01571,
+          "preview": "You can later read more about other middlewares in the [Advanced User Guide: Advanced Middleware](../advanced/middleware.md).\n\nYou will read about how to handle  CORS  with a middleware in the next section."
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/tutorial/middleware.md",
+          "chunk_index": 0,
+          "heading_path": "Middleware { #middleware }",
+          "content_hash": "1ed1a5ad55d8b907275d88e1345a0225517ad1ff1f27cfaa3b32fd91ccb53b48",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "58cb232d288a5bdfa6f91680f6615520748884e17463059a1f28e78273563c39",
+          "score": 0.015634,
+          "preview": "You can add middleware to **FastAPI** applications.\n\nA \"middleware\" is a function that works with every **request** before it is processed by any specific *path operation*. And also with every **response** before returning it.\n\n* It takes each **request** that comes to your application.\n* It can the"
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/advanced/middleware.md",
+          "chunk_index": 0,
+          "heading_path": "Advanced Middleware { #advanced-middleware }",
+          "content_hash": "fce752fb67fccd75a473fed7f4cbb3b2246b4005ebaddf5e56be26f00a694076",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "051ef9c6cd54a566be9192e0e4b6667b0e84604db7a3cffea8d970f874d72014",
+          "score": 0.015467,
+          "preview": "In the main tutorial you read how to add [Custom Middleware](../tutorial/middleware.md) to your application.\n\nAnd then you also read how to handle [CORS with the `CORSMiddleware`](../tutorial/cors.md).\n\nIn this section we'll see how to use other middlewares."
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/advanced/middleware.md",
+          "chunk_index": 1,
+          "heading_path": "Advanced Middleware { #advanced-middleware } > Adding ASGI middlewares { #adding-asgi-middlewares }",
+          "content_hash": "35fe5af00fb4b82673085a9add2920da51b670e593d103e5cd9e86634975f0f4",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "051ef9c6cd54a566be9192e0e4b6667b0e84604db7a3cffea8d970f874d72014",
+          "score": 0.014677,
+          "preview": "As **FastAPI** is based on Starlette and implements the  ASGI  specification, you can use any ASGI middleware.\n\nA middleware doesn't have to be made for FastAPI or Starlette to work, as long as it follows the ASGI spec.\n\nIn general, ASGI middlewares are classes that expect to receive an ASGI app as "
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/advanced/middleware.md",
+          "chunk_index": 7,
+          "heading_path": "Advanced Middleware { #advanced-middleware } > Other middlewares { #other-middlewares }",
+          "content_hash": "b832ef01ef82aefa0bd3986eed5f892e7e1de0836aa56dab842be57d74f98353",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "051ef9c6cd54a566be9192e0e4b6667b0e84604db7a3cffea8d970f874d72014",
+          "score": 0.014067,
+          "preview": "There are many other ASGI middlewares.\n\nFor example:\n\n* [Uvicorn's `ProxyHeadersMiddleware`](https://github.com/Kludex/uvicorn/blob/main/uvicorn/middleware/proxy_headers.py)\n* [MessagePack](https://github.com/florimondmanca/msgpack-asgi)\n\nTo see other available middlewares check [Starlette's Middlew"
+        }
+      ],
+      "latency_ms": 36393.19,
+      "failure_class": null
+    },
+    {
+      "id": "f18",
+      "question": "How are CORS settings configured?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/tutorial/cors.md",
+          "heading": "cors (cross-origin resource sharing) { #cors-cross-origin-resource-sharing } > use corsmiddleware"
+        }
+      ],
+      "expected_facts": [
+        "CORS"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/tutorial/cors.md",
+        "heading": "cors (cross-origin resource sharing) { #cors-cross-origin-resource-sharing } > use corsmiddleware",
+        "rank": 2
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "CORS settings are configured using `CORSMiddleware` [1,3]. Key parameters include `allow_origins`, `allow_methods`, and `allow_headers` [2]. Note: `allow_credentials` requires explicit specifications for all parameters when enabled [2].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/tutorial/cors.md",
+          "chunk_index": 8,
+          "heading_path": "CORS (Cross-Origin Resource Sharing) { #cors-cross-origin-resource-sharing } > Use `CORSMiddleware` { #use-corsmiddleware } > CORS preflight requests { #cors-preflight-requests }",
+          "content_hash": "ee8489eb1aaf1e9fee7eac0f4f580892fa2bae5c42cdda08a5e36e4c58e9e0cd",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "da167c442cc3a73a776782a3e45936165c713e63cc40a9f0117d490a51a60b17",
+          "score": 0.015354,
+          "preview": "These are any `OPTIONS` request with `Origin` and `Access-Control-Request-Method` headers.\n\nIn this case the middleware will intercept the incoming request and respond with appropriate CORS headers, and either a `200` or `400` response for informational purposes."
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/tutorial/cors.md",
+          "chunk_index": 6,
+          "heading_path": "CORS (Cross-Origin Resource Sharing) { #cors-cross-origin-resource-sharing } > Use `CORSMiddleware` { #use-corsmiddleware }",
+          "content_hash": "df04daba4c750f090fa512bf89f1be118fe51fd404d497d6effcd1420955343a",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "da167c442cc3a73a776782a3e45936165c713e63cc40a9f0117d490a51a60b17",
+          "score": 0.01528,
+          "preview": "headers that should be supported for cross-origin requests. Defaults to `[]`. You can use `['*']` to allow all headers. The `Accept`, `Accept-Language`, `Content-Language` and `Content-Type` headers are always allowed for [simple CORS requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#"
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/tutorial/cors.md",
+          "chunk_index": 10,
+          "heading_path": "CORS (Cross-Origin Resource Sharing) { #cors-cross-origin-resource-sharing } > More info { #more-info }",
+          "content_hash": "bbed052f92c0763003e844db0eaa15a3634629b1d16bfd2af8263e0ab619aecb",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "da167c442cc3a73a776782a3e45936165c713e63cc40a9f0117d490a51a60b17",
+          "score": 0.015115,
+          "preview": "For more info about  CORS , check the [Mozilla CORS documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS).\n\n/// note | Technical Details\n\nYou could also use `from starlette.middleware.cors import CORSMiddleware`.\n\n**FastAPI** provides several middlewares in `fastapi.middleware` just"
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/advanced/middleware.md",
+          "chunk_index": 0,
+          "heading_path": "Advanced Middleware { #advanced-middleware }",
+          "content_hash": "fce752fb67fccd75a473fed7f4cbb3b2246b4005ebaddf5e56be26f00a694076",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "051ef9c6cd54a566be9192e0e4b6667b0e84604db7a3cffea8d970f874d72014",
+          "score": 0.015016,
+          "preview": "In the main tutorial you read how to add [Custom Middleware](../tutorial/middleware.md) to your application.\n\nAnd then you also read how to handle [CORS with the `CORSMiddleware`](../tutorial/cors.md).\n\nIn this section we'll see how to use other middlewares."
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/tutorial/middleware.md",
+          "chunk_index": 6,
+          "heading_path": "Middleware { #middleware } > Other middlewares { #other-middlewares }",
+          "content_hash": "a3c953d13f232e34a26a453ab1313ff678c3a825f5ec4a2dcfab2cd45307a572",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "58cb232d288a5bdfa6f91680f6615520748884e17463059a1f28e78273563c39",
+          "score": 0.014792,
+          "preview": "You can later read more about other middlewares in the [Advanced User Guide: Advanced Middleware](../advanced/middleware.md).\n\nYou will read about how to handle  CORS  with a middleware in the next section."
+        }
+      ],
+      "latency_ms": 38374.11,
+      "failure_class": null
+    },
+    {
+      "id": "f19",
+      "question": "How do WebSockets work?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/advanced/websockets.md",
+          "heading": "websockets"
+        }
+      ],
+      "expected_facts": [
+        "WebSocket"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/advanced/websockets.md",
+        "heading": "websockets",
+        "rank": 4
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "The evidence does not describe how WebSockets work at a fundamental level. It only shows implementation in FastAPI contexts [2].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/advanced/websockets.md",
+          "chunk_index": 1,
+          "heading_path": "WebSockets { #websockets } > Install `websockets` { #install-websockets }",
+          "content_hash": "f8476ce2c9c47344235b87bba7c6c8c61c05c937bbe291d5e41bfd05d02e5fc5",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "8320bc17f58bd4427b91caf7ab7aceb2143b3203aba29f29116b8829e5f62f31",
+          "score": 0.015586,
+          "preview": "Add `websockets` (a Python library that makes it easy to use the \"WebSocket\" protocol) to your project:\n\n \n\n```console\n$ uv add websockets\n\n---> 100%\n```"
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/reference/websockets.md",
+          "chunk_index": 0,
+          "heading_path": "WebSockets",
+          "content_hash": "502caece5603b9e32ccefe6b3f04cff49bbf895157bce176266f8aa19c83dd97",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "a7c65db4bd585c2057badb95d059d0d34c408fc906721960fa67a7640b7e13d6",
+          "score": 0.015114,
+          "preview": "When defining WebSockets, you normally declare a parameter of type `WebSocket` and with it you can read data from the client and send data to it.\n\nRead more about it in the [FastAPI docs for WebSockets](https://fastapi.tiangolo.com/advanced/websockets/)\n\nIt is provided directly by Starlette, but you"
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/advanced/websockets.md",
+          "chunk_index": 10,
+          "heading_path": "WebSockets { #websockets } > More info { #more-info }",
+          "content_hash": "ab0ef3d4ee4c0e156a8e52da2fff2b7b3cb62d127e6d7820bc3bab69f1b671fe",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "8320bc17f58bd4427b91caf7ab7aceb2143b3203aba29f29116b8829e5f62f31",
+          "score": 0.015016,
+          "preview": "To learn more about the options, check Starlette's documentation for:\n\n* [The `WebSocket` class](https://starlette.dev/websockets/).\n* [Class-based WebSocket handling](https://starlette.dev/endpoints/#websocketendpoint)."
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/advanced/websockets.md",
+          "chunk_index": 0,
+          "heading_path": "WebSockets { #websockets }",
+          "content_hash": "19f7419f9fb3d97b0403082c9a09027a2448a76b759409a6534e5a38419b70a5",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "8320bc17f58bd4427b91caf7ab7aceb2143b3203aba29f29116b8829e5f62f31",
+          "score": 0.014951,
+          "preview": "You can use [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) with **FastAPI**."
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/reference/websockets.md",
+          "chunk_index": 2,
+          "heading_path": "WebSockets > WebSockets - additional classes",
+          "content_hash": "9405547769cf83e135990ba41562d22d91810ba1f288cf42b4018c98a0a9f28e",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "a7c65db4bd585c2057badb95d059d0d34c408fc906721960fa67a7640b7e13d6",
+          "score": 0.013514,
+          "preview": "Additional classes for handling WebSockets.\n\nProvided directly by Starlette, but you can import them from `fastapi`:\n\n```python\nfrom fastapi.websockets import WebSocketDisconnect, WebSocketState\n```\n\n::: fastapi.websockets.WebSocketDisconnect\n\nWhen a client disconnects, a `WebSocketDisconnect` excep"
+        }
+      ],
+      "latency_ms": 40462.45,
+      "failure_class": null
+    },
+    {
+      "id": "f20",
+      "question": "How do event handlers work?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/advanced/events.md",
+          "heading": "lifespan events { #lifespan-events } > alternative events (deprecated) { #alternative-events-deprecated } > startup event"
+        }
+      ],
+      "expected_facts": [
+        "event"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/advanced/events.md",
+        "heading": "lifespan events { #lifespan-events } > alternative events (deprecated) { #alternative-events-deprecated } > startup event",
+        "rank": 1
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "In FastAPI, event handlers are functions declared with event names (e.g., 'startup') that run at specific lifecycle stages. Multiple handlers can be added, but the application won't receive requests until all startup handlers complete [1].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/advanced/events.md",
+          "chunk_index": 10,
+          "heading_path": "Lifespan Events { #lifespan-events } > Alternative Events (deprecated) { #alternative-events-deprecated } > `startup` event { #startup-event }",
+          "content_hash": "180ba6b682307af97a8f4155e4c1ac08dfa30deae4151c5372ccab2ed7a377ff",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "33de759da943ea437830d8c744d8c0a3887f40c54f738886314575805216afab",
+          "score": 0.016248,
+          "preview": "To add a function that should be run before the application starts, declare it with the event `\"startup\"`:\n\n{* ../../docs_src/events/tutorial001_py310.py hl[8] *}\n\nIn this case, the `startup` event handler function will initialize the items \"database\" (just a `dict`) with some values.\n\nYou can add m"
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/reference/sse.md",
+          "chunk_index": 0,
+          "heading_path": "Server-Sent Events - `EventSourceResponse` and `ServerSentEvent`",
+          "content_hash": "1f06d79c251eb4cda46052200f406ac5f87c75481a7fcb73453456426eea6d0f",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "9181734adce713f41d7bd3f6079f0c60842e0200b5ffc3ffd6cc03f99657eba0",
+          "score": 0.009016,
+          "preview": "To stream Server-Sent Events (SSE), use `yield` in your *path operation function* and set `response_class=EventSourceResponse`.\n\nIf you need to set SSE fields like `event`, `id`, `retry`, or `comment`, you can `yield` `ServerSentEvent` objects instead of plain data.\n\nRead more about it in the [FastA"
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/tutorial/server-sent-events.md",
+          "chunk_index": 0,
+          "heading_path": "Server-Sent Events (SSE) { #server-sent-events-sse }",
+          "content_hash": "3756d1a3297ec24b3966f34b3fc654862e431bc27e154c585e3741aa8f9b5da7",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "1c2c53c7e20c55ce5e9d147347b65a8cd2b9dc982fd33a5b5187b07cbd79554b",
+          "score": 0.00873,
+          "preview": "You can stream data to the client using **Server-Sent Events** (SSE).\n\nThis is similar to [Stream JSON Lines](stream-json-lines.md), but uses the `text/event-stream` format, which is supported natively by browsers with the [`EventSource` API](https://developer.mozilla.org/en-US/docs/Web/API/EventSou"
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/tutorial/stream-json-lines.md",
+          "chunk_index": 8,
+          "heading_path": "Stream JSON Lines { #stream-json-lines } > Server-Sent Events (SSE) { #server-sent-events-sse }",
+          "content_hash": "9da5d3052e895d6da32e2fdfcfec8e610492af6308a20776157830b5a08c6a1a",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "48c8b930042ac448af3f36a09b13cbf5fb5ad087f30204ae55b61efcea858b44",
+          "score": 0.008594,
+          "preview": "FastAPI also has first-class support for Server-Sent Events (SSE), which are quite similar but with a couple of extra details. You can learn about them in the next chapter: [Server-Sent Events (SSE)](server-sent-events.md). \ud83e\udd13"
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/tutorial/server-sent-events.md",
+          "chunk_index": 1,
+          "heading_path": "Server-Sent Events (SSE) { #server-sent-events-sse } > What are Server-Sent Events? { #what-are-server-sent-events }",
+          "content_hash": "d5b81cec3b56ce83054123a47e642aa30f5b810ccc8ce746e5b7991e1f1027be",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "1c2c53c7e20c55ce5e9d147347b65a8cd2b9dc982fd33a5b5187b07cbd79554b",
+          "score": 0.008462,
+          "preview": "SSE is a standard for streaming data from the server to the client over HTTP.\n\nEach event is a small text block with \"fields\" like `data`, `event`, `id`, and `retry`, separated by blank lines.\n\nIt looks like this:\n\n```\ndata: {\"name\": \"Portal Gun\", \"price\": 999.99}\n\ndata: {\"name\": \"Plumbus\", \"price\":"
+        }
+      ],
+      "latency_ms": 54730.93,
+      "failure_class": null
+    },
+    {
+      "id": "f21",
+      "question": "How do lifespan events work?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/advanced/events.md",
+          "heading": "lifespan events { #lifespan-events } > technical details"
+        }
+      ],
+      "expected_facts": [
+        "lifespan"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/advanced/events.md",
+        "heading": "lifespan events { #lifespan-events } > technical details",
+        "rank": 1
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Lifespan events in FastAPI are `startup` and `shutdown` defined by ASGI's Lifespan Protocol [1]. These events only execute for the main application, not sub-applications [2]. The `lifespan` parameter takes an async context manager that runs code before and after yielding [3].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/advanced/events.md",
+          "chunk_index": 13,
+          "heading_path": "Lifespan Events { #lifespan-events } > Technical Details { #technical-details }",
+          "content_hash": "1d63f96f4763f411c8e892d8ebe76ac202d78a1c2215aee7797d83fa3e8ed6a6",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "33de759da943ea437830d8c744d8c0a3887f40c54f738886314575805216afab",
+          "score": 0.016393,
+          "preview": "Just a technical detail for the curious nerds. \ud83e\udd13\n\nUnderneath, in the ASGI technical specification, this is part of the [Lifespan Protocol](https://asgi.readthedocs.io/en/latest/specs/lifespan.html), and it defines events called `startup` and `shutdown`.\n\n/// note\n\nYou can read more about the Starlet"
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/advanced/events.md",
+          "chunk_index": 14,
+          "heading_path": "Lifespan Events { #lifespan-events } > Sub Applications { #sub-applications }",
+          "content_hash": "960a09019c7ab0a3bfe8f8fad38748abd517132a1895333cd253cc7557642ac6",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "33de759da943ea437830d8c744d8c0a3887f40c54f738886314575805216afab",
+          "score": 0.015365,
+          "preview": "\ud83d\udea8 Keep in mind that these lifespan events (startup and shutdown) will only be executed for the main application, not for [Sub Applications - Mounts](sub-applications.md)."
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/advanced/events.md",
+          "chunk_index": 8,
+          "heading_path": "Lifespan Events { #lifespan-events } > Lifespan { #lifespan } > Async Context Manager { #async-context-manager }",
+          "content_hash": "11b350109f6f748170d97d3bdb3bfa4327f975ed9056cf2b6f40a75afbe13261",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "33de759da943ea437830d8c744d8c0a3887f40c54f738886314575805216afab",
+          "score": 0.014925,
+          "preview": "ill execute the code before the `yield`, and after exiting the `with` block, it will execute the code after the `yield`.\n\nIn our code example above, we don't use it directly, but we pass it to FastAPI for it to use it.\n\nThe `lifespan` parameter of the `FastAPI` app takes an **async context manager**"
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/advanced/async-tests.md",
+          "chunk_index": 6,
+          "heading_path": "Async Tests { #async-tests } > In Detail { #in-detail }",
+          "content_hash": "df67dc912aa18b3cf595431333914b7a3ae18149fe77b2649f4640d2cfb88cb5",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "7c91b8abe4c26ec6eea35595df66788f8898c9fe444e501a0db6352857b37612",
+          "score": 0.014894,
+          "preview": "ronous.\n\n///\n\n/// warning\n\nIf your application relies on lifespan events, the `AsyncClient` won't trigger these events. To ensure they are triggered, use `LifespanManager` from [florimondmanca/asgi-lifespan](https://github.com/florimondmanca/asgi-lifespan#usage).\n\n///"
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/advanced/events.md",
+          "chunk_index": 4,
+          "heading_path": "Lifespan Events { #lifespan-events } > Lifespan { #lifespan }",
+          "content_hash": "68d1c57a14475a1473365f53a0ef692aaf4d45aa6bcfd2db1f74333038c62f3e",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "33de759da943ea437830d8c744d8c0a3887f40c54f738886314575805216afab",
+          "score": 0.014253,
+          "preview": "You can define this *startup* and *shutdown* logic using the `lifespan` parameter of the `FastAPI` app, and a \"context manager\" (I'll show you what that is in a second).\n\nLet's start with an example and then see it in detail.\n\nWe create an async function `lifespan()` with `yield` like this:\n\n{* ../."
+        }
+      ],
+      "latency_ms": 53490.2,
+      "failure_class": null
+    },
+    {
+      "id": "f22",
+      "question": "How does async support work?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/async.md",
+          "heading": "concurrency and async / await"
+        }
+      ],
+      "expected_facts": [
+        "async"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/async.md",
+        "heading": "concurrency and async / await",
+        "rank": 3
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "FastAPI async support uses `async`/`await` syntax for coroutines [2], enabling asynchronous operations like database queries [1]. Path operation functions utilize `async def` [3]. This supports concurrent execution without blocking the main thread.",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/advanced/async-tests.md",
+          "chunk_index": 0,
+          "heading_path": "Async Tests { #async-tests }",
+          "content_hash": "6e5b8fe905cc93aae7f2d7752e2b56190339c7aad69cb062de1421cd7e8039e7",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "7c91b8abe4c26ec6eea35595df66788f8898c9fe444e501a0db6352857b37612",
+          "score": 0.015115,
+          "preview": "You have already seen how to test your **FastAPI** applications using the provided `TestClient`. Up to now, you have only seen how to write synchronous tests, without using `async` functions.\n\nBeing able to use asynchronous functions in your tests could be useful, for example, when you're querying y"
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/async.md",
+          "chunk_index": 3,
+          "heading_path": "Concurrency and async / await { #concurrency-and-async-await } > Technical Details { #technical-details }",
+          "content_hash": "2ed7fa99109403868bdc5fda0e8fad54ba90aad65cdee8ccd5c79f421c99be6d",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "1d4397242a6b63f64dd5106e36999dff6deacdc79bb0bb157aae6cc36f8a2c44",
+          "score": 0.015027,
+          "preview": "Modern versions of Python have support for **\"asynchronous code\"** using something called **\"coroutines\"**, with **`async` and `await`** syntax.\n\nLet's see that phrase by parts in the sections below:\n\n* **Asynchronous Code**\n* **`async` and `await`**\n* **Coroutines**"
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/async.md",
+          "chunk_index": 0,
+          "heading_path": "Concurrency and async / await { #concurrency-and-async-await }",
+          "content_hash": "b021ae0b380ba2fc33681bd63acbcb108fa9a493dd1b343fd0b0f011b689fc4f",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "1d4397242a6b63f64dd5106e36999dff6deacdc79bb0bb157aae6cc36f8a2c44",
+          "score": 0.009016,
+          "preview": "Details about the `async def` syntax for *path operation functions* and some background about asynchronous code, concurrency, and parallelism."
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/advanced/async-tests.md",
+          "chunk_index": 6,
+          "heading_path": "Async Tests { #async-tests } > In Detail { #in-detail }",
+          "content_hash": "df67dc912aa18b3cf595431333914b7a3ae18149fe77b2649f4640d2cfb88cb5",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "7c91b8abe4c26ec6eea35595df66788f8898c9fe444e501a0db6352857b37612",
+          "score": 0.008871,
+          "preview": "ronous.\n\n///\n\n/// warning\n\nIf your application relies on lifespan events, the `AsyncClient` won't trigger these events. To ensure they are triggered, use `LifespanManager` from [florimondmanca/asgi-lifespan](https://github.com/florimondmanca/asgi-lifespan#usage).\n\n///"
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/advanced/async-tests.md",
+          "chunk_index": 5,
+          "heading_path": "Async Tests { #async-tests } > In Detail { #in-detail }",
+          "content_hash": "710ed71b162642b84e469a432f38a0c9e2146de4deafd1d9c96c912a50c3c924",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "7c91b8abe4c26ec6eea35595df66788f8898c9fe444e501a0db6352857b37612",
+          "score": 0.00873,
+          "preview": "The marker `@pytest.mark.anyio` tells pytest that this test function should be called asynchronously:\n\n{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[7] *}\n\n/// tip\n\nNote that the test function is now `async def` instead of just `def` as before when using the `TestClient`.\n\n///\n\nThen we c"
+        }
+      ],
+      "latency_ms": 41602.98,
+      "failure_class": null
+    },
+    {
+      "id": "f23",
+      "question": "How are file uploads handled?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/tutorial/request-files.md",
+          "heading": "request files { #request-files } > file parameters with uploadfile { #file-parameters-with-uploadfile } > uploadfile"
+        }
+      ],
+      "expected_facts": [
+        "UploadFile"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/tutorial/request-files.md",
+        "heading": "request files { #request-files } > file parameters with uploadfile { #file-parameters-with-uploadfile } > uploadfile",
+        "rank": 2
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "File uploads are handled via form data using `UploadFile` objects with attributes `filename`, `content_type`, and a `SpooledTemporaryFile` [2]. Multiple files can be uploaded as a single form field [1]. Files are declared in requests using `File`, `bytes`, or `UploadFile` [3].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/release-notes.md",
+          "chunk_index": 1260,
+          "heading_path": "Release Notes > 0.15.0 (2019-04-14)",
+          "content_hash": "4594bc048c5f39e2ea0eeb3eaa8ac6608f4603caf7ed384de904005d2caf0880",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "fb63572e6b4e43b6372710b578089571cf9ce800c7783ca270d0d3fcc507997d",
+          "score": 0.01471,
+          "preview": "* Add support for multiple file uploads (as a single form field). New docs at: [Multiple file uploads](https://fastapi.tiangolo.com/tutorial/request-files/#multiple-file-uploads). PR [#158](https://github.com/tiangolo/fastapi/pull/158).\n\n* Add docs for: [Additional Status Codes](https://fastapi.tian"
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/tutorial/request-files.md",
+          "chunk_index": 5,
+          "heading_path": "Request Files { #request-files } > File Parameters with `UploadFile` { #file-parameters-with-uploadfile } > `UploadFile` { #uploadfile }",
+          "content_hash": "dcf4d8189a030b7a029f93b69dd0e7f9bf8d0fe1332cbd3dd4597687a2a6264b",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "4faafb4853d46b41cb9bc4c7c57e3ab293bcb9ce318b3b369162c4e239425ab6",
+          "score": 0.009016,
+          "preview": "`UploadFile` has the following attributes:\n\n* `filename`: A `str` with the original file name that was uploaded (e.g. `myimage.jpg`).\n* `content_type`: A `str` with the content type (MIME type / media type) (e.g. `image/jpeg`).\n* `file`: A [`SpooledTemporaryFile`](https://docs.python.org/3/library/t"
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/tutorial/request-files.md",
+          "chunk_index": 14,
+          "heading_path": "Request Files { #request-files } > Recap { #recap }",
+          "content_hash": "24512e58d0b12759ee2cf5d476e087ce7ddbb74e0e7f1a910b609e5b0754d860",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "4faafb4853d46b41cb9bc4c7c57e3ab293bcb9ce318b3b369162c4e239425ab6",
+          "score": 0.008871,
+          "preview": "Use `File`, `bytes`, and `UploadFile` to declare files to be uploaded in the request, sent as form data."
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/reference/uploadfile.md",
+          "chunk_index": 0,
+          "heading_path": "`UploadFile` class",
+          "content_hash": "250e72d55fc719311a8b25bca5b1d7afef1bc57cfbfe317e359c567f623372ce",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "977f6f171246d09756fc71a52e3129e312f3480b8043b9e6930f55afe61eb40b",
+          "score": 0.00873,
+          "preview": "You can define *path operation function* parameters to be of the type `UploadFile` to receive files from the request.\n\nYou can import it directly from `fastapi`:\n\n```python\nfrom fastapi import UploadFile\n```\n\n::: fastapi.UploadFile\n    options:\n        members:\n            - file\n            - filen"
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/tutorial/request-files.md",
+          "chunk_index": 4,
+          "heading_path": "Request Files { #request-files } > File Parameters with `UploadFile` { #file-parameters-with-uploadfile }",
+          "content_hash": "b6c85f4780eaa0072f4421bef4171000da9dc2a75d88aa3873d89c2d4ac39e71",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "4faafb4853d46b41cb9bc4c7c57e3ab293bcb9ce318b3b369162c4e239425ab6",
+          "score": 0.008594,
+          "preview": "Define a file parameter with a type of `UploadFile`:\n\n{* ../../docs_src/request_files/tutorial001_an_py310.py hl[14] *}\n\nUsing `UploadFile` has several advantages over `bytes`:\n\n* You don't have to use `File()` in the default value of the parameter.\n* It uses a \"spooled\" file:\n    * A file stored in"
+        }
+      ],
+      "latency_ms": 49683.14,
+      "failure_class": null
+    },
+    {
+      "id": "f24",
+      "question": "How are form fields handled?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/tutorial/request-forms.md",
+          "heading": "form data"
+        }
+      ],
+      "expected_facts": [
+        "Form"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/tutorial/request-forms.md",
+        "heading": "form data",
+        "rank": 3
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Form fields are handled by declaring a Pydantic model and using `Form` as the parameter type [1]. FastAPI extracts form data into the model [1]. `Form` inherits from `Body` [2]. Without `Form`, parameters default to query or JSON [2].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/tutorial/request-form-models.md",
+          "chunk_index": 1,
+          "heading_path": "Form Models { #form-models } > Pydantic Models for Forms { #pydantic-models-for-forms }",
+          "content_hash": "0017e39b831e8ad5612ad7a39edea9429395e7fcadabc57a0508037bb4be3d61",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "bcec1fddb980a64032025accea8b6b6fb32c6c6f3bc3c1168a194a466d52b0f8",
+          "score": 0.015852,
+          "preview": "You just need to declare a **Pydantic model** with the fields you want to receive as **form fields**, and then declare the parameter as `Form`:\n\n{* ../../docs_src/request_form_models/tutorial001_an_py310.py hl[9:11,15] *}\n\n**FastAPI** will **extract** the data for **each field** from the **form data"
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/tutorial/request-forms.md",
+          "chunk_index": 2,
+          "heading_path": "Form Data { #form-data } > Define `Form` parameters { #define-form-parameters }",
+          "content_hash": "4683c3031263e2990ef2ca9688cfa973863d7ca229f0f7980eb83e90e4e4e9cb",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "b143bb83409a214c1ca1ab7c6c269ae5e44f329e0b48a60ab161c77104019fca",
+          "score": 0.015587,
+          "preview": "Create form parameters the same way you would for `Body` or `Query`:\n\n{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[9] *}\n\nFor example, in one of the ways the OAuth2 specification can be used (called \"password flow\") it is required to send a `username` and `password` as form fields.\n\nTh"
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/tutorial/request-forms.md",
+          "chunk_index": 0,
+          "heading_path": "Form Data { #form-data }",
+          "content_hash": "9d2b89909d287b89134025d4eff741e309584963e4695418651472e344c5954f",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "b143bb83409a214c1ca1ab7c6c269ae5e44f329e0b48a60ab161c77104019fca",
+          "score": 0.015079,
+          "preview": "When you need to receive form fields instead of JSON, you can use `Form`.\n\n/// note\n\nTo use forms, first install [`python-multipart`](https://github.com/Kludex/python-multipart).\n\nAdd it to your project:\n\n```console\n$ uv add python-multipart\n```\n\n///"
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/release-notes.md",
+          "chunk_index": 510,
+          "heading_path": "Release Notes > 0.114.0 (2024-09-06)",
+          "content_hash": "c0efa94890cfa456d9c3c0a1f2553832a381ab3c278522d3204ba510f4d4077b",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "fb63572e6b4e43b6372710b578089571cf9ce800c7783ca270d0d3fcc507997d",
+          "score": 0.014677,
+          "preview": "You can restrict form fields to only include those declared in a Pydantic model and forbid any extra field sent in the request using Pydantic's `model_config = {\"extra\": \"forbid\"}`:\n\n```python\nfrom typing import Annotated\n\nfrom fastapi import FastAPI, Form\nfrom pydantic import BaseModel\n\napp = FastA"
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/release-notes.md",
+          "chunk_index": 514,
+          "heading_path": "Release Notes > 0.113.0 (2024-09-05)",
+          "content_hash": "345a988cbdd6b3fb911aeadad54084ffc9cdc3ed9639d1c94191d1b6d22495be",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "fb63572e6b4e43b6372710b578089571cf9ce800c7783ca270d0d3fcc507997d",
+          "score": 0.014565,
+          "preview": "Now you can declare form fields with Pydantic models:\n\n```python\nfrom typing import Annotated\n\nfrom fastapi import FastAPI, Form\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\nclass FormData(BaseModel):\n    username: str\n    password: str\n\n@app.post(\"/login/\")\nasync def login(data: Annotated[FormD"
+        }
+      ],
+      "latency_ms": 75016.01,
+      "failure_class": null
+    },
+    {
+      "id": "f25",
+      "question": "How are JSON responses returned?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/advanced/custom-response.md",
+          "heading": "custom response - html, stream, file, others { #custom-response-html-stream-file-others } > available responses { #available-responses } > jsonresponse"
+        }
+      ],
+      "expected_facts": [
+        "JSONResponse"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/advanced/custom-response.md",
+        "heading": "custom response - html, stream, file, others { #custom-response-html-stream-file-others } > available responses { #available-responses } > jsonresponse",
+        "rank": 1
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "FastAPI returns JSON responses via `JSONResponse` (default) [1], which serializes data to application/json. Declaring response models or return types achieves similar serialization without `JSONResponse` [1]. `JSONResponse` is a subclass of `Response` [3].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/advanced/custom-response.md",
+          "chunk_index": 12,
+          "heading_path": "Custom Response - HTML, Stream, File, others { #custom-response-html-stream-file-others } > Available responses { #available-responses } > `JSONResponse` { #jsonresponse }",
+          "content_hash": "412d6145839a6559f03d64fe6c5a495b7643320d3668756fad0cadf507deb90e",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "590d22726236c1954e8dde69e2d842fd69ade6952fe46f43e3c3309799368f9d",
+          "score": 0.015689,
+          "preview": "Takes some data and returns an `application/json` encoded response.\n\nThis is the default response used in **FastAPI**, as you read above.\n\n/// note | Technical Details\n\nBut if you declare a response model or return type, that will be used directly to serialize the data to JSON, and a response with t"
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/advanced/additional-status-codes.md",
+          "chunk_index": 2,
+          "heading_path": "Additional Status Codes { #additional-status-codes } > Additional status codes { #additional-status-codes_1 }",
+          "content_hash": "5bc52dd59bb35dd66e6e0de681f00d60ea5ba1b620bbd16f364c5f7830350fed",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "218eeb0ab9773ffc01143085b4ade9991c289334f09526a4d74087049a2de445",
+          "score": 0.015016,
+          "preview": "`Response` directly, like in the example above, it will be returned directly.\n\nIt won't be serialized with a model, etc.\n\nMake sure it has the data you want it to have, and that the values are valid JSON (if you are using `JSONResponse`).\n\n///\n\n/// note | Technical Details\n\nYou could also use `from "
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/advanced/response-directly.md",
+          "chunk_index": 1,
+          "heading_path": "Return a Response Directly { #return-a-response-directly } > Return a `Response` { #return-a-response }",
+          "content_hash": "00a1b8ac9bd76c6ea6147867bb2f4110384b290da5206ddb3f7899054848ac71",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "ed930c2b190cecb99a336152e072e7430efa2b99afb5d47c741805965b361003",
+          "score": 0.009016,
+          "preview": "You can return a `Response` or any sub-class of it.\n\n/// note\n\n`JSONResponse` itself is a sub-class of `Response`.\n\n///\n\nAnd when you return a `Response`, **FastAPI** will pass it directly.\n\nIt won't do any data conversion with Pydantic models, it won't convert the contents to any type, etc.\n\nThis g"
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/advanced/response-directly.md",
+          "chunk_index": 2,
+          "heading_path": "Return a Response Directly { #return-a-response-directly } > Using the `jsonable_encoder` in a `Response` { #using-the-jsonable-encoder-in-a-response }",
+          "content_hash": "aa5ad751579708cc2b2265fb4f65c0e3fad43e6c00018a843b9fa8570786be76",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "ed930c2b190cecb99a336152e072e7430efa2b99afb5d47c741805965b361003",
+          "score": 0.00873,
+          "preview": "Because **FastAPI** doesn't make any changes to a `Response` you return, you have to make sure its contents are ready for it.\n\nFor example, you cannot put a Pydantic model in a `JSONResponse` without first converting it to a `dict` with all the data types (like `datetime`, `UUID`, etc) converted to "
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/advanced/custom-response.md",
+          "chunk_index": 2,
+          "heading_path": "Custom Response - HTML, Stream, File, others { #custom-response-html-stream-file-others } > JSON Responses { #json-responses }",
+          "content_hash": "6cbe8a5d8bad0f0549cc0430ac65d7e3fe9481a48310b0279b12d01214a1e835",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "590d22726236c1954e8dde69e2d842fd69ade6952fe46f43e3c3309799368f9d",
+          "score": 0.008594,
+          "preview": "By default FastAPI returns JSON responses.\n\nIf you declare a [Response Model](../tutorial/response-model.md) FastAPI will use it to serialize the data to JSON, using Pydantic.\n\nIf you don't declare a response model, FastAPI will use the `jsonable_encoder` explained in [JSON Compatible Encoder](../tu"
+        }
+      ],
+      "latency_ms": 59998.78,
+      "failure_class": null
+    },
+    {
+      "id": "f26",
+      "question": "How are custom exception handlers configured?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/tutorial/handling-errors.md",
+          "heading": "handling errors { #handling-errors } > install custom exception handlers"
+        }
+      ],
+      "expected_facts": [
+        "exception"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/tutorial/handling-errors.md",
+        "heading": "handling errors { #handling-errors } > install custom exception handlers",
+        "rank": 1
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "You can add custom exception handlers with [the same exception utilities from Starlette](https://starlette.dev/exceptions/). [1] **FastAPI** has some default exception handlers. [2]",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/tutorial/handling-errors.md",
+          "chunk_index": 6,
+          "heading_path": "Handling Errors { #handling-errors } > Install custom exception handlers { #install-custom-exception-handlers }",
+          "content_hash": "2befc853ac5a627b707c0f5f8e380fddbb4e5d68446487d42f52b71b3d186463",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "c0cb7aeafe8ed3802396f2421755cf1e740000347305c515a2c828c0c41f4b1a",
+          "score": 0.015939,
+          "preview": "You can add custom exception handlers with [the same exception utilities from Starlette](https://starlette.dev/exceptions/).\n\nLet's say you have a custom exception `UnicornException` that you (or a library you use) might `raise`.\n\nAnd you want to handle this exception globally with FastAPI.\n\nYou cou"
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/tutorial/handling-errors.md",
+          "chunk_index": 8,
+          "heading_path": "Handling Errors { #handling-errors } > Override the default exception handlers { #override-the-default-exception-handlers }",
+          "content_hash": "d75d22c7bfc9d9ddbe063c78bf08e186bf1a66a16309171b7b27880d680465fe",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "c0cb7aeafe8ed3802396f2421755cf1e740000347305c515a2c828c0c41f4b1a",
+          "score": 0.015737,
+          "preview": "**FastAPI** has some default exception handlers.\n\nThese handlers are in charge of returning the default JSON responses when you `raise` an `HTTPException` and when the request has invalid data.\n\nYou can override these exception handlers with your own."
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/release-notes.md",
+          "chunk_index": 1238,
+          "heading_path": "Release Notes > 0.26.0 (2019-05-29)",
+          "content_hash": "ad57f449314b543afa79017f745e9194a5ba5935f5e00a2901e225804d3948b8",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "fb63572e6b4e43b6372710b578089571cf9ce800c7783ca270d0d3fcc507997d",
+          "score": 0.01571,
+          "preview": "* Separate error handling for validation errors.\n    * This will allow developers to customize the exception handlers.\n    * Document better how to handle exceptions and use error handlers.\n    * Include `RequestValidationError` and `WebSocketRequestValidationError` (this last one will be useful onc"
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/tutorial/handling-errors.md",
+          "chunk_index": 16,
+          "heading_path": "Handling Errors { #handling-errors } > Override the default exception handlers { #override-the-default-exception-handlers } > Reuse **FastAPI**'s exception handlers { #reuse-fastapis-exception-handlers }",
+          "content_hash": "2048e699caa556ac24582f2d8dd0763b05e6609cb34a13bfeafe6b197eb10298",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "c0cb7aeafe8ed3802396f2421755cf1e740000347305c515a2c828c0c41f4b1a",
+          "score": 0.015493,
+          "preview": "If you want to use the exception along with the same default exception handlers from  **FastAPI**, you can import and reuse the default exception handlers from `fastapi.exception_handlers`:\n\n{* ../../docs_src/handling_errors/tutorial006_py310.py hl[2:5,15,21] *}\n\nIn this example you are just printin"
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/how-to/custom-request-and-route.md",
+          "chunk_index": 6,
+          "heading_path": "Custom Request and APIRoute class { #custom-request-and-apiroute-class } > Accessing the request body in an exception handler { #accessing-the-request-body-in-an-exception-handler }",
+          "content_hash": "bf0bea8d9a5264deb7b912d052b058d25c142de284c28548c36a01765cf14bc9",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "ce338d8ed72e10227f8a446876ce409714f9b646f58000512c2ba84f3ce096e8",
+          "score": 0.015035,
+          "preview": "/// tip\n\nTo solve this same problem, it's probably a lot easier to use the `body` in a custom handler for `RequestValidationError` ([Handling Errors](../tutorial/handling-errors.md#use-the-requestvalidationerror-body)).\n\nBut this example is still valid and it shows how to interact with the internal "
+        }
+      ],
+      "latency_ms": 83849.51,
+      "failure_class": null
+    },
+    {
+      "id": "f27",
+      "question": "How does OpenAPI documentation work?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/reference/openapi/index.md",
+          "heading": "openapi"
+        }
+      ],
+      "expected_facts": [
+        "OpenAPI"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/reference/openapi/index.md",
+        "heading": "openapi",
+        "rank": 4
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "OpenAPI is an open specification for building APIs (previously known as Swagger) [1]. FastAPI is based on OpenAPI, enabling automatic interactive documentation interfaces [1]. OpenAPI documentation utilities include Swagger UI (default `/docs`) and ReDoc (default `/redoc`) [2]. The OpenAPI schema powers these interactive systems and allows automatic code generation for clients [3].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/tutorial/security/index.md",
+          "chunk_index": 6,
+          "heading_path": "Security { #security } > OpenAPI { #openapi }",
+          "content_hash": "d067eb74ad8f4846a9fbbcd21cd5267376a52eae93937f39f4554bfb45661bab",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "6c316110d145e16cc08e6e3caff00ebe7247470e85af3ce212d1ba3391092da8",
+          "score": 0.014107,
+          "preview": "OpenAPI (previously known as Swagger) is the open specification for building APIs (now part of the Linux Foundation).\n\n**FastAPI** is based on **OpenAPI**.\n\nThat's what makes it possible to have multiple automatic interactive documentation interfaces, code generation, etc.\n\nOpenAPI has a way to defi"
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/reference/openapi/docs.md",
+          "chunk_index": 0,
+          "heading_path": "OpenAPI `docs`",
+          "content_hash": "5de7d5796e22c75eb2f1016e8e933eff3034438c865cb41d3fbd8ab22cef468a",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "b33fe420bac7a66e3ed06f242d5001c47f0d35be5fcd8bea9e43e2a7f829865d",
+          "score": 0.013699,
+          "preview": "Utilities to handle OpenAPI automatic UI documentation, including Swagger UI (by default at `/docs`) and ReDoc (by default at `/redoc`).\n\n::: fastapi.openapi.docs.get_swagger_ui_html\n\n::: fastapi.openapi.docs.get_redoc_html\n\n::: fastapi.openapi.docs.get_swagger_ui_oauth2_redirect_html\n\n::: fastapi.o"
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/tutorial/first-steps.md",
+          "chunk_index": 12,
+          "heading_path": "First Steps { #first-steps } > Check it { #check-it } > OpenAPI { #openapi } > What is OpenAPI for { #what-is-openapi-for }",
+          "content_hash": "0eada786eed6370c2674ce0a7aa24be2777945471133cced1fd8a6736a60c005",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "ecc419c9e4ccf1e996db0b196301aab93a8f43d52ddc59a180d4e88f8290c858",
+          "score": 0.009016,
+          "preview": "The OpenAPI schema is what powers the two interactive documentation systems included.\n\nAnd there are dozens of alternatives, all based on OpenAPI. You could easily add any of those alternatives to your application built with **FastAPI**.\n\nYou could also use it to generate code automatically, for cli"
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/reference/openapi/index.md",
+          "chunk_index": 0,
+          "heading_path": "OpenAPI",
+          "content_hash": "f86a75cdf2dadf059f8577411535a2fc7d347b3507daac54537f58793fd16ccd",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "3c0b3bcf377c4701e62dcde0c58194c90885d66f11f1f7fd577e63aada0f9d71",
+          "score": 0.008871,
+          "preview": "There are several utilities to handle OpenAPI.\n\nYou normally don't need to use them unless you have a specific advanced use case that requires it."
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/tutorial/dependencies/index.md",
+          "chunk_index": 17,
+          "heading_path": "Dependencies { #dependencies } > Integrated with **OpenAPI** { #integrated-with-openapi_1 }",
+          "content_hash": "a21ef9f2f3f15bd479d13d778de88ca85341a93a3d0dd5e293f191dc941b68b5",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "83319cc87297bb0959c5721a112133e6a3cd19900163c348a8ee6cf4818cd21f",
+          "score": 0.00873,
+          "preview": "All these dependencies, while declaring their requirements, also add parameters, validations, etc. to your *path operations*.\n\n**FastAPI** will take care of adding it all to the OpenAPI schema, so that it is shown in the interactive documentation systems."
+        }
+      ],
+      "latency_ms": 38910.7,
+      "failure_class": null
+    },
+    {
+      "id": "f28",
+      "question": "How do tags organize API documentation?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/tutorial/path-operation-configuration.md",
+          "heading": "path operation configuration { #path-operation-configuration } > tags"
+        }
+      ],
+      "expected_facts": [
+        "tags"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/tutorial/path-operation-configuration.md",
+        "heading": "path operation configuration { #path-operation-configuration } > tags",
+        "rank": 3
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Tags organize API documentation by adding `tags` (a list of strings) to path operations [2,3], which populates the OpenAPI schema and enables grouping in the documentation UI [1]. This configuration allows users to categorize endpoints and view related operations together in the generated documentation interface.",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/how-to/general.md",
+          "chunk_index": 3,
+          "heading_path": "General - How To - Recipes { #general-how-to-recipes } > Documentation Tags - OpenAPI { #documentation-tags-openapi }",
+          "content_hash": "141d390de33bd305691ccc59c1d96028e605c0549e242514020a91d778bacffe",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "e500a3aabb5ea2498feea2dd4eb8bab22546a1f7c29b5ca3fd7dfd485eb0351e",
+          "score": 0.015445,
+          "preview": "To add tags to your *path operations*, and group them in the docs UI, read the docs for [Tutorial - Path Operation Configurations - Tags](../tutorial/path-operation-configuration.md#tags)."
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/tutorial/metadata.md",
+          "chunk_index": 7,
+          "heading_path": "Metadata and Docs URLs { #metadata-and-docs-urls } > Metadata for tags { #metadata-for-tags } > Use your tags { #use-your-tags }",
+          "content_hash": "12f36e716fb46d6e0999b748f5cb90f06e996987ec27ecd2bbff296498d2dc93",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "96ed076601792a2c2564b8453e85d094b84c25d6b347be4dec70135fe179da2b",
+          "score": 0.015252,
+          "preview": "Use the `tags` parameter with your *path operations* (and `APIRouter`s) to assign them to different tags:\n\n{* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}\n\n/// note\n\nRead more about tags in [Path Operation Configuration](path-operation-configuration.md#tags).\n\n///"
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/tutorial/path-operation-configuration.md",
+          "chunk_index": 2,
+          "heading_path": "Path Operation Configuration { #path-operation-configuration } > Tags { #tags }",
+          "content_hash": "8c08e099d1e13c480360804866fb7bf9d1ccacd7546908ce9a4791dedac90a93",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "4dd48d33514d52d997bbee269a3c293d70619af1ed9799545a2714010914cad6",
+          "score": 0.015132,
+          "preview": "You can add tags to your *path operation*, pass the parameter `tags` with a `list` of `str` (commonly just one `str`):\n\n{* ../../docs_src/path_operation_configuration/tutorial002_py310.py hl[15,20,25] *}\n\nThey will be added to the OpenAPI schema and used by the automatic documentation interfaces:"
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/tutorial/bigger-applications.md",
+          "chunk_index": 17,
+          "heading_path": "Bigger Applications - Multiple Files { #bigger-applications-multiple-files } > Another module with `APIRouter` { #another-module-with-apirouter } > Add some custom `tags`, `responses`, and `dependencies` { #add-some-custom-tags-responses-and-dependencies }",
+          "content_hash": "5759434b03cf702d5295158092d4c1408c7389d093a7ca1abcacf41eb5c31e07",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "943368d567d4a841ac0710f2a97bf0775c11e4f3b7e9ece2a9a76268eb618133",
+          "score": 0.014149,
+          "preview": "We are not adding the prefix `/items` nor the `tags=[\"items\"]` to each *path operation* because we added them to the `APIRouter`.\n\nBut we can still add _more_ `tags` that will be applied to a specific *path operation*, and also some extra `responses` specific to that *path operation*:\n\n{* ../../docs"
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/tutorial/metadata.md",
+          "chunk_index": 5,
+          "heading_path": "Metadata and Docs URLs { #metadata-and-docs-urls } > Metadata for tags { #metadata-for-tags }",
+          "content_hash": "0eb5b93de6f9cff32d8115cadc02042ac415d685c6fe5f6f6e53488811bc035e",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "96ed076601792a2c2564b8453e85d094b84c25d6b347be4dec70135fe179da2b",
+          "score": 0.008871,
+          "preview": "You can also add additional metadata for the different tags used to group your path operations with the parameter `openapi_tags`.\n\nIt takes a list containing one dictionary for each tag.\n\nEach dictionary can contain:\n\n* `name` (**required**): a `str` with the same tag name you use in the `tags` para"
+        }
+      ],
+      "latency_ms": 52053.58,
+      "failure_class": null
+    },
+    {
+      "id": "f29",
+      "question": "How can generated OpenAPI be customized?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/how-to/extending-openapi.md",
+          "heading": "extending openapi"
+        }
+      ],
+      "expected_facts": [
+        "OpenAPI"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/how-to/extending-openapi.md",
+        "heading": "extending openapi",
+        "rank": 2
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "OpenAPI Pydantic models used to generate and validate the generated OpenAPI. [1] There are some cases where you might need to modify the generated OpenAPI schema. [2]",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/reference/openapi/models.md",
+          "chunk_index": 0,
+          "heading_path": "OpenAPI `models`",
+          "content_hash": "4345814b7b35e81e3401c3060ab29f0510bdd484fd01558ae7147a59d7f968c6",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "edcc6862b45c3c393494c66db826080da6125afb4cbe13f9d05c182db49a45ab",
+          "score": 0.015517,
+          "preview": "OpenAPI Pydantic models used to generate and validate the generated OpenAPI.\n\n::: fastapi.openapi.models"
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/how-to/extending-openapi.md",
+          "chunk_index": 0,
+          "heading_path": "Extending OpenAPI { #extending-openapi }",
+          "content_hash": "5b635ee11df4819df28ca560876bcf90fb5ee6aa2d23977de047f0ed6c2d750b",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "5c685bf0627b38937f38dce0a8365f1070559465868c1fa7ca8f7c27c037e798",
+          "score": 0.015252,
+          "preview": "There are some cases where you might need to modify the generated OpenAPI schema.\n\nIn this section you will see how."
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/how-to/extending-openapi.md",
+          "chunk_index": 8,
+          "heading_path": "Extending OpenAPI { #extending-openapi } > Overriding the defaults { #overriding-the-defaults } > Cache the OpenAPI schema { #cache-the-openapi-schema }",
+          "content_hash": "8553d2fd215428194e960075deb1ada08abebbeaa3573a22c296094b9b1215f5",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "5c685bf0627b38937f38dce0a8365f1070559465868c1fa7ca8f7c27c037e798",
+          "score": 0.013534,
+          "preview": "You can use the property `.openapi_schema` as a \"cache\", to store your generated schema.\n\nThat way, your application won't have to generate the schema every time a user opens your API docs.\n\nIt will be generated only once, and then the same cached schema will be used for the next requests.\n\n{* ../.."
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/how-to/extending-openapi.md",
+          "chunk_index": 6,
+          "heading_path": "Extending OpenAPI { #extending-openapi } > Overriding the defaults { #overriding-the-defaults } > Generate the OpenAPI schema { #generate-the-openapi-schema }",
+          "content_hash": "ca0ced72407c826c71fd47b51917df88f81d3ef6270fb8936fe84189012e260b",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "5c685bf0627b38937f38dce0a8365f1070559465868c1fa7ca8f7c27c037e798",
+          "score": 0.009016,
+          "preview": "Then, use the same utility function to generate the OpenAPI schema, inside a `custom_openapi()` function:\n\n{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[2,15:21] *}"
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/how-to/extending-openapi.md",
+          "chunk_index": 4,
+          "heading_path": "Extending OpenAPI { #extending-openapi } > Overriding the defaults { #overriding-the-defaults }",
+          "content_hash": "39ebb9cded31a97b958ec85b42d19397379dcddeaf2dc8264bf770580ae9b984",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "5c685bf0627b38937f38dce0a8365f1070559465868c1fa7ca8f7c27c037e798",
+          "score": 0.008871,
+          "preview": "Using the information above, you can use the same utility function to generate the OpenAPI schema and override each part that you need.\n\nFor example, let's add [ReDoc's OpenAPI extension to include a custom logo](https://github.com/Redocly/redoc/blob/main/docs/redoc-vendor-extensions.md#x-logo)."
+        }
+      ],
+      "latency_ms": 96141.09,
+      "failure_class": null
+    },
+    {
+      "id": "f30",
+      "question": "How do testing utilities work?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/tutorial/testing.md",
+          "heading": "testing { #testing } > testing: extended example { #testing-extended-example } > extended testing file"
+        }
+      ],
+      "expected_facts": [
+        "TestClient"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/tutorial/testing.md",
+        "heading": "testing { #testing } > testing: extended example { #testing-extended-example } > extended testing file",
+        "rank": 1
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Testing utilities in FastAPI (like httpx) pass data via URL parameters, JSON bodies, form data, headers, or cookies [1]. The TestClient converts data to JSON but not Pydantic models; use jsonable_encoder for Pydantic models [3]. Dependency overrides can mock external services during tests [2].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/tutorial/testing.md",
+          "chunk_index": 8,
+          "heading_path": "Testing { #testing } > Testing: extended example { #testing-extended-example } > Extended testing file { #extended-testing-file }",
+          "content_hash": "e3b263ff2a26804ad5738bb780dc50ce8164e1e13c37c61b613b9dd37b556488",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "759b81a9967dc50ec405877a23bb362d202e5d483fe38ad2308cb32a88eb8eda",
+          "score": 0.015231,
+          "preview": "You could then update `test_main.py` with the extended tests:\n\n{* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}\n\nWhenever you need the client to pass information in the request and you don't know how to, you can search (Google) how to do it in `httpx`, or even how to do it with `requests"
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/advanced/testing-dependencies.md",
+          "chunk_index": 1,
+          "heading_path": "Testing Dependencies with Overrides { #testing-dependencies-with-overrides } > Overriding dependencies during testing { #overriding-dependencies-during-testing } > Use cases: external service { #use-cases-external-service }",
+          "content_hash": "175a59036332d44c4a152847d929cf5790541e5f0722597055558fae50b2c92a",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "6d26e7728428a508c2a51ac8e53920d003cbc9ed83f63df2e20590b199f12c2a",
+          "score": 0.009016,
+          "preview": "An example could be that you have an external authentication provider that you need to call.\n\nYou send it a token and it returns an authenticated user.\n\nThis provider might be charging you per request, and calling it might take some extra time than if you had a fixed mock user for tests.\n\nYou probab"
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/tutorial/testing.md",
+          "chunk_index": 9,
+          "heading_path": "Testing { #testing } > Testing: extended example { #testing-extended-example } > Extended testing file { #extended-testing-file }",
+          "content_hash": "bd1bcc70ee8c5746f7e6cc5e43f5ce2651bbe8d3fc5525bb09be138bacd96c1e",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "759b81a9967dc50ec405877a23bb362d202e5d483fe38ad2308cb32a88eb8eda",
+          "score": 0.008871,
+          "preview": "ead.\n* To pass *headers*, use a `dict` in the `headers` parameter.\n* For *cookies*, a `dict` in the `cookies` parameter.\n\nFor more information about how to pass data to the backend (using `httpx` or the `TestClient`) check the [HTTPX documentation](https://www.python-httpx.org).\n\n/// note\n\nNote that"
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/tutorial/testing.md",
+          "chunk_index": 6,
+          "heading_path": "Testing { #testing } > Testing: extended example { #testing-extended-example }",
+          "content_hash": "b86c67c8ffb73a369e8d03560794e1b559b33cab4faccca79a0a151571a12fae",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "759b81a9967dc50ec405877a23bb362d202e5d483fe38ad2308cb32a88eb8eda",
+          "score": 0.00873,
+          "preview": "Now let's extend this example and add more details to see how to test different parts."
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/advanced/testing-dependencies.md",
+          "chunk_index": 3,
+          "heading_path": "Testing Dependencies with Overrides { #testing-dependencies-with-overrides } > Overriding dependencies during testing { #overriding-dependencies-during-testing } > Use the `app.dependency_overrides` attribute { #use-the-app-dependency-overrides-attribute }",
+          "content_hash": "0ec407760c0e25b77a20248c96c0fe7d48d10d1e72959681ab2a81c63fc104de",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "6d26e7728428a508c2a51ac8e53920d003cbc9ed83f63df2e20590b199f12c2a",
+          "score": 0.008594,
+          "preview": "e it.\n\n///\n\nThen you can reset your overrides (remove them) by setting `app.dependency_overrides` to be an empty `dict`:\n\n```Python\napp.dependency_overrides = {}\n```\n\n/// tip\n\nIf you want to override a dependency only during some tests, you can set the override at the beginning of the test (inside t"
+        }
+      ],
+      "latency_ms": 52778.25,
+      "failure_class": null
+    },
+    {
+      "id": "f31",
+      "question": "How does deployment work?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/deployment/concepts.md",
+          "heading": "deployments concepts"
+        }
+      ],
+      "expected_facts": [
+        "deployment"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/deployment/concepts.md",
+        "heading": "deployments concepts",
+        "rank": 5
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Deployment makes applications available to users by placing them on remote machines with performance-stable servers [1], contrasting development cycles. Strategies include self-hosted servers, cloud services, or tools like FastAPI Cloud [2]. Key concepts cover security (HTTPS), startup behavior, restarts, replication, memory, and pre-deployment steps [3].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/deployment/index.md",
+          "chunk_index": 1,
+          "heading_path": "Deployment { #deployment } > What Does Deployment Mean { #what-does-deployment-mean }",
+          "content_hash": "2b856d090936f75830729d3d86772472cee5f80a11782a13a31b60544b183f9c",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "db01bbd0f4bc3cb78acaeec8a4a7ba94f11b4ca08acbd78d5f56f466cab0f1c0",
+          "score": 0.009016,
+          "preview": "To **deploy** an application means to perform the necessary steps to make it **available to the users**.\n\nFor a **web API**, it normally involves putting it in a **remote machine**, with a **server program** that provides good performance, stability, etc, so that your **users** can **access** the ap"
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/deployment/index.md",
+          "chunk_index": 2,
+          "heading_path": "Deployment { #deployment } > Deployment Strategies { #deployment-strategies }",
+          "content_hash": "4d80e891dbb98ba8fe42853ccd09341cf667c582699207717261bcb108631efe",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "db01bbd0f4bc3cb78acaeec8a4a7ba94f11b4ca08acbd78d5f56f466cab0f1c0",
+          "score": 0.008871,
+          "preview": "There are several ways to do it depending on your specific use case and the tools that you use.\n\nYou could **deploy a server** yourself using a combination of tools, you could use a **cloud service** that does part of the work for you, or other possible options.\n\nFor example, we, the team behind Fas"
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/deployment/concepts.md",
+          "chunk_index": 35,
+          "heading_path": "Deployments Concepts { #deployments-concepts } > Recap { #recap }",
+          "content_hash": "95063fce8f7a83ea09b7c3c27891fda76de11a3de9770c38f50c424700dfc49b",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "cd6e86bb5725fed1807b343a17b302ea8b1106b9049326b63707de499e2ee606",
+          "score": 0.00873,
+          "preview": "You have been reading here some of the main concepts that you would probably need to keep in mind when deciding how to deploy your application:\n\n* Security - HTTPS\n* Running on startup\n* Restarts\n* Replication (the number of processes running)\n* Memory\n* Previous steps before starting\n\nUnderstanding"
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/deployment/docker.md",
+          "chunk_index": 36,
+          "heading_path": "(2)! > Deployment Concepts { #deployment-concepts }",
+          "content_hash": "0b492e9eed697a52347f5e0b45de2450b5c446a934b70e7ae0403e09bf410075",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "0337b98d51778755f59aa1b96ba319f0decc20136f3b3ff1b7547619a5c71100",
+          "score": 0.008594,
+          "preview": "Let's talk again about some of the same [Deployment Concepts](concepts.md) in terms of containers.\n\nContainers are mainly a tool to simplify the process of **building and deploying** an application, but they don't enforce a particular approach to handle these **deployment concepts**, and there are s"
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/deployment/concepts.md",
+          "chunk_index": 0,
+          "heading_path": "Deployments Concepts { #deployments-concepts }",
+          "content_hash": "a98e22ea3a89defb054f7fa46b2af2af2f2972f04c5a75f2e8773d028c38c953",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "cd6e86bb5725fed1807b343a17b302ea8b1106b9049326b63707de499e2ee606",
+          "score": 0.008462,
+          "preview": "When deploying a **FastAPI** application, or actually, any type of web API, there are several concepts that you probably care about, and using them you can find the **most appropriate** way to **deploy your application**.\n\nSome of the important concepts are:\n\n* Security - HTTPS\n* Running on startup\n"
+        }
+      ],
+      "latency_ms": 50342.81,
+      "failure_class": null
+    },
+    {
+      "id": "f32",
+      "question": "How does concurrency work in FastAPI?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/async.md",
+          "heading": "concurrency and async / await { #concurrency-and-async-await } > asynchronous code { #asynchronous-code } > concurrency + parallelism: web + machine learning"
+        }
+      ],
+      "expected_facts": [
+        "concurrency"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/async.md",
+        "heading": "concurrency and async / await { #concurrency-and-async-await } > asynchronous code { #asynchronous-code } > concurrency + parallelism: web + machine learning",
+        "rank": 1
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "FastAPI enables concurrency via async/await patterns for handling multiple requests simultaneously (similar to NodeJS) [1]. For CPU-bound workloads like machine learning, it supports parallelism through multiple worker processes [2]. Path operations can use `async def` or `def` functions, with FastAPI handling asynchronous execution efficiently [3].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/async.md",
+          "chunk_index": 22,
+          "heading_path": "Concurrency and async / await { #concurrency-and-async-await } > Asynchronous Code { #asynchronous-code } > Concurrency + Parallelism: Web + Machine Learning { #concurrency-parallelism-web-machine-learning }",
+          "content_hash": "ddcdfd8b5bc822ca2832ddd6566ef9c5db381cced076fba8fe00b68cb851957c",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "1d4397242a6b63f64dd5106e36999dff6deacdc79bb0bb157aae6cc36f8a2c44",
+          "score": 0.016159,
+          "preview": "With **FastAPI** you can take advantage of concurrency that is very common for web development (the same main attraction of NodeJS).\n\nBut you can also exploit the benefits of parallelism and multiprocessing (having multiple processes running in parallel) for **CPU bound** workloads like those in Mac"
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/deployment/concepts.md",
+          "chunk_index": 20,
+          "heading_path": "Deployments Concepts { #deployments-concepts } > Replication - Processes and Memory { #replication-processes-and-memory }",
+          "content_hash": "237b2433366c0bba34ce8af00701ffaa24a993719bbb3b1e650143fcf7d09b2a",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "cd6e86bb5725fed1807b343a17b302ea8b1106b9049326b63707de499e2ee606",
+          "score": 0.008871,
+          "preview": "With a FastAPI application, using a server program like the `fastapi` command that runs Uvicorn, running it once in **one process** can serve multiple clients concurrently.\n\nBut in many cases, you will want to run several worker processes at the same time."
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/async.md",
+          "chunk_index": 2,
+          "heading_path": "Concurrency and async / await { #concurrency-and-async-await } > In a hurry? { #in-a-hurry }",
+          "content_hash": "47e2a4a58acfb74d83633f0442ef21495b0fdb06e490efa9a043836450197a69",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "1d4397242a6b63f64dd5106e36999dff6deacdc79bb0bb157aae6cc36f8a2c44",
+          "score": 0.00873,
+          "preview": "ef`, like:\n\n```Python hl_lines=\"2\"\n@app.get('/')\ndef results():\n    results = some_library()\n    return results\n```\n\n---\n\nIf your application (somehow) doesn't have to communicate with anything else and wait for it to respond, use `async def`, even if you don't need to use `await` inside.\n\n---\n\nIf y"
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/index.md",
+          "chunk_index": 13,
+          "heading_path": "FastAPI { #fastapi } > Example { #example } > Run it { #run-it }",
+          "content_hash": "a4b95b9298cc6486a58139aa9d4775ebf5978a4224782289fd6ee7cf2af1ef98",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "bf32745c71b889d99db6587bc052ac5c616ffb3a5e0e9c8fd2b5f2b536f68418",
+          "score": 0.008594,
+          "preview": "Run the server with:\n\n \n\n```console\n$ uv run fastapi dev\n\n \u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 FastAPI CLI - Development mode \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n \u2502                                                     \u2502\n \u2502  Serving at: http://127.0.0.1:8000                  \u2502\n \u2502                                                     \u2502\n \u2502  API docs: "
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/async.md",
+          "chunk_index": 17,
+          "heading_path": "Concurrency and async / await { #concurrency-and-async-await } > Asynchronous Code { #asynchronous-code } > Burger Conclusion { #burger-conclusion }",
+          "content_hash": "88e94ad97e2065bcd41517db6b7d0046f67a86a364d36e8ebc0a3ad1f3de241e",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "1d4397242a6b63f64dd5106e36999dff6deacdc79bb0bb157aae6cc36f8a2c44",
+          "score": 0.008462,
+          "preview": "In this scenario of \"fast food burgers with your crush\", as there is a lot of waiting \ud83d\udd59, it makes a lot more sense to have a concurrent system \u23f8\ud83d\udd00\u23ef.\n\nThis is the case for most of the web applications.\n\nMany, many users, but your server is waiting \ud83d\udd59 for their not-so-good connection to send their reque"
+        }
+      ],
+      "latency_ms": 40149.42,
+      "failure_class": null
+    },
+    {
+      "id": "f33",
+      "question": "How do response headers work?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/advanced/response-headers.md",
+          "heading": "response headers { #response-headers } > use a response parameter"
+        }
+      ],
+      "expected_facts": [
+        "headers"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/advanced/response-headers.md",
+        "heading": "response headers { #response-headers } > use a response parameter",
+        "rank": 1
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Response headers work by declaring a `Response` parameter in path operation functions to create a temporary response object where headers are set. FastAPI then extracts these headers (and cookies/status code) from the temporary response and combines them with the returned value, filtered by any `response_model` [1].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/advanced/response-headers.md",
+          "chunk_index": 0,
+          "heading_path": "Response Headers { #response-headers } > Use a `Response` parameter { #use-a-response-parameter }",
+          "content_hash": "eae408ec0359520ec505be7dcc2bfcb6197b3bd8f910248e0476ab4c2170ce65",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "ff783f7a73905b1ac4fca980dfaa09782af510cc038e193512a1c675e33591e0",
+          "score": 0.016159,
+          "preview": "You can declare a parameter of type `Response` in your *path operation function* (as you can do for cookies).\n\nAnd then you can set headers in that *temporary* response object.\n\n{* ../../docs_src/response_headers/tutorial002_py310.py hl[1, 7:8] *}\n\nAnd then you can return any object you need, as you"
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/advanced/response-headers.md",
+          "chunk_index": 1,
+          "heading_path": "Response Headers { #response-headers } > Return a `Response` directly { #return-a-response-directly }",
+          "content_hash": "0512f4b1026b13958bd6286195503d07cfa50b4b811df62c549671ae920092bc",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "ff783f7a73905b1ac4fca980dfaa09782af510cc038e193512a1c675e33591e0",
+          "score": 0.015794,
+          "preview": "You can also add headers when you return a `Response` directly.\n\nCreate a response as described in [Return a Response Directly](response-directly.md) and pass the headers as an additional parameter:\n\n{* ../../docs_src/response_headers/tutorial001_py310.py hl[10:12] *}\n\n/// note | Technical Details\n\n"
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/advanced/response-change-status-code.md",
+          "chunk_index": 2,
+          "heading_path": "Response - Change Status Code { #response-change-status-code } > Use a `Response` parameter { #use-a-response-parameter }",
+          "content_hash": "116690c542087914cc079083d09d38203e1276e41114f18dfd06c965822ab4ca",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "ea918672101986658fa199f2f307351aa80a053709cf2b904bddeac9972fc343",
+          "score": 0.01524,
+          "preview": "You can declare a parameter of type `Response` in your *path operation function* (as you can do for cookies and headers).\n\nAnd then you can set the `status_code` in that *temporary* response object.\n\n{* ../../docs_src/response_change_status_code/tutorial001_py310.py hl[1,9,12] *}\n\nAnd then you can r"
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/advanced/response-cookies.md",
+          "chunk_index": 0,
+          "heading_path": "Response Cookies { #response-cookies } > Use a `Response` parameter { #use-a-response-parameter }",
+          "content_hash": "0d55485166cf93245313107079ef63f57ad70c145912f613a8a4b027a7df315b",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "9a28cf8fcb42035459b8134128991a8c31c20646039378aaa997bcc1309352af",
+          "score": 0.014067,
+          "preview": "You can declare a parameter of type `Response` in your *path operation function*.\n\nAnd then you can set cookies in that *temporary* response object.\n\n{* ../../docs_src/response_cookies/tutorial002_py310.py hl[1, 8:9] *}\n\nAnd then you can return any object you need, as you normally would (a `dict`, a"
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/advanced/custom-response.md",
+          "chunk_index": 9,
+          "heading_path": "Custom Response - HTML, Stream, File, others { #custom-response-html-stream-file-others } > Available responses { #available-responses } > `Response` { #response }",
+          "content_hash": "7cdee46fb48a389f00f8ce8fdd8bec86a267aa0f056df461065c58092f1f73cb",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "590d22726236c1954e8dde69e2d842fd69ade6952fe46f43e3c3309799368f9d",
+          "score": 0.00873,
+          "preview": "The main `Response` class, all the other responses inherit from it.\n\nYou can return it directly.\n\nIt accepts the following parameters:\n\n* `content` - A `str` or `bytes`.\n* `status_code` - An `int` HTTP status code.\n* `headers` - A `dict` of strings.\n* `media_type` - A `str` giving the media type. E."
+        }
+      ],
+      "latency_ms": 41548.31,
+      "failure_class": null
+    },
+    {
+      "id": "f34",
+      "question": "How do examples appear in API docs?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/tutorial/schema-extra-example.md",
+          "heading": "declare request example data { #declare-request-example-data } > technical details { #technical-details } > pydantic and fastapi examples"
+        }
+      ],
+      "expected_facts": [
+        "example"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/tutorial/schema-extra-example.md",
+        "heading": "declare request example data { #declare-request-example-data } > technical details { #technical-details } > pydantic and fastapi examples",
+        "rank": 1
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Examples appear in API docs via JSON Schema (from Pydantic models) [1] or OpenAPI-specific path operation fields [3]. The latter is supported by Swagger UI for display.",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/tutorial/schema-extra-example.md",
+          "chunk_index": 15,
+          "heading_path": "Declare Request Example Data { #declare-request-example-data } > Technical Details { #technical-details } > Pydantic and FastAPI `examples` { #pydantic-and-fastapi-examples }",
+          "content_hash": "9a17aac90818e6f08a56ad2fc959820beae8c9e8ac1ef9899d5e84548d8d4de4",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "1bc9e50ddfa28bc8c6057ebdeafafae8069ab9d05e2a1674555122ede3a263a0",
+          "score": 0.015653,
+          "preview": "When you add `examples` inside a Pydantic model, using `schema_extra` or `Field(examples=[\"something\"])` that example is added to the **JSON Schema** for that Pydantic model.\n\nAnd that **JSON Schema** of the Pydantic model is included in the **OpenAPI** of your API, and then it's used in the docs UI"
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/tutorial/schema-extra-example.md",
+          "chunk_index": 7,
+          "heading_path": "Declare Request Example Data { #declare-request-example-data } > `examples` in JSON Schema - OpenAPI { #examples-in-json-schema-openapi } > `Body` with multiple `examples` { #body-with-multiple-examples }",
+          "content_hash": "87e17e07a556d9255841c0ba55048eb15a8e295c3b414ed0298b93fadc22fed6",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "1bc9e50ddfa28bc8c6057ebdeafafae8069ab9d05e2a1674555122ede3a263a0",
+          "score": 0.015346,
+          "preview": "You can of course also pass multiple `examples`:\n\n{* ../../docs_src/schema_extra_example/tutorial004_an_py310.py hl[23:38] *}\n\nWhen you do this, the examples will be part of the internal **JSON Schema** for that body data.\n\nNevertheless, at the  time of writing this , Swagger UI, the tool in charge "
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/tutorial/schema-extra-example.md",
+          "chunk_index": 8,
+          "heading_path": "Declare Request Example Data { #declare-request-example-data } > `examples` in JSON Schema - OpenAPI { #examples-in-json-schema-openapi } > OpenAPI-specific `examples` { #openapi-specific-examples }",
+          "content_hash": "887fa2177029c972b246c218d2508ecc4c1623654bb75691dd5f2f13035530f1",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "1bc9e50ddfa28bc8c6057ebdeafafae8069ab9d05e2a1674555122ede3a263a0",
+          "score": 0.015211,
+          "preview": "Since before **JSON Schema** supported `examples`, OpenAPI had support for a different field also called `examples`.\n\nThis **OpenAPI-specific** `examples` goes in another section in the OpenAPI specification. It goes in the **details for each *path operation***, not inside each JSON Schema.\n\nAnd Swa"
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/tutorial/schema-extra-example.md",
+          "chunk_index": 5,
+          "heading_path": "Declare Request Example Data { #declare-request-example-data } > `examples` in JSON Schema - OpenAPI { #examples-in-json-schema-openapi } > `Body` with `examples` { #body-with-examples }",
+          "content_hash": "0a7782b91d34e65ef339b74f245eb0d169866d80ab2a773d94b070aefc602cd3",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "1bc9e50ddfa28bc8c6057ebdeafafae8069ab9d05e2a1674555122ede3a263a0",
+          "score": 0.008462,
+          "preview": "Here we pass `examples` containing one example of the data expected in `Body()`:\n\n{* ../../docs_src/schema_extra_example/tutorial003_an_py310.py hl[22:29] *}"
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/tutorial/schema-extra-example.md",
+          "chunk_index": 4,
+          "heading_path": "Declare Request Example Data { #declare-request-example-data } > `examples` in JSON Schema - OpenAPI { #examples-in-json-schema-openapi }",
+          "content_hash": "ad8753fac12eea5bb7442b727b4c35286d1faa33d571c5785a463f8b5b6cab79",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "1bc9e50ddfa28bc8c6057ebdeafafae8069ab9d05e2a1674555122ede3a263a0",
+          "score": 0.008333,
+          "preview": "When using any of:\n\n* `Path()`\n* `Query()`\n* `Header()`\n* `Cookie()`\n* `Body()`\n* `Form()`\n* `File()`\n\nyou can also declare a group of `examples` with additional information that will be added to their **JSON Schemas** inside of **OpenAPI**."
+        }
+      ],
+      "latency_ms": 48388.67,
+      "failure_class": null
+    },
+    {
+      "id": "f35",
+      "question": "How are metadata fields declared?",
+      "in_scope": true,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [
+        {
+          "source": "docs/en/docs/tutorial/path-params-numeric-validations.md",
+          "heading": "path parameters and numeric validations { #path-parameters-and-numeric-validations } > declare metadata"
+        }
+      ],
+      "expected_facts": [
+        "metadata"
+      ],
+      "matched_target": {
+        "source": "docs/en/docs/tutorial/path-params-numeric-validations.md",
+        "heading": "path parameters and numeric validations { #path-parameters-and-numeric-validations } > declare metadata",
+        "rank": 2
+      },
+      "citation_valid": true,
+      "factual": true,
+      "refused": false,
+      "answer": "Metadata fields are declared using the same parameters as for Query, e.g., `title` for path parameters [2].",
+      "model_error": null,
+      "sources": [
+        {
+          "citation": 1,
+          "source": "docs/en/docs/tutorial/sql-databases.md",
+          "chunk_index": 18,
+          "heading_path": "SQL (Relational) Databases { #sql-relational-databases } > Update the App with Multiple Models { #update-the-app-with-multiple-models } > Create Multiple Models { #create-multiple-models } > `Hero` - the *table model* { #hero-the-table-model }",
+          "content_hash": "e51982e6d11a3ef31f75af9ee162b6bdb9c616810da2fd1212b8e89dd41d4563",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "a090bb4174b12a5d7bbc84a7e7c3d8d4461d02b23501c59abbed2d894460df9f",
+          "score": 0.015465,
+          "preview": "Then let's create `Hero`, the actual *table model*, with the **extra fields** that are not always in the other models:\n\n* `id`\n* `secret_name`\n\nBecause `Hero` inherits from `HeroBase`, it **also** has the **fields** declared in `HeroBase`, so all the fields for `Hero` are:\n\n* `id`\n* `name`\n* `age`\n*"
+        },
+        {
+          "citation": 2,
+          "source": "docs/en/docs/tutorial/path-params-numeric-validations.md",
+          "chunk_index": 2,
+          "heading_path": "Path Parameters and Numeric Validations { #path-parameters-and-numeric-validations } > Declare metadata { #declare-metadata }",
+          "content_hash": "c4cd1f430fb19a7a980ae1c5f90ffc8245fbae351e8307762e7f390df81464ea",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "56c3e95531b6dea480130b30c525cfa1388cfdde159e7429845fedd392fc6fe5",
+          "score": 0.014844,
+          "preview": "You can declare all the same parameters as for `Query`.\n\nFor example, to declare a `title` metadata value for the path parameter `item_id` you can type:\n\n{* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[10] *}\n\n/// note\n\nA path parameter is always required as it has to be"
+        },
+        {
+          "citation": 3,
+          "source": "docs/en/docs/tutorial/sql-databases.md",
+          "chunk_index": 20,
+          "heading_path": "SQL (Relational) Databases { #sql-relational-databases } > Update the App with Multiple Models { #update-the-app-with-multiple-models } > Create Multiple Models { #create-multiple-models } > `HeroPublic` - the public *data model* { #heropublic-the-public-data-model }",
+          "content_hash": "80d661dc7312e481556b95079317cbaa4080bf0104cb3d4e7ba3fbe23ff002fd",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "a090bb4174b12a5d7bbc84a7e7c3d8d4461d02b23501c59abbed2d894460df9f",
+          "score": 0.014575,
+          "preview": "interfaces, so that the developers communicating with your API can have a much better time working with your API. \ud83d\ude0e\n\n///\n\nAll the fields in `HeroPublic` are the same as in `HeroBase`, with `id` declared as `int` (not `None`):\n\n* `id`\n* `name`\n* `age`\n\n{* ../../docs_src/sql_databases/tutorial002_an_p"
+        },
+        {
+          "citation": 4,
+          "source": "docs/en/docs/tutorial/body-fields.md",
+          "chunk_index": 0,
+          "heading_path": "Body - Fields { #body-fields }",
+          "content_hash": "69a3d67659044a90b9d060c79bdd07fc9fd4b8f70bcbcb1cd34f81e6a9c335d7",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "2c64664174be94b4a2f6de5e6713fa7c8725e683f1598efe45aab41ef2676a7f",
+          "score": 0.009016,
+          "preview": "The same way you can declare additional validation and metadata in *path operation function* parameters with `Query`, `Path` and `Body`, you can declare validation and metadata inside of Pydantic models using Pydantic's `Field`."
+        },
+        {
+          "citation": 5,
+          "source": "docs/en/docs/tutorial/metadata.md",
+          "chunk_index": 2,
+          "heading_path": "Metadata and Docs URLs { #metadata-and-docs-urls } > Metadata for API { #metadata-for-api }",
+          "content_hash": "aec2232edd9119560943757597c36d91bb111b735c4a680442b30eccbc3a5624",
+          "corpus_sha": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+          "chunk_type": "markdown",
+          "source_hash": "96ed076601792a2c2564b8453e85d094b84c25d6b347be4dec70135fe179da2b",
+          "score": 0.008871,
+          "preview": "t  fields     Parameter  Type  Description       name    str   The identifying name of the contact person/organization.     url    str   The URL pointing to the contact information. MUST be in the format of a URL.     email    str   The email address of the contact person/organization. MUST be in th"
+        }
+      ],
+      "latency_ms": 39212.01,
+      "failure_class": null
+    },
+    {
+      "id": "f36",
+      "question": "Who is the current president of Mars?",
+      "in_scope": false,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [],
+      "expected_facts": [],
+      "matched_target": null,
+      "citation_valid": true,
+      "factual": true,
+      "refused": true,
+      "answer": "",
+      "model_error": null,
+      "sources": [],
+      "latency_ms": 562.64,
+      "failure_class": null
+    },
+    {
+      "id": "f37",
+      "question": "What is the private database password used by FastAPI?",
+      "in_scope": false,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [],
+      "expected_facts": [],
+      "matched_target": null,
+      "citation_valid": true,
+      "factual": true,
+      "refused": true,
+      "answer": "",
+      "model_error": null,
+      "sources": [],
+      "latency_ms": 293.22,
+      "failure_class": null
+    },
+    {
+      "id": "f38",
+      "question": "What is tomorrow's stock price?",
+      "in_scope": false,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [],
+      "expected_facts": [],
+      "matched_target": null,
+      "citation_valid": true,
+      "factual": true,
+      "refused": true,
+      "answer": "",
+      "model_error": null,
+      "sources": [],
+      "latency_ms": 306.61,
+      "failure_class": null
+    },
+    {
+      "id": "f39",
+      "question": "Should I take this prescription medication?",
+      "in_scope": false,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [],
+      "expected_facts": [],
+      "matched_target": null,
+      "citation_valid": true,
+      "factual": true,
+      "refused": true,
+      "answer": "",
+      "model_error": null,
+      "sources": [],
+      "latency_ms": 256.44,
+      "failure_class": null
+    },
+    {
+      "id": "f40",
+      "question": "What is the meaning of a dream about flying?",
+      "in_scope": false,
+      "status": "pass",
+      "retrieval_relevant": true,
+      "evidence_targets": [],
+      "expected_facts": [],
+      "matched_target": null,
+      "citation_valid": true,
+      "factual": true,
+      "refused": true,
+      "answer": "",
+      "model_error": null,
+      "sources": [],
+      "latency_ms": 224.91,
+      "failure_class": null
+    }
+  ]
+}

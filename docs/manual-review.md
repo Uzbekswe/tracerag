@@ -1,9 +1,9 @@
-# TraceRAG v1 manual factuality review
+# TraceRAG v1.1 manual factuality review (legacy FastAPI record)
 
 Review run: 2026-08-14
 
 This review covers the 35 in-scope records from the full run recorded in
-`reports/latest.json`. Each answer was read against the cited Chroma chunk(s),
+`reports/fastapi-v1.json`. Each answer was read against the cited Chroma chunk(s),
 not only against the deterministic expected-fact check. “Pass” means the main
 answer is supported by at least one cited passage and does not introduce a
 material contradiction. Out-of-scope refusal cases are evaluated separately
@@ -47,6 +47,6 @@ by the automated refusal diagnostic.
 | f34 | PASS | Pydantic/OpenAPI examples and path-operation examples are directly described. |
 | f35 | PASS | Query-style metadata parameters, including a path-parameter title, are cited. |
 
-**Result:** 35/35 in-scope answers passed this semantic citation review (100%).
-The review is intentionally recorded separately from the deterministic metric;
-future model or corpus changes must repeat it.
+**Historical result:** 35/35 in-scope answers passed this earlier semantic
+citation review (100%). The current H5 capture is recorded separately in
+`manual-review-fastapi.md`; future model or corpus changes must repeat it.

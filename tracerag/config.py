@@ -22,6 +22,7 @@ class Settings(BaseSettings):
     chunk_size: int = Field(default=900, ge=100, le=10000)
     chunk_overlap: int = Field(default=120, ge=0, le=2000)
     embed_batch_size: int = Field(default=128, ge=1, le=256)
+    embedding_cache_max_bytes: int = Field(default=512 * 1024 * 1024, ge=1)
     request_timeout: float = Field(default=180.0, gt=0, le=600)
     model_context: int = Field(default=4096, ge=512, le=32768)
     max_answer_tokens: int = Field(default=700, ge=64, le=4096)
@@ -47,6 +48,30 @@ class Settings(BaseSettings):
     @property
     def manifest_path(self) -> Path:
         return self.data_dir / "manifest.json"
+
+    @property
+    def index_state_path(self) -> Path:
+        return self.data_dir / "index-state.json"
+
+    @property
+    def ingest_lock_path(self) -> Path:
+        return self.data_dir / ".ingest.lock"
+
+    @property
+    def source_state_path(self) -> Path:
+        return self.data_dir / "source-state.json"
+
+    @property
+    def source_state_generations_path(self) -> Path:
+        return self.data_dir / "source-state" / "generations"
+
+    @property
+    def embedding_cache_path(self) -> Path:
+        return self.data_dir / "embedding-cache"
+
+    @property
+    def bm25_generations_path(self) -> Path:
+        return self.data_dir / "bm25" / "generations"
 
     def ensure_dirs(self) -> None:
         self.data_dir.mkdir(parents=True, exist_ok=True)

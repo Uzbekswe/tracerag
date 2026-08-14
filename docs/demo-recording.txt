@@ -1,9 +1,8 @@
-TraceRAG v1 native terminal recording (captured 2026-08-14)
-==============================================================
+TraceRAG v1.1 native terminal recording (captured 2026-08-14)
+=================================================================
 
-This is a plain-text capture of a real local terminal session on the target
-Apple Silicon machine. The Ollama models were already installed; Docker was
-not required for the native path.
+This is a concise, reproducible native workflow on the target Apple Silicon
+machine. Ollama supplied `nomic-embed-text` and `qwen3:4b`; Docker was optional.
 
 $ uv run tracerag doctor
 Python 3.13.2                         OK
@@ -16,25 +15,52 @@ $ uv run tracerag corpus fetch fastapi
 Fetched FastAPI corpus at commit f336ff831c4af3d4f625c2593a27b1e0cae93eb7
 
 $ uv run tracerag ingest data/corpus/fastapi/docs/en/docs
-Indexed 2736 chunks from 155 files.
+Ingest summary: 155 discovered, 155 parsed, 154 indexed with chunks, 1 empty, 2736 chunks embedded
+
+$ uv run tracerag ingest data/corpus/fastapi/docs/en/docs
+Ingest summary: no changes, 404 discovered, 155 skipped, 249 unsupported, 0 chunks embedded
 
 $ uv run tracerag documents
-... indexed sources report Status=current ...
+Sources 155 | Chunks 2736 | Indexed with chunks 154 | Empty parsed 1 | Current 154
 
 $ uv run tracerag ask "What kind of web framework is FastAPI?" --show-source 1
 FastAPI is a modern, high-performance web framework for building APIs with
 Python based on standard Python type hints [1].
-[1] .../docs/en/docs/index.md | FastAPI { #fastapi } | score 0.016
-The expanded source contains the FastAPI description and its supporting text.
+[1] docs/en/docs/index.md | FastAPI | score 0.016
+Preview: FastAPI is a modern, high-performance web framework for building APIs
+with Python based on standard Python type hints.
 
 $ uv run tracerag ask "What is the private database password used by FastAPI?" --show-nearest
 TraceRAG refusal: No retrieved passage met the evidence threshold.
 Nearest matches are shown for diagnosis only; the answer model is not called.
 
-$ uv run tracerag eval --dataset fastapi-v1 --limit 1
-evaluated 1/1: f01
-{"citation_validity": 1.0, "recall_at_5": 1.0, "factuality": 1.0}
+$ uv run tracerag corpus fetch clippy
+Fetched Clippy corpus at commit d2c4d1532d89488a56ec2c3ca12757117fc0b4e2
 
-The full 40-case release run is documented in docs/evaluation-report.md and
-evals/baseline/fastapi-v1.json. This capture intentionally uses --limit 1 so
-the short demo remains practical on an 8 GB local machine.
+$ uv run tracerag ingest data/corpus/clippy/book/src/development
+Ingest summary: 24 discovered, 24 indexed with chunks, 339 chunks embedded
+
+$ TRAGERAG_DATA_DIR=data/h5-fastapi uv run tracerag benchmark --corpus fastapi --output-dir docs
+Benchmark complete: unchanged ingest 0.07s, 0 embedding calls
+JSON: docs/benchmark-fastapi.json
+Markdown: docs/benchmark-fastapi.md
+
+The benchmark artifact records the three phases, corpus pin, machine, model
+tags, cache behavior, and embedding calls. The H5 capture also ran isolated
+FastAPI and Clippy evaluations:
+
+$ TRAGERAG_DATA_DIR=data/h5-fastapi TRAGERAG_MODEL_CONTEXT=2048 \
+  TRAGERAG_MAX_ANSWER_TOKENS=96 uv run tracerag eval --dataset fastapi-v1 \
+  --output-dir reports/h5-fastapi
+FastAPI: citation validity 100.0%, Recall@5 100.0%, factuality 97.1%
+Failures: f16 deterministic expected-fact proxy miss (semantic review PASS)
+
+$ TRAGERAG_DATA_DIR=data/h5-clippy TRAGERAG_MODEL_CONTEXT=2048 \
+  TRAGERAG_MAX_ANSWER_TOKENS=96 uv run tracerag eval --dataset clippy-v1 \
+  --output-dir reports/h5-clippy
+Clippy: citation validity 100.0%, Recall@5 100.0%, factuality 100.0%
+Failures: none
+
+The generated reports expose every per-case result. Both corpus release gates
+pass; f16 is retained as a deterministic-proxy diagnostic and is explained in
+the FastAPI manual review.

@@ -2,12 +2,15 @@ from __future__ import annotations
 
 import re
 import time
+from pathlib import Path
 
 from .config import Settings
 from .generation import CitationFormatError, Generator
+from .index_state import IndexStateStore
 from .models import AnswerResult, SearchHit
 from .ollama import OllamaClient
 from .retrieval import Retriever
+from .source_state import SourceStateStore
 from .store import BM25Store, VectorStore
 
 
@@ -16,8 +19,14 @@ class RAGService:
         self.settings = settings or Settings()
         self.settings.ensure_dirs()
         self.ollama = OllamaClient(self.settings.ollama_url, self.settings.request_timeout)
-        self.vectors = VectorStore(self.settings.chroma_path, self.settings.collection)
-        self.lexical = BM25Store(self.settings.bm25_path)
+        active_collection, active_bm25 = IndexStateStore.resolve_active_storage(
+            data_dir=self.settings.data_dir,
+            state_path=self.settings.index_state_path,
+            default_collection=self.settings.collection,
+            default_bm25_path=self.settings.bm25_path,
+        )
+        self.vectors = VectorStore(self.settings.chroma_path, active_collection)
+        self.lexical = BM25Store(active_bm25)
         self.retriever = Retriever(
             self.vectors, self.lexical, self.ollama, self.settings.embed_model, self.settings.top_k
         )
@@ -146,4 +155,42 @@ class RAGService:
         return matched / len(terms) >= 0.5
 
     def documents(self) -> list[dict[str, object]]:
-        return self.vectors.documents()
+        vector_documents = self.vectors.documents()
+        try:
+            state = IndexStateStore(self.settings.index_state_path).load()
+            source_state_path = IndexStateStore.resolve_source_state_path(
+                data_dir=self.settings.data_dir,
+                state=state,
+                legacy_path=self.settings.source_state_path,
+            )
+        except (OSError, ValueError):
+            return vector_documents
+        if not source_state_path.exists():
+            return vector_documents
+        records = SourceStateStore(source_state_path).load()
+        if not records:
+            return vector_documents
+        documents: list[dict[str, object]] = []
+        for source, record in sorted(records.items()):
+            path = Path(source)
+            if not path.is_file():
+                status = "missing"
+            else:
+                try:
+                    current_hash = SourceStateStore.hash_file(path)
+                except OSError:
+                    current_hash = ""
+                status = "changed" if current_hash != record.source_hash else "current"
+                if status == "current" and record.chunk_count == 0:
+                    status = "empty"
+            documents.append(
+                {
+                    "source": source,
+                    "chunks": record.chunk_count,
+                    "content_hash": record.source_hash,
+                    "source_hash": record.source_hash,
+                    "relative_path": record.relative_path,
+                    "status": status,
+                }
+            )
+        return documents

@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "benchmark": "tracerag-v1.1",
+  "generated_at": "2026-08-14T12:42:59.901202+00:00",
+  "corpus": {
+    "name": "fastapi",
+    "url": "https://github.com/fastapi/fastapi.git",
+    "commit": "f336ff831c4af3d4f625c2593a27b1e0cae93eb7",
+    "license": "MIT",
+    "allowed_path": "docs/en/docs",
+    "file_count": 404
+  },
+  "machine": {
+    "os": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+    "system": "Darwin",
+    "arch": "arm64",
+    "processor": "arm",
+    "cpu_count": 8,
+    "python": "3.13.2"
+  },
+  "software": {
+    "traceRAG_revision": "c2c3ff19a540e92e46b7099dd867de58befef78f",
+    "traceRAG_dirty": true,
+    "python": "3.13.2",
+    "ollama_url": "http://localhost:11434",
+    "models": {
+      "embedding": "nomic-embed-text",
+      "generation": "qwen3:4b"
+    },
+    "ollama_tags": [
+      "qwen3:4b",
+      "nomic-embed-text:latest"
+    ]
+  },
+  "index": {
+    "generation": "4227ed4bf29143428ff8303b3a2ceae0",
+    "chunking_version": "structural-v1",
+    "preprocessing_version": "parser-v1"
+  },
+  "phases": [
+    {
+      "name": "clean_ingest",
+      "processed_files": 155,
+      "chunks": 2736,
+      "discovered": 404,
+      "indexed": 155,
+      "changed": 0,
+      "skipped": 0,
+      "missing": 0,
+      "chunks_embedded": 2736,
+      "cache_hits": 0,
+      "cache_misses": 2736,
+      "active_generation": "c06e7fcf81ea4b61b7ca46154b6d1ad6",
+      "elapsed_ms": 203477.36,
+      "embedding_calls": 22
+    },
+    {
+      "name": "unchanged_reingest",
+      "processed_files": 0,
+      "chunks": 0,
+      "discovered": 404,
+      "indexed": 0,
+      "changed": 0,
+      "skipped": 155,
+      "missing": 0,
+      "chunks_embedded": 0,
+      "cache_hits": 0,
+      "cache_misses": 0,
+      "active_generation": "c06e7fcf81ea4b61b7ca46154b6d1ad6",
+      "elapsed_ms": 71.6,
+      "embedding_calls": 0
+    },
+    {
+      "name": "one_file_edit_reingest",
+      "processed_files": 1,
+      "chunks": 24,
+      "discovered": 404,
+      "indexed": 1,
+      "changed": 1,
+      "skipped": 154,
+      "missing": 0,
+      "chunks_embedded": 1,
+      "cache_hits": 23,
+      "cache_misses": 1,
+      "active_generation": "4227ed4bf29143428ff8303b3a2ceae0",
+      "elapsed_ms": 10573.74,
+      "embedding_calls": 1
+    }
+  ],
+  "assertions": {
+    "unchanged_embedding_calls": 0,
+    "unchanged_elapsed_seconds": 0.072,
+    "unchanged_target_seconds": 10.0,
+    "unchanged_under_10_seconds": true
+  }
+}
