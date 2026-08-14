@@ -340,7 +340,7 @@ and implement the approved P2 backend decision.
   claim.
 - Ruff, full deterministic tests, lock check, and build pass.
 
-**Status:** `not started`
+**Status:** `complete`
 
 ### P6 — GitHub security automation and portfolio documentation
 

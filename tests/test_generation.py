@@ -1,3 +1,5 @@
+import re
+
 from tracerag.generation import Generator, build_prompt, validate_citations
 from tracerag.models import Chunk, SearchHit
 
@@ -60,3 +62,21 @@ def test_extractive_fallback_prefers_question_relevant_sentence() -> None:
 
     assert "source code" in answer
     assert validate_citations(answer, 1)
+
+
+def test_extractive_fallback_only_cites_supplied_evidence() -> None:
+    ollama = _EmptyOllama()
+    generator = Generator(ollama, "qwen3:4b", max_tokens=96)
+    sources = [
+        _hit(),
+        SearchHit(
+            Chunk("other", "FastAPI supports dependency injection.", "other.md", 0, "Deps", "hash"),
+            0.1,
+            dense_score=0.7,
+        ),
+    ]
+
+    answer, _ = generator.answer("What does FastAPI support?", sources)
+
+    assert validate_citations(answer, 2)
+    assert all(int(value) in {1, 2} for value in re.findall(r"\[(\d+)\]", answer))

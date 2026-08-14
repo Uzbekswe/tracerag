@@ -9,6 +9,7 @@ from tracerag.evaluation import (
     compare_baseline,
     match_evidence_targets,
     run_evaluation,
+    score_case,
     validate_dataset,
 )
 from tracerag.index_state import CorpusProvenance, IndexStateStore
@@ -39,6 +40,25 @@ class FakeService:
         if "outside" in question:
             return AnswerResult(question, "", [], True, "unsupported")
         return AnswerResult(question, "FastAPI is a web framework [1].", hits)
+
+
+def test_score_case_keeps_case_scoring_out_of_orchestration() -> None:
+    record = {
+        "id": "in",
+        "question": "What is FastAPI?",
+        "in_scope": True,
+        "evidence_targets": [{"source": "docs/guide.md", "heading": "Intro"}],
+        "expected_facts": ["web framework"],
+    }
+    hit = FakeService().retrieve("What is FastAPI?")[0]
+    result = AnswerResult("What is FastAPI?", "FastAPI is a web framework [1].", [hit])
+
+    scored = score_case(record, result, [hit], None)
+
+    assert scored.factual
+    assert scored.citation_valid
+    assert scored.relevant
+    assert scored.failure_class is None
 
 
 def test_evaluation_writes_report_and_handles_refusal(tmp_path: Path) -> None:

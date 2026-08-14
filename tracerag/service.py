@@ -10,7 +10,7 @@ from .index_state import IndexStateStore
 from .models import AnswerResult, SearchHit
 from .ollama import OllamaClient
 from .retrieval import Retriever
-from .source_state import SourceStateStore
+from .source_state import DocumentStatus, SourceStateStore
 from .store import BM25Store, VectorStore
 
 
@@ -174,15 +174,19 @@ class RAGService:
         for source, record in sorted(records.items()):
             path = Path(source)
             if not path.is_file():
-                status = "missing"
+                status = DocumentStatus.MISSING
             else:
                 try:
                     current_hash = SourceStateStore.hash_file(path)
                 except OSError:
                     current_hash = ""
-                status = "changed" if current_hash != record.source_hash else "current"
-                if status == "current" and record.chunk_count == 0:
-                    status = "empty"
+                status = (
+                    DocumentStatus.CHANGED
+                    if current_hash != record.source_hash
+                    else DocumentStatus.CURRENT
+                )
+                if status == DocumentStatus.CURRENT and record.chunk_count == 0:
+                    status = DocumentStatus.EMPTY
             documents.append(
                 {
                     "source": source,
