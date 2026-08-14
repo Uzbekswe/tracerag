@@ -17,7 +17,7 @@ from .locking import ingest_lock
 from .models import Chunk
 from .ollama import OllamaClient, OllamaError
 from .parsers import parse_document
-from .source_state import ChangePlanner, FileChange, SourceRecord, SourceStateStore
+from .source_state import ChangePlanner, DocumentStatus, FileChange, SourceRecord, SourceStateStore
 from .store import BM25Store, VectorStore
 
 logger = logging.getLogger(__name__)
@@ -58,6 +58,42 @@ class IngestSummary:
             "active_generation": self.active_generation,
             "elapsed_ms": round(self.elapsed_ms, 2),
         }
+
+
+def _build_ingest_summary(
+    started: float,
+    *,
+    discovered: int,
+    active_generation: str | None,
+    indexed: int = 0,
+    indexed_with_chunks: int = 0,
+    empty: int = 0,
+    changed: int = 0,
+    skipped: int = 0,
+    missing: int = 0,
+    pruned: int = 0,
+    unsupported: int = 0,
+    chunks_embedded: int = 0,
+    cache_hits: int = 0,
+    cache_misses: int = 0,
+) -> IngestSummary:
+    """Convert ingest counts into the single operator-facing summary shape."""
+    return IngestSummary(
+        discovered=discovered,
+        indexed=indexed,
+        indexed_with_chunks=indexed_with_chunks,
+        empty=empty,
+        changed=changed,
+        skipped=skipped,
+        missing=missing,
+        pruned=pruned,
+        unsupported=unsupported,
+        chunks_embedded=chunks_embedded,
+        cache_hits=cache_hits,
+        cache_misses=cache_misses,
+        active_generation=active_generation,
+        elapsed_ms=(time.perf_counter() - started) * 1000,
+    )
 
 
 class Ingestor:
@@ -115,11 +151,17 @@ class Ingestor:
             files = self.files(path)
             self._emit(reporter, "discovery", discovered=len(files))
             changes = ChangePlanner.plan(files, records, path, corpus_sha=corpus_sha)
-            work = [change for change in changes if change.status in {"new", "changed"}]
-            missing = [change for change in changes if change.status == "missing"]
-            skipped = sum(change.status == "unchanged" for change in changes)
-            unsupported = sum(change.status == "unsupported" for change in changes)
-            changed = sum(change.status == "changed" for change in changes)
+            work = [
+                change
+                for change in changes
+                if change.status in {DocumentStatus.NEW, DocumentStatus.CHANGED}
+            ]
+            missing = [change for change in changes if change.status == DocumentStatus.MISSING]
+            skipped = sum(change.status == DocumentStatus.UNCHANGED for change in changes)
+            unsupported = sum(
+                change.status == DocumentStatus.UNSUPPORTED for change in changes
+            )
+            changed = sum(change.status == DocumentStatus.CHANGED for change in changes)
             self._emit(
                 reporter,
                 "planning",
@@ -133,14 +175,14 @@ class Ingestor:
             if not rebuild and not work and not (prune_confirmed and missing):
                 self._finish_summary(
                     reporter,
-                    IngestSummary(
+                    _build_ingest_summary(
+                        started,
                         discovered=len(files),
                         changed=changed,
                         skipped=skipped,
                         missing=len(missing),
                         unsupported=unsupported,
                         active_generation=state.generation if state else None,
-                        elapsed_ms=(time.perf_counter() - started) * 1000,
                     ),
                 )
                 return 0, 0
@@ -235,7 +277,8 @@ class Ingestor:
             self.lexical = BM25Store(self.settings.data_dir / outcome.identity.bm25_artifact)
             self._finish_summary(
                 reporter,
-                IngestSummary(
+                _build_ingest_summary(
+                    started,
                     discovered=len(files),
                     indexed=len(work),
                     indexed_with_chunks=sum(bool(chunks) for _, chunks in parsed),
@@ -249,7 +292,6 @@ class Ingestor:
                     cache_hits=cache_hits,
                     cache_misses=cache_misses,
                     active_generation=outcome.identity.generation,
-                    elapsed_ms=(time.perf_counter() - started) * 1000,
                 ),
             )
             return len(work), len(new_chunks)

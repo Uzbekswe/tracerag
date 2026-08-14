@@ -9,6 +9,7 @@ from pathlib import Path
 
 from .models import Chunk
 from .persistence import atomic_write_json
+from .source_state import DocumentStatus
 
 VECTOR_SCHEMA = "vectors-v1"
 
@@ -301,9 +302,13 @@ class VectorStore:
                     "source": source,
                     "chunks": len(items),
                     "content_hash": items[0].content_hash,
-                    "status": "current"
+                    "status": DocumentStatus.CURRENT
                     if current_hash and current_hash == stored_hash
-                    else ("changed" if current_hash else "missing"),
+                    else (
+                        DocumentStatus.CHANGED
+                        if current_hash
+                        else DocumentStatus.MISSING
+                    ),
                 }
             )
         return result

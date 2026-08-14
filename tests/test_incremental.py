@@ -5,7 +5,7 @@ from tracerag.config import Settings
 from tracerag.ingest import Ingestor
 from tracerag.models import Chunk
 from tracerag.service import RAGService
-from tracerag.source_state import ChangePlanner, SourceRecord, SourceStateStore
+from tracerag.source_state import ChangePlanner, DocumentStatus, SourceRecord, SourceStateStore
 
 
 class FakeVectors:
@@ -120,6 +120,18 @@ def test_change_planner_classifies_current_and_missing_sources(tmp_path: Path) -
     }
     assert next(change for change in changes if change.path == unchanged).status == "unchanged"
     assert next(change for change in changes if change.path == changed).status == "changed"
+
+
+def test_document_status_is_the_closed_source_state_contract() -> None:
+    assert {status.value for status in DocumentStatus} == {
+        "new",
+        "changed",
+        "unchanged",
+        "missing",
+        "unsupported",
+        "current",
+        "empty",
+    }
 
 
 def test_unchanged_ingest_skips_parse_embedding_and_writes(

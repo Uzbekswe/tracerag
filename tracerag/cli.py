@@ -24,6 +24,7 @@ from .index_state import IndexStateStore
 from .ingest import Ingestor, IngestSummary
 from .ollama import OllamaClient, OllamaError, model_matches
 from .service import RAGService
+from .source_state import DocumentStatus
 
 app = typer.Typer(help="TraceRAG: local-first, citation-first terminal RAG.")
 corpus_app = typer.Typer(help="Fetch reproducible public demonstration corpora.")
@@ -31,6 +32,13 @@ cache_app = typer.Typer(help="Inspect or clear the local embedding cache.")
 app.add_typer(corpus_app, name="corpus")
 app.add_typer(cache_app, name="cache")
 console = Console()
+
+
+def _status_value(value: object) -> str:
+    """Render the closed status representation without coupling the CLI to Enum reprs."""
+    if isinstance(value, DocumentStatus):
+        return value.value
+    return str(value)
 
 
 class RichIngestReporter:
@@ -317,7 +325,7 @@ def documents(
                 table.add_row(
                     str(item["source"]),
                     str(item["chunks"]),
-                    str(item["status"]),
+                    _status_value(item["status"]),
                     str(item["content_hash"])[:12],
                 )
             console.print(table)
@@ -326,10 +334,10 @@ def documents(
     except IndexCompatibilityError as exc:
         console.print(f"[red]Error:[/red] {exc}")
         raise typer.Exit(1) from exc
-    current = sum(item["status"] == "current" for item in items)
-    changed = sum(item["status"] == "changed" for item in items)
-    missing = sum(item["status"] == "missing" for item in items)
-    empty = sum(item["status"] == "empty" for item in items)
+    current = sum(_status_value(item["status"]) == DocumentStatus.CURRENT.value for item in items)
+    changed = sum(_status_value(item["status"]) == DocumentStatus.CHANGED.value for item in items)
+    missing = sum(_status_value(item["status"]) == DocumentStatus.MISSING.value for item in items)
+    empty = sum(_status_value(item["status"]) == DocumentStatus.EMPTY.value for item in items)
     indexed_with_chunks = sum(int(item["chunks"]) > 0 for item in items)
     chunks = sum(int(item["chunks"]) for item in items)
     summary = Table("Documents", "Value")
