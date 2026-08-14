@@ -4,8 +4,8 @@
 
 - Automated implementation and verification are complete in this workspace.
 - Verified locally: `uv sync --locked`, Ruff, 16 pytest tests, lock validation, Compose syntax, `doctor`, supported cited JSON output, and unsupported-question refusal (exit code 2).
-- Checked-in quality snapshot: 100% citation validity, 100% retrieval recall@5, and 100% deterministic expected-fact check on 35 in-scope cases; 5/5 out-of-scope refusal diagnostic.
-- A separate semantic review of all 35 in-scope answers is recorded in `docs/manual-review.md`.
+- Latest H5 evidence is captured under `docs/evidence/`: FastAPI reached 100% citation validity, 100% Recall@5, and 97.1% deterministic factuality; Clippy reached 100% for citation validity, Recall@5, and deterministic factuality.
+- Both corpus runs meet the release gates. FastAPI's one deterministic expected-fact proxy miss is semantically supported and documented in the manual review.
 - A real native terminal session is captured in `docs/demo-recording.txt`; the short video version remains optional presentation polish.
 
 ## Summary

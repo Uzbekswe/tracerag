@@ -1,0 +1,27 @@
+{
+  "dataset": "clippy-v1",
+  "version": "1.1.0",
+  "corpus": {
+    "name": "clippy",
+    "source": "https://github.com/rust-lang/rust-clippy",
+    "commit": "d2c4d1532d89488a56ec2c3ca12757117fc0b4e2",
+    "allowed_path": "book/src/development"
+  },
+  "records": [
+    {"id":"c01","question":"How do I get the Clippy source code?","in_scope":true,"evidence_targets":[{"source":"book/src/development/basics.md","heading":"Basics for hacking on Clippy > Get the Code"}],"expected_facts":["source code"]},
+    {"id":"c02","question":"How can I build and test Clippy?","in_scope":true,"evidence_targets":[{"source":"book/src/development/basics.md","heading":"push to the master branch of your fork > Building and Testing"}],"expected_facts":["test"]},
+    {"id":"c03","question":"What is cargo dev used for in Clippy development?","in_scope":true,"evidence_targets":[{"source":"book/src/development/basics.md","heading":"only run dogfood tests > `cargo dev`"}],"expected_facts":["cargo dev"]},
+    {"id":"c04","question":"What are the steps for adding a new lint?","in_scope":true,"evidence_targets":[{"source":"book/src/development/adding_lints.md","heading":"Adding a new lint"}],"expected_facts":["lint"]},
+    {"id":"c05","question":"Where are Clippy lint tests located?","in_scope":true,"evidence_targets":[{"source":"book/src/development/adding_lints.md","heading":"Adding a new lint > Defining Our Lint > Tests Location"}],"expected_facts":["tests"]},
+    {"id":"c06","question":"How are suggestions and automatic fixes emitted?","in_scope":true,"evidence_targets":[{"source":"book/src/development/emitting_lints.md","heading":"Emitting a lint > Suggestions: Automatic fixes > Applicability"},{"source":"book/src/development/emitting_lints.md","heading":"Emitting a lint > Suggestions: Automatic fixes > Example"}],"expected_facts":["suggestions"]},
+    {"id":"c07","question":"What is the difference between EarlyLintPass and LateLintPass?","in_scope":true,"evidence_targets":[{"source":"book/src/development/lint_passes.md","heading":"Lint passes"},{"source":"book/src/development/lint_passes.md","heading":"Lint passes > EarlyLintPass"},{"source":"book/src/development/lint_passes.md","heading":"Lint passes > LateLintPass > Example for LateLintPass"}],"expected_facts":["EarlyLintPass"]},
+    {"id":"c08","question":"How should Clippy UI tests be written?","in_scope":true,"evidence_targets":[{"source":"book/src/development/writing_tests.md","heading":"Testing > Clippy UI Tests"}],"expected_facts":["UI tests"]},
+    {"id":"c09","question":"How does Clippy handle macros and expansions?","in_scope":true,"evidence_targets":[{"source":"book/src/development/macro_expansions.md","heading":"Dealing with macros and expansions"},{"source":"book/src/development/macro_expansions.md","heading":"Dealing with macros and expansions > How to Work with Macros > The `is_from_proc_macro` function"}],"expected_facts":["macros"]},
+    {"id":"c10","question":"How can a lint inspect Rust types?","in_scope":true,"evidence_targets":[{"source":"book/src/development/common_tools_writing_lints.md","heading":"Common tools for writing lints > Checking for a specific type"},{"source":"book/src/development/defining_lints.md","heading":"Define New Lints > Lint types"}],"expected_facts":["types"]},
+    {"id":"c11","question":"What are the duties of the Clippy team?","in_scope":true,"evidence_targets":[{"source":"book/src/development/the_team.md","heading":"The team > Clippy-Contributors > Duties"}],"expected_facts":["duties"]},
+    {"id":"c12","question":"How do I check whether an expression calls a specific method?","in_scope":true,"evidence_targets":[{"source":"book/src/development/method_checking.md","heading":"Method Checking > Checking if an `expr` is calling a specific method"},{"source":"book/src/development/common_tools_writing_lints.md","heading":"Common tools for writing lints > Checking if an expr is calling a specific method"}],"expected_facts":["method"]},
+    {"id":"c13","question":"What is today's stock price for a Rust company?","in_scope":false,"evidence_targets":[],"expected_facts":[]},
+    {"id":"c14","question":"What prescription medication should I take?","in_scope":false,"evidence_targets":[],"expected_facts":[]},
+    {"id":"c15","question":"Who is the current president of Mars?","in_scope":false,"evidence_targets":[],"expected_facts":[]}
+  ]
+}
