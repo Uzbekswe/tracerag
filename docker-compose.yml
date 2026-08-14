@@ -1,12 +1,19 @@
 services:
   ollama:
-    image: ollama/ollama:latest
+    # Ollama 0.12.6; reviewed 2026-08-15. Digest pins the multi-platform image.
+    image: ollama/ollama:0.12.6@sha256:a61a8fd395dbb931cc8cb1b5da7a2510746575c87113fdc45b647ee59ef7f808
     ports:
       - "127.0.0.1:11434:11434"
     volumes:
       - ollama_data:/root/.ollama
   tracerag:
     build: .
+    user: "10001:10001"
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
     environment:
       TRAGERAG_OLLAMA_URL: http://ollama:11434
       TRAGERAG_DATA_DIR: /app/data

@@ -308,7 +308,7 @@ and implement the approved P2 backend decision.
 - CI lock validation, Ruff, deterministic tests, security checks, and package
   build pass with least-privilege workflow permissions.
 
-**Status:** `not started`
+**Status:** `complete`
 
 ### P5 — Focused maintainability and contract cleanup
 

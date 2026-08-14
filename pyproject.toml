@@ -20,7 +20,13 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest>=8,<10", "pytest-cov>=6,<8", "ruff>=0.9,<1"]
+dev = [
+  "bandit>=1.9,<2",
+  "pip-audit>=2.7,<3",
+  "pytest>=8,<10",
+  "pytest-cov>=6,<8",
+  "ruff>=0.9,<1",
+]
 
 [project.scripts]
 tracerag = "tracerag.cli:app"
