@@ -24,4 +24,4 @@ The short recording should make five behaviors visible: local setup checks,
 evidence retrieval, numbered citations with source expansion, refusal of a
 question outside the indexed corpus, and a no-change ingest summary. The
 benchmark and full evaluations are release evidence; the captured H5 reports
-meet the thresholds in `V1_1_PLAN.md`.
+meet the thresholds in [`release-gates.md`](release-gates.md).

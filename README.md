@@ -6,6 +6,16 @@ retrieval, and answers only when it can show supporting evidence. The release
 focuses on reliable incremental indexing, exact evidence targets, and measured
 operator workflows on a compact Apple Silicon laptop.
 
+## Why TraceRAG
+
+Most small RAG demos stop at “retrieve a few chunks and ask a model.” TraceRAG
+makes the trust boundary observable instead: every answer is tied to an exact
+source and heading, unsupported questions are refused before generation, and
+index updates are staged so a failed write cannot replace the last known-good
+generation. The repository includes deterministic tests, pinned public corpora,
+and sanitized evaluation evidence so those claims can be inspected rather than
+accepted on faith.
+
 ## Quickstart
 
 Requirements: Python 3.13, [uv](https://docs.astral.sh/uv/), and [Ollama](https://ollama.com/).
@@ -27,6 +37,10 @@ The complete command surface is in [`docs/command-reference.md`](docs/command-re
 Answers show numbered citations and source previews. `--show-source 1` prints the complete cited chunk. Questions without evidence are refused before the generation model is called; `--show-nearest` is available for diagnosis.
 
 The default evidence threshold (`0.72`) is calibrated for `nomic-embed-text` on the pinned FastAPI demo corpus. If you change embedding models or corpora, measure and tune `TRAGERAG_MIN_RETRIEVAL_SCORE` rather than assuming this value transfers unchanged.
+
+Local working data, generated reports, model artifacts, and build output are
+ignored by Git. Only source code, reproducibility metadata, sanitized evidence,
+and documentation belong in the repository.
 
 ## Reproduce from a clean checkout
 
@@ -187,6 +201,10 @@ and the 12-answer Clippy review in [`docs/manual-review-clippy.md`](docs/manual-
 
 The reproducible terminal recording checklist is in [`docs/demo-script.md`](docs/demo-script.md),
 and a captured native session is preserved in [`docs/demo-recording.txt`](docs/demo-recording.txt).
+
+For the contributor workflow and supported change scope, see
+[`CONTRIBUTING.md`](CONTRIBUTING.md). The public release gate is summarized in
+[`docs/release-gates.md`](docs/release-gates.md).
 
 ## Limitations
 
