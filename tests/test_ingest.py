@@ -9,6 +9,12 @@ class FakeVectors:
     def __init__(self) -> None:
         self.replacements = []
 
+    def has_data(self) -> bool:
+        return False
+
+    def export(self):
+        return [], []
+
     def replace_source(self, source, chunks, embeddings) -> None:
         self.replacements.append((source, chunks, embeddings))
 

@@ -1,8 +1,9 @@
 from pathlib import Path
 
-import chromadb
 import pytest
+from typer.testing import CliRunner
 
+import tracerag.cli as cli_module
 from tracerag.config import Settings
 from tracerag.errors import PruneConfirmationRequired
 from tracerag.generation_store import GenerationTransaction
@@ -12,6 +13,13 @@ from tracerag.ollama import OllamaError
 from tracerag.service import RAGService
 from tracerag.source_state import SourceStateStore
 from tracerag.store import BM25Store, VectorStore
+
+runner = CliRunner()
+
+
+def _assert_only_active_generation(settings: Settings, state) -> None:
+    files = sorted(settings.vector_path.glob("*.sqlite3"))
+    assert [path.name for path in files] == [f"{state.active_collection}.sqlite3"]
 
 
 class FakeOllama:
@@ -80,6 +88,76 @@ def test_successful_ingest_persists_generation_scoped_source_state(tmp_path: Pat
     assert SourceStateStore(source_state_path).load()
 
 
+def test_initial_all_empty_corpus_persists_authoritative_empty_source_state(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    settings = _settings(tmp_path)
+    root = tmp_path / "docs"
+    empty = root / "empty.md"
+    root.mkdir()
+    empty.write_text("", encoding="utf-8")
+    provenance = CorpusProvenance(
+        name="fastapi",
+        url="https://github.com/fastapi/fastapi.git",
+        commit="f" * 40,
+        license="MIT",
+        allowed_path="docs/en/docs",
+    )
+
+    processed, chunks = _ingestor(settings, FakeOllama()).ingest(
+        root,
+        corpus_sha=provenance.commit,
+        corpus_provenance=provenance,
+    )
+
+    assert (processed, chunks) == (1, 0)
+    state = IndexStateStore(settings.index_state_path).load()
+    assert state is not None
+    assert state.embedding.dimension is None
+    assert state.corpus_provenance == provenance
+    monkeypatch.setattr(cli_module, "Settings", lambda **_: settings)
+    result = runner.invoke(
+        cli_module.app,
+        ["documents", "--verbose"],
+        color=False,
+        terminal_width=240,
+    )
+    assert result.exit_code == 0
+    documents = RAGService(settings).documents()
+    assert documents == [
+        {
+            "source": str(empty),
+            "chunks": 0,
+            "content_hash": SourceStateStore.hash_file(empty),
+            "source_hash": SourceStateStore.hash_file(empty),
+            "relative_path": "empty.md",
+            "status": "empty",
+        }
+    ]
+    assert "empty" in result.output
+
+
+def test_empty_generation_can_later_establish_embedding_dimension(tmp_path: Path) -> None:
+    settings = _settings(tmp_path)
+    root = tmp_path / "docs"
+    empty = root / "empty.md"
+    root.mkdir()
+    empty.write_text("", encoding="utf-8")
+
+    _ingestor(settings, FakeOllama()).ingest(root)
+    empty.write_text("# Added later\n\nnew evidence", encoding="utf-8")
+
+    _ingestor(settings, FakeOllama()).ingest(root)
+
+    state = IndexStateStore(settings.index_state_path).load()
+    assert state is not None
+    assert state.embedding.dimension == 2
+    documents = RAGService(settings).documents()
+    assert documents[0]["status"] == "current"
+    assert documents[0]["chunks"] > 0
+
+
 def test_ingest_persists_path_bound_corpus_provenance(tmp_path: Path) -> None:
     settings = _settings(tmp_path)
     root = tmp_path / "docs"
@@ -122,10 +200,11 @@ def test_failed_stage_preserves_old_generation_and_artifacts(tmp_path: Path) -> 
     assert old_active.lexical.path.read_bytes() == old_bm25_bytes
     current = RAGService(settings)
     assert current.vectors.all_chunks() == old_chunks
-    assert current.lexical.load() == old_chunks
+    assert sorted(current.lexical.load(), key=lambda chunk: chunk.chunk_id) == sorted(
+        old_chunks, key=lambda chunk: chunk.chunk_id
+    )
     assert current.vectors.collection_name == old_state.active_collection
-    collections = chromadb.PersistentClient(path=str(settings.chroma_path)).list_collections()
-    assert {collection.name for collection in collections} == {old_state.active_collection}
+    _assert_only_active_generation(settings, old_state)
 
 
 def test_failed_parse_preserves_old_generation(tmp_path: Path, monkeypatch) -> None:
@@ -190,8 +269,7 @@ def test_failed_source_state_write_preserves_old_generation(tmp_path: Path, monk
     assert (settings.data_dir / old_state.bm25_artifact).read_bytes() == old_bm25_bytes
     current = RAGService(settings)
     assert current.vectors.all_chunks() == old_chunks
-    collections = chromadb.PersistentClient(path=str(settings.chroma_path)).list_collections()
-    assert {collection.name for collection in collections} == {old_state.active_collection}
+    _assert_only_active_generation(settings, old_state)
 
 
 def test_failed_manifest_activation_preserves_old_generation(tmp_path: Path, monkeypatch) -> None:
@@ -214,11 +292,10 @@ def test_failed_manifest_activation_preserves_old_generation(tmp_path: Path, mon
 
     assert settings.index_state_path.read_bytes() == old_state_bytes
     assert RAGService(settings).vectors.all_chunks() == old_chunks
-    collections = chromadb.PersistentClient(path=str(settings.chroma_path)).list_collections()
-    assert {collection.name for collection in collections} == {old_state.active_collection}
+    _assert_only_active_generation(settings, old_state)
 
 
-def test_failed_chroma_stage_preserves_old_generation(tmp_path: Path, monkeypatch) -> None:
+def test_failed_vector_stage_preserves_old_generation(tmp_path: Path, monkeypatch) -> None:
     settings = _settings(tmp_path)
     root = tmp_path / "docs"
     first, _ = _write_documents(root)
@@ -229,17 +306,16 @@ def test_failed_chroma_stage_preserves_old_generation(tmp_path: Path, monkeypatc
     old_chunks = RAGService(settings).vectors.all_chunks()
     first.write_text("# First\n\nchanged evidence", encoding="utf-8")
 
-    def fail_replace(_self, _source, _chunks, _embeddings):
-        raise OSError("synthetic Chroma staging failure")
+    def fail_import(_self, _chunks, _embeddings):
+        raise OSError("synthetic vector staging failure")
 
-    monkeypatch.setattr(VectorStore, "replace_source", fail_replace)
-    with pytest.raises(OSError, match="synthetic Chroma staging failure"):
+    monkeypatch.setattr(VectorStore, "import_chunks", fail_import)
+    with pytest.raises(OSError, match="synthetic vector staging failure"):
         _ingestor(settings, FakeOllama()).ingest(root)
 
     assert settings.index_state_path.read_bytes() == old_state_bytes
     assert RAGService(settings).vectors.all_chunks() == old_chunks
-    collections = chromadb.PersistentClient(path=str(settings.chroma_path)).list_collections()
-    assert {collection.name for collection in collections} == {old_state.active_collection}
+    _assert_only_active_generation(settings, old_state)
 
 
 def test_failed_generation_validation_preserves_old_generation(tmp_path: Path, monkeypatch) -> None:
@@ -253,17 +329,16 @@ def test_failed_generation_validation_preserves_old_generation(tmp_path: Path, m
     old_chunks = RAGService(settings).vectors.all_chunks()
     first.write_text("# First\n\nchanged evidence", encoding="utf-8")
 
-    def fail_validation(_prepared, _validate_collection=None):
+    def fail_validation(*_args, **_kwargs):
         raise OSError("synthetic generation validation failure")
 
-    monkeypatch.setattr(GenerationTransaction, "validate", staticmethod(fail_validation))
+    monkeypatch.setattr(GenerationTransaction, "_validate_stage", staticmethod(fail_validation))
     with pytest.raises(OSError, match="synthetic generation validation failure"):
         _ingestor(settings, FakeOllama()).ingest(root)
 
     assert settings.index_state_path.read_bytes() == old_state_bytes
     assert RAGService(settings).vectors.all_chunks() == old_chunks
-    collections = chromadb.PersistentClient(path=str(settings.chroma_path)).list_collections()
-    assert {collection.name for collection in collections} == {old_state.active_collection}
+    _assert_only_active_generation(settings, old_state)
 
 
 def test_prune_requires_confirmation_and_then_removes_only_missing_source(

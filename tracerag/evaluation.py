@@ -3,7 +3,9 @@ from __future__ import annotations
 import json
 import re
 import time
+from dataclasses import dataclass
 from pathlib import Path, PurePosixPath
+from typing import cast
 
 from .generation import validate_citations
 from .index_state import IndexIdentity, IndexStateStore
@@ -260,6 +262,61 @@ def _sanitize_sources(sources: object, corpus_root: Path | None) -> list[dict[st
     return sanitized
 
 
+@dataclass(frozen=True)
+class CaseScore:
+    """Pure scoring outcome used by evaluation orchestration and report rendering."""
+
+    relevant: bool
+    factual: bool
+    citation_valid: bool
+    matched_target: dict[str, object] | None
+    failure_class: str | None
+
+    @property
+    def passed(self) -> bool:
+        return self.relevant and self.factual and self.citation_valid
+
+
+def score_case(
+    record: dict[str, object],
+    result: AnswerResult,
+    hits: list[SearchHit],
+    corpus_root: Path | None,
+    model_error: str | None = None,
+) -> CaseScore:
+    """Score one normalized record without reading files or writing reports."""
+    in_scope = bool(record["in_scope"])
+    targets = cast(list[dict[str, str]], record["evidence_targets"])
+    matched_target = match_evidence_targets(targets, hits, corpus_root)
+    relevant = matched_target is not None if in_scope else True
+    if in_scope:
+        expected_facts = cast(list[str], record["expected_facts"])
+        factual = (
+            _fact_present(expected_facts[0], result.answer)
+            if expected_facts
+            else not result.refused
+        )
+        citation_valid = not result.refused and validate_citations(
+            result.answer, len(result.sources)
+        )
+    else:
+        factual = result.refused and model_error is None
+        citation_valid = result.refused and model_error is None
+    if model_error:
+        failure_class = "model_error"
+    elif factual and citation_valid and relevant:
+        failure_class = None
+    elif in_scope and not relevant:
+        failure_class = "retrieval_miss"
+    elif (not in_scope and not result.refused) or (in_scope and result.refused):
+        failure_class = "refusal_error"
+    elif not citation_valid:
+        failure_class = "citation_mismatch"
+    else:
+        failure_class = "unsupported_claim"
+    return CaseScore(relevant, factual, citation_valid, matched_target, failure_class)
+
+
 def _read_corpus_manifest(settings: object) -> dict[str, object]:
     """Compatibility shim retained for callers; active index is the source of truth."""
     return _active_corpus(_active_identity(settings))
@@ -312,8 +369,7 @@ def run_evaluation(
     factual_total = 0
     out_of_scope_total = 0
     out_of_scope_refused = 0
-    all_records = dataset["records"]
-    assert isinstance(all_records, list)
+    all_records = cast(list[dict[str, object]], dataset["records"])
     records = all_records[:limit] if limit else all_records
     identity = _active_identity(service.settings)
     _validate_dataset_corpus(dataset, identity)
@@ -329,20 +385,11 @@ def run_evaluation(
         **_index_provenance(service.settings, identity),
     }
     for record in records:
-        assert isinstance(record, dict)
         started = time.perf_counter()
         question = str(record["question"])
         hits = service.retrieve(question, top_k=5)
-        targets = record["evidence_targets"]
-        assert isinstance(targets, list)
-        matched_target = match_evidence_targets(targets, hits, corpus_root)
-        relevant = matched_target is not None if record["in_scope"] else True
+        targets = cast(list[dict[str, str]], record["evidence_targets"])
         in_scope = bool(record["in_scope"])
-        if in_scope:
-            retrieval_total += 1
-            retrieved_relevant += int(relevant)
-        else:
-            out_of_scope_total += 1
         result: AnswerResult
         model_error: str | None = None
         try:
@@ -357,53 +404,33 @@ def run_evaluation(
                 f"Model error: {exc}",
                 service.settings.generation_model,
             )
+        scored = score_case(record, result, hits, corpus_root, model_error)
         if in_scope:
-            expected_facts = record["expected_facts"]
-            assert isinstance(expected_facts, list)
-            factual = (
-                _fact_present(str(expected_facts[0]), result.answer)
-                if expected_facts
-                else not result.refused
-            )
-            citation_valid = not result.refused and validate_citations(
-                result.answer, len(result.sources)
-            )
+            retrieval_total += 1
+            retrieved_relevant += int(scored.relevant)
         else:
-            factual = result.refused and model_error is None
-            citation_valid = result.refused and model_error is None
-            out_of_scope_refused += int(factual)
+            out_of_scope_total += 1
+            out_of_scope_refused += int(scored.factual)
         if in_scope:
-            factual_total += int(factual)
-        if model_error:
-            failure_class = "model_error"
-        elif factual and citation_valid and relevant:
-            failure_class = None
-        elif in_scope and not relevant:
-            failure_class = "retrieval_miss"
-        elif (not in_scope and not result.refused) or (in_scope and result.refused):
-            failure_class = "refusal_error"
-        elif not citation_valid:
-            failure_class = "citation_mismatch"
-        else:
-            failure_class = "unsupported_claim"
+            factual_total += int(scored.factual)
         cases.append(
             {
                 "id": record["id"],
                 "question": question,
                 "in_scope": in_scope,
-                "status": "pass" if factual and citation_valid and relevant else "fail",
-                "retrieval_relevant": relevant,
+                "status": "pass" if scored.passed else "fail",
+                "retrieval_relevant": scored.relevant,
                 "evidence_targets": targets,
                 "expected_facts": record["expected_facts"],
-                "matched_target": matched_target,
-                "citation_valid": citation_valid,
-                "factual": factual,
+                "matched_target": scored.matched_target,
+                "citation_valid": scored.citation_valid,
+                "factual": scored.factual,
                 "refused": result.refused,
                 "answer": result.answer,
                 "model_error": model_error,
                 "sources": _sanitize_sources(result.as_dict()["sources"], corpus_root),
                 "latency_ms": round((time.perf_counter() - started) * 1000, 2),
-                "failure_class": None if factual and citation_valid and relevant else failure_class,
+                "failure_class": scored.failure_class,
             }
         )
         print(f"evaluated {len(cases)}/{len(records)}: {record['id']}", flush=True)

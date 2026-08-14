@@ -4,13 +4,12 @@ build-backend = "hatchling.build"
 
 [project]
 name = "tracerag"
-version = "1.1.0"
+version = "1.2.0"
 description = "A local-first, citation-first terminal RAG assistant."
 readme = "README.md"
 requires-python = ">=3.13,<3.14"
 license = { text = "MIT" }
 dependencies = [
-  "chromadb>=1.0,<2",
   "httpx>=0.28,<1",
   "pypdf>=5,<7",
   "pydantic-settings>=2.8,<3",
@@ -21,7 +20,13 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest>=8,<10", "pytest-cov>=6,<8", "ruff>=0.9,<1"]
+dev = [
+  "bandit>=1.9,<2",
+  "pip-audit>=2.7,<3",
+  "pytest>=8,<10",
+  "pytest-cov>=6,<8",
+  "ruff>=0.9,<1",
+]
 
 [project.scripts]
 tracerag = "tracerag.cli:app"

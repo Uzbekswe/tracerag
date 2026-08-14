@@ -4,7 +4,8 @@ from tracerag.cache import EmbeddingCache
 from tracerag.config import Settings
 from tracerag.ingest import Ingestor
 from tracerag.models import Chunk
-from tracerag.source_state import ChangePlanner, SourceRecord, SourceStateStore
+from tracerag.service import RAGService
+from tracerag.source_state import ChangePlanner, DocumentStatus, SourceRecord, SourceStateStore
 
 
 class FakeVectors:
@@ -13,6 +14,14 @@ class FakeVectors:
 
     def has_data(self) -> bool:
         return bool(self.replacements)
+
+    def export(self):
+        embeddings = [
+            embedding
+            for _, _, source_embeddings in self.replacements
+            for embedding in source_embeddings
+        ]
+        return self.all_chunks(), embeddings
 
     def replace_source(self, source, chunks, embeddings) -> None:
         self.replacements.append((source, chunks, embeddings))
@@ -113,18 +122,29 @@ def test_change_planner_classifies_current_and_missing_sources(tmp_path: Path) -
     assert next(change for change in changes if change.path == changed).status == "changed"
 
 
+def test_document_status_is_the_closed_source_state_contract() -> None:
+    assert {status.value for status in DocumentStatus} == {
+        "new",
+        "changed",
+        "unchanged",
+        "missing",
+        "unsupported",
+        "current",
+        "empty",
+    }
+
+
 def test_unchanged_ingest_skips_parse_embedding_and_writes(
     tmp_path: Path, monkeypatch
 ) -> None:
     source = tmp_path / "guide.md"
     source.write_text("same", encoding="utf-8")
-    ingestor, vectors, lexical, ollama = _ingestor(tmp_path)
+    ingestor, _, _, ollama = _ingestor(tmp_path)
     parsed = [_chunk(source, 0, "same", "same-hash")]
     monkeypatch.setattr("tracerag.ingest.parse_document", lambda *_args, **_kwargs: parsed)
 
     assert ingestor.ingest(source) == (1, 1)
     first_call_count = len(ollama.calls)
-    first_replacement_count = len(vectors.replacements)
 
     def fail_parse(*_args, **_kwargs):
         raise AssertionError("unchanged files must not be parsed")
@@ -133,8 +153,7 @@ def test_unchanged_ingest_skips_parse_embedding_and_writes(
     assert ingestor.ingest(source) == (0, 0)
 
     assert len(ollama.calls) == first_call_count
-    assert len(vectors.replacements) == first_replacement_count
-    assert lexical.chunks == parsed
+    assert RAGService(Settings(data_dir=tmp_path)).lexical.load() == parsed
 
 
 def test_changed_source_only_replaces_that_source(tmp_path: Path, monkeypatch) -> None:
@@ -142,7 +161,7 @@ def test_changed_source_only_replaces_that_source(tmp_path: Path, monkeypatch) -
     second = tmp_path / "second.md"
     first.write_text("first", encoding="utf-8")
     second.write_text("second", encoding="utf-8")
-    ingestor, vectors, _, ollama = _ingestor(tmp_path)
+    ingestor, _, _, ollama = _ingestor(tmp_path)
     chunks = {
         first: [_chunk(first, 0, "first", "first-hash")],
         second: [_chunk(second, 0, "second", "second-hash")],
@@ -153,14 +172,14 @@ def test_changed_source_only_replaces_that_source(tmp_path: Path, monkeypatch) -
 
     assert ingestor.ingest(tmp_path) == (2, 2)
     first_call_count = len(ollama.calls)
-    first_replacement_count = len(vectors.replacements)
     first.write_text("first changed", encoding="utf-8")
     chunks[first] = [_chunk(first, 0, "first changed", "first-changed-hash")]
 
     assert ingestor.ingest(tmp_path) == (1, 1)
     assert len(ollama.calls) == first_call_count + 1
-    assert len(vectors.replacements) == first_replacement_count + 1
-    assert vectors.replacements[-1][0] == str(first.resolve())
+    active = RAGService(Settings(data_dir=tmp_path)).vectors.all_chunks()
+    assert {chunk.source for chunk in active} == {str(first.resolve()), str(second.resolve())}
+    assert next(chunk for chunk in active if chunk.source == str(first.resolve())).text == "first changed"
 
 
 def test_changed_file_reuses_identical_chunk_embeddings(tmp_path: Path, monkeypatch) -> None:
