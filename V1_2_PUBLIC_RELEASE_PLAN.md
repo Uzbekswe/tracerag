@@ -2,7 +2,8 @@
 
 ## Status
 
-**Planning is complete. Implementation has not started and requires owner approval.**
+**P0–P7 implementation is complete on the private release branch. P8 remains
+owner-approved public visibility work.**
 
 This file is the source of truth for the audit-remediation and public-release
 session that follows TraceRAG v1.1. Implement exactly one milestone at a time.
@@ -385,7 +386,7 @@ public reviewer.
 - Final project naming and repository description are proposed for owner review,
   not changed automatically.
 
-**Status:** `not started`
+**Status:** `complete`
 
 ### P7 — Final evidence, pull request, and private release candidate
 
@@ -425,7 +426,7 @@ public reviewer.
 - CI and security workflows pass for the exact merged commit.
 - The repository remains private.
 
-**Status:** `not started`
+**Status:** `complete`
 
 ### P8 — Owner-approved public release
 
@@ -468,14 +469,14 @@ Do not continue until the owner explicitly says to make the repository public.
 
 ## Final completion checklist
 
-- [ ] P0 audited baseline frozen on `codex/v1.2-hardening`
-- [ ] P1 compatibility and empty-source defects fixed
-- [ ] P2 local vector-backend decision recorded
-- [ ] P3 complete generation transaction and Chroma mitigation finished
-- [ ] P4 supply-chain and container hardening finished
-- [ ] P5 focused maintainability cleanup finished
-- [ ] P6 GitHub security automation and portfolio documentation finished
-- [ ] P7 private release candidate merged with all gates passing
+- [x] P0 audited baseline frozen on `codex/v1.2-hardening`
+- [x] P1 compatibility and empty-source defects fixed
+- [x] P2 local vector-backend decision recorded
+- [x] P3 complete generation transaction and Chroma mitigation finished
+- [x] P4 supply-chain and container hardening finished
+- [x] P5 focused maintainability cleanup finished
+- [x] P6 GitHub security automation and portfolio documentation finished
+- [x] P7 private release candidate merged with all gates passing
 - [ ] Owner explicitly approved public visibility
 - [ ] P8 anonymous public verification and `v1.2.0` release finished
 
