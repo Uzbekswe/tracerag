@@ -401,18 +401,18 @@ then create the release tag at the correct time.
   ignored runtime report was accidentally committed.
 - `V1_1_PLAN.md` and this file accurately describe final release readiness.
 
-**Status:** `pending`
+**Status:** `complete`
 
 ## Final completion checklist
 
-- [ ] H1 atomic generation transaction complete and reviewed
+- [x] H1 atomic generation transaction complete and reviewed
 - [x] H2 path-bound corpus provenance complete and reviewed
 - [x] H3 durable sanitized evaluation evidence complete and reviewed
 - [x] H4 operator and reproducibility polish complete and reviewed
 - [x] H5 full local release evidence complete and reviewed
-- [ ] H6 curated history, GitHub CI, merge, and tag complete
-- [ ] Remote repository remains private
-- [ ] `v1.1.0` exists remotely only after successful CI
+- [x] H6 curated history, GitHub CI, merge, and tag complete
+- [x] Remote repository remains private
+- [x] `v1.1.0` exists remotely only after successful CI
 
 ## Implementation handoff
 
