@@ -36,5 +36,5 @@ def test_dependabot_and_codeql_are_declared_without_model_inference() -> None:
     assert "package-ecosystem: github-actions" in dependabot
     assert "package-ecosystem: docker" in dependabot
     assert "github/codeql-action/init@" in codeql
-    assert "security-events: write" in codeql
+    assert "upload: false" in codeql
     assert "ollama" not in codeql.lower()

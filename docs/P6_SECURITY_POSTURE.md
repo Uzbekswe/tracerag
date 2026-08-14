@@ -13,9 +13,10 @@ Verified through the GitHub repository API on 2026-08-15:
 - Code scanning and secret scanning are unavailable on the current plan because
   GitHub reports that Advanced Security has not been purchased.
 
-The repository still includes a commit-pinned CodeQL workflow. It is ready to
-run when the repository plan permits code-scanning uploads; the local Bandit
-check remains an independent static-analysis gate.
+The repository includes a commit-pinned CodeQL workflow that performs analysis
+without uploading SARIF (`upload: false`) because the current plan does not
+permit code-scanning storage. The local Bandit check remains an independent
+static-analysis gate.
 
 ## Local checks
 

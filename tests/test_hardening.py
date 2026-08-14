@@ -57,4 +57,4 @@ def test_codeql_workflow_is_commit_pinned_and_least_privilege() -> None:
     assert action_refs
     assert all(re.search(r"@[0-9a-f]{40}$", reference) for reference in action_refs)
     assert "contents: read" in workflow
-    assert "security-events: write" in workflow
+    assert "upload: false" in workflow
