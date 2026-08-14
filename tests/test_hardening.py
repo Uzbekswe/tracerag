@@ -42,12 +42,11 @@ def test_ci_actions_are_commit_pinned_and_security_checks_are_declared() -> None
 
 
 def test_security_audit_documents_subprocess_boundary_and_update_procedure() -> None:
-    report = (ROOT / "docs/P4_SECURITY_AUDIT.md").read_text(encoding="utf-8")
+    report = (ROOT / "SECURITY.md").read_text(encoding="utf-8")
 
-    assert "bandit" in report.lower()
-    assert "subprocess" in report.lower()
-    assert "digest" in report.lower()
-    assert "uv lock" in report
+    assert "private disclosure" in report.lower()
+    assert "local-only" in report.lower()
+    assert "dependency" in report.lower()
 
 
 def test_codeql_workflow_is_commit_pinned_and_least_privilege() -> None:

@@ -16,9 +16,8 @@ does not provide authentication, tenant isolation, or a public HTTP API.
 - Treat ingested documents, corpus checkouts, and local model responses as
   untrusted input. Do not ingest sensitive or hostile material in a shared
   process without an operating-system sandbox.
-- Ollama is expected to remain on loopback. Do not expose its port or run a
-  Chroma server; TraceRAG uses its embedded SQLite vector store and does not
-  need a database listener.
+- Ollama is expected to remain on loopback. Do not expose its port or add a
+  database listener; TraceRAG uses its embedded SQLite vector store.
 - The optional container runs as a non-root user and mounts documents
   read-only. Keep the data volume private and review compose changes before
   granting additional write access.

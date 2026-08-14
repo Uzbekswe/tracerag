@@ -1,6 +1,6 @@
 # TraceRAG v1.2 evaluation evidence
 
-This record captures the single clean post-backend P7 run on 2026-08-15. Both
+This record captures the clean post-backend release run on 2026-08-15. Both
 corpora were copied to a fresh temporary data directory before rebuild; no v1.1
 index, cache, report, or generated answer was reused. Runtime settings stayed
 at `nomic-embed-text`, `qwen3:4b`, context 2048, and answer budget 96.

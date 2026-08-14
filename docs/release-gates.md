@@ -32,9 +32,8 @@ corpora. A release target is:
 Deterministic expected-fact matching is a diagnostic proxy, not a replacement
 for semantic review. Refusal behavior, no-change re-ingestion, source expansion,
 and recovery messages are checked separately. The sanitized per-case evidence
-is under [`docs/evidence/`](evidence/), with procedure details in the
-[FastAPI](evaluation-report.md) and [Clippy](evaluation-report-clippy.md)
-evaluation notes.
+is under [`docs/evidence/`](evidence/), with the current procedure and results
+in [evaluation-report-v1.2.md](evaluation-report-v1.2.md).
 
 ## Security boundary
 

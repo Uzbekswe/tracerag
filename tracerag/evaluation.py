@@ -478,7 +478,7 @@ def run_evaluation(
         },
         "factuality_method": (
             "deterministic expected-fact proxy; semantic review recorded in "
-            f"docs/manual-review-{dataset['dataset'].removesuffix('-v1')}.md"
+            f"docs/manual-review-{dataset['dataset'].removesuffix('-v1')}-v1.2.md"
         ),
         "release_gate": {
             "citation_validity": citation_validity >= 1.0,

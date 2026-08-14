@@ -24,7 +24,7 @@ release evidence in the pull request.
 ## Scope
 
 Keep the product local and command-oriented. Do not introduce a web UI, hosted
-inference, a Chroma server, OCR, an agent loop, MCP, cloud storage, or
+inference, a database server, OCR, an agent loop, MCP, cloud storage, or
 multi-user authorization without first opening a design discussion. Avoid
 rewriting the storage or retrieval contract for style alone; changes should
 reduce a measured risk or improve a tested behavior.

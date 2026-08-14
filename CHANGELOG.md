@@ -10,7 +10,7 @@ citation-first terminal workflow.
 - Added pinned container and CI inputs, non-root execution, bounded container
   write paths, Dependabot configuration, and a focused CodeQL workflow.
 - Added the security policy, local trust boundary, reproducibility instructions,
-  evaluation methodology, and explicit  attribution and corpus licenses.
+  evaluation methodology, and explicit corpus licenses.
 - Added typed document statuses, a single ingest-summary conversion seam, and a
   pure evaluation scoring seam without changing the retrieval contract.
 
@@ -37,6 +37,4 @@ repeatable use on a compact machine.
   factuality; Clippy reached 100% for all three metrics. See `docs/evidence/`
   for the complete reports and per-case diagnostics.
 
-TraceRAG is an independent implementation informed by the public architecture
-of [/](); see the README for
-full attribution and corpus licenses.
+TraceRAG is MIT-licensed; see the README for corpus provenance and license details.

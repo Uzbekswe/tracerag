@@ -1,3 +1,4 @@
+import re
 from pathlib import Path
 
 from tracerag import __version__
@@ -23,7 +24,9 @@ def test_public_release_docs_describe_the_security_and_evaluation_contract() -> 
 
     assert "Security boundary" in readme
     assert "Evaluation methodology" in readme
-    assert "/" in readme
+    assert not re.search(r"local[\W_]*rag", readme, re.IGNORECASE)
+    assert "docs/assets/tracerag-demo.gif" in readme
+    assert "docs/assets/tracerag-architecture.svg" in readme
     assert "local-only" in security.lower()
     assert "private disclosure" in security.lower()
 

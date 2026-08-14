@@ -1,6 +1,11 @@
 # TraceRAG
 
-TraceRAG v1.2 is a local-first, citation-first terminal RAG assistant. It indexes
+TraceRAG is a local-first, citation-first terminal RAG system with reproducible
+evaluation and safe index activation.
+
+![TraceRAG terminal demo](docs/assets/tracerag-demo.gif)
+
+TraceRAG v1.2 indexes
 Markdown and text-layer PDFs, searches them with semantic and exact-term
 retrieval, and answers only when it can show supporting evidence. The release
 focuses on reliable incremental indexing, exact evidence targets, and measured
@@ -58,21 +63,6 @@ uv build
 Use the Quickstart commands above only when you want to exercise local model
 inference and the pinned public demonstration corpus.
 
-## Release evidence
-
-Run the three-phase benchmark after fetching and ingesting FastAPI:
-
-```bash
-uv run tracerag benchmark --corpus fastapi --output-dir docs
-```
-
-It writes machine-readable JSON and reviewer-readable Markdown for clean ingest,
-unchanged re-ingest, and a one-file edit. The committed snapshot is
-[`docs/benchmark-fastapi.md`](docs/benchmark-fastapi.md), with the raw result in
-[`docs/benchmark-fastapi.json`](docs/benchmark-fastapi.json). Timings are
-reported for the captured machine and model tags; they are not universal
-guarantees.
-
 ## Reproducible public corpora
 
 TraceRAG ships two public corpus profiles. Each fetch checks out an immutable
@@ -111,27 +101,16 @@ docker compose run --rm tracerag ask "What kind of web framework is FastAPI?"
 The Compose app has no cloud inference default and does not replace the native
 reproduction path.
 
-## Architecture
+## How it works
 
-```mermaid
-flowchart LR
-  files["Markdown / text PDF"] --> parse["Parser + structural chunker"]
-  parse --> identity["Content + index identity"]
-  identity --> cache["Versioned embedding cache"]
-  cache --> embed["Ollama nomic-embed-text"]
-  embed --> stage["Staged SQLite vectors + BM25 generation"]
-  parse --> stage
-  stage --> activate["Atomic active-index manifest"]
-  question["tracerag ask"] --> retrieve["Hybrid RRF retriever"]
-  activate --> vectors[("Active SQLite vectors")]
-  activate --> bm25["Active BM25 index"]
-  retrieve --> vectors
-  retrieve --> bm25
-  retrieve --> gate{"Evidence threshold"}
-  gate -->|supported| prompt["Cited prompt"] --> model["Ollama qwen3:4b"] --> answer["Answer + sources"]
-  gate -->|unsupported| refusal["Refusal"]
-  cache -. no-change .-> identity
-```
+Naive RAG can generate a plausible answer from weak or irrelevant context.
+TraceRAG combines vector and BM25 retrieval, checks the evidence threshold
+before calling the generation model, and returns numbered citations for the
+passages it used. Ingestion writes a complete staged generation, validates it,
+and then atomically activates it so a failed update cannot replace the active
+index.
+
+![TraceRAG architecture](docs/assets/tracerag-architecture.svg)
 
 Documents, embeddings, retrieval, and generation remain local by default. A
 single writer lock protects staged index activation; queries remain available
@@ -140,8 +119,8 @@ server, OCR pipeline, cloud inference path, or multi-user authorization in v1.2.
 
 ## Security boundary
 
-TraceRAG is designed for one local operator. It does not start a Chroma server,
-expose a TraceRAG HTTP service, upload documents, or provide authentication.
+TraceRAG is designed for one local operator. It does not start a database
+listener, expose a TraceRAG HTTP service, upload documents, or provide authentication.
 Ollama should remain bound to loopback. The optional container runs as a
 non-root user, mounts documents read-only, and writes only its application data
 volume. Treat documents and model responses as untrusted input; review
@@ -180,27 +159,18 @@ release gate is 100% citation validity, at least 90% retrieval recall@5, and at
 least 85% manually reviewed factuality. Failures remain visible rather than
 being hidden by an aggregate score.
 
-The checked-in v1.1 H5 capture meets the local release gates: FastAPI reached 100%
-citation validity, 100% Recall@5, and 97.1% deterministic factuality; Clippy
-reached 100% for all three metrics. FastAPI's one deterministic expected-fact
-proxy miss is semantically supported and documented in the manual review.
-Because v1.2 replaces the vector backend, P7 reruns both model-backed corpora
-before any public-visibility decision; the v1.1 reports remain labeled baseline
-evidence rather than being silently relabeled.
-The post-backend results and semantic-review decisions are recorded in
+The release evidence and semantic-review decisions are recorded in
 [`docs/evaluation-report-v1.2.md`](docs/evaluation-report-v1.2.md), with
 sanitized JSON and Markdown reports under [`docs/evidence/`](docs/evidence/).
 
-The FastAPI evaluation procedure and smoke evidence are documented in
-[`docs/evaluation-report.md`](docs/evaluation-report.md); the parallel Clippy
-procedure is in [`docs/evaluation-report-clippy.md`](docs/evaluation-report-clippy.md).
+The current FastAPI and Clippy procedures are documented in the v1.2 evaluation
+record and its linked per-corpus reports. The current semantic reviews are
+[`docs/manual-review-fastapi-v1.2.md`](docs/manual-review-fastapi-v1.2.md) and
+[`docs/manual-review-clippy-v1.2.md`](docs/manual-review-clippy-v1.2.md).
 The committed regression baseline is [`evals/baseline/fastapi-v1.json`](evals/baseline/fastapi-v1.json).
-The deterministic factuality check is supplemented by the 35-answer FastAPI
-semantic review in [`docs/manual-review-fastapi.md`](docs/manual-review-fastapi.md)
-and the 12-answer Clippy review in [`docs/manual-review-clippy.md`](docs/manual-review-clippy.md).
 
-The reproducible terminal recording checklist is in [`docs/demo-script.md`](docs/demo-script.md),
-and a captured native session is preserved in [`docs/demo-recording.txt`](docs/demo-recording.txt).
+The reproducible terminal walkthrough is [`docs/demo.sh`](docs/demo.sh); the
+README demo is generated from the same real CLI flow.
 
 For the contributor workflow and supported change scope, see
 [`CONTRIBUTING.md`](CONTRIBUTING.md). The public release gate is summarized in
@@ -224,6 +194,10 @@ For the contributor workflow and supported change scope, see
 See [`CHANGELOG.md`](CHANGELOG.md) for the v1.2.0 release notes and the
 reliability contracts added on top of the original v1 workflow.
 
-## Attribution
+## Licenses and corpus provenance
 
-TraceRAG is an independent implementation informed by the architecture and public design of [/]().  is MIT-licensed; no source files are copied wholesale into this repository. The FastAPI demonstration corpus is fetched from the [FastAPI repository](https://github.com/fastapi/fastapi) at a pinned commit and remains subject to its MIT license. The Clippy demonstration corpus is fetched from [rust-lang/rust-clippy](https://github.com/rust-lang/rust-clippy) at its pinned commit and remains subject to its `MIT OR Apache-2.0` license.
+TraceRAG is MIT-licensed. The FastAPI demonstration corpus is fetched from the
+[FastAPI repository](https://github.com/fastapi/fastapi) at a pinned commit and
+remains subject to its MIT license. The Clippy demonstration corpus is fetched
+from [rust-lang/rust-clippy](https://github.com/rust-lang/rust-clippy) at a pinned
+commit and remains subject to its `MIT OR Apache-2.0` license.

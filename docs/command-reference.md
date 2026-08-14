@@ -37,10 +37,10 @@ Normal ingest is content-hash based and keeps missing files. `--prune` first
 prints a deletion plan; only `--prune --yes` removes those sources. A schema,
 model, or preprocessing mismatch prints the explicit `--rebuild` recovery
 command. Rebuilds are staged and activated atomically. The active generation
-owns its Chroma, BM25, source-state, and provenance artifacts; cleanup of an
-older generation is best effort after activation. If an interrupted run leaves
-stale artifacts, rerun `uv run tracerag ingest PATH --rebuild`; do not delete
-the active index manifest by hand.
+owns its SQLite vector, BM25, source-state, and provenance artifacts; cleanup
+of an older generation is best effort after activation. If an interrupted run
+leaves stale artifacts, rerun `uv run tracerag ingest PATH --rebuild`; do not
+delete the active index manifest by hand.
 
 ## Asking and evaluation
 

@@ -86,7 +86,7 @@
     "out_of_scope_refusal_accuracy": 1.0,
     "generated_answers": 12
   },
-  "factuality_method": "deterministic expected-fact proxy; semantic review recorded in docs/manual-review-clippy.md",
+  "factuality_method": "deterministic expected-fact proxy; semantic review recorded in docs/manual-review-clippy-v1.2.md",
   "release_gate": {
     "citation_validity": true,
     "recall_at_5": true,
