@@ -48,3 +48,13 @@ def test_security_audit_documents_subprocess_boundary_and_update_procedure() -> 
     assert "subprocess" in report.lower()
     assert "digest" in report.lower()
     assert "uv lock" in report
+
+
+def test_codeql_workflow_is_commit_pinned_and_least_privilege() -> None:
+    workflow = (ROOT / ".github/workflows/codeql.yml").read_text(encoding="utf-8")
+    action_refs = re.findall(r"^\s*uses:\s*([^\s]+)", workflow, re.MULTILINE)
+
+    assert action_refs
+    assert all(re.search(r"@[0-9a-f]{40}$", reference) for reference in action_refs)
+    assert "contents: read" in workflow
+    assert "security-events: write" in workflow

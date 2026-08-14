@@ -1,6 +1,6 @@
 # TraceRAG
 
-TraceRAG v1.1 is a local-first, citation-first terminal RAG assistant. It indexes
+TraceRAG v1.2 is a local-first, citation-first terminal RAG assistant. It indexes
 Markdown and text-layer PDFs, searches them with semantic and exact-term
 retrieval, and answers only when it can show supporting evidence. The release
 focuses on reliable incremental indexing, exact evidence targets, and measured
@@ -27,6 +27,22 @@ The complete command surface is in [`docs/command-reference.md`](docs/command-re
 Answers show numbered citations and source previews. `--show-source 1` prints the complete cited chunk. Questions without evidence are refused before the generation model is called; `--show-nearest` is available for diagnosis.
 
 The default evidence threshold (`0.72`) is calibrated for `nomic-embed-text` on the pinned FastAPI demo corpus. If you change embedding models or corpora, measure and tune `TRAGERAG_MIN_RETRIEVAL_SCORE` rather than assuming this value transfers unchanged.
+
+## Reproduce from a clean checkout
+
+The deterministic checks require no private documents, Ollama server, model
+download, corpus checkout, or Docker daemon:
+
+```bash
+uv sync --locked --extra dev
+uv lock --check
+uv run ruff check .
+uv run pytest -q
+uv build
+```
+
+Use the Quickstart commands above only when you want to exercise local model
+inference and the pinned public demonstration corpus.
 
 ## Release evidence
 
@@ -106,9 +122,18 @@ flowchart LR
 Documents, embeddings, retrieval, and generation remain local by default. A
 single writer lock protects staged index activation; queries remain available
 without taking that write lock. TraceRAG does not ship a web UI, agent loop, MCP
-server, OCR pipeline, cloud inference path, or multi-user authorization in v1.1.
+server, OCR pipeline, cloud inference path, or multi-user authorization in v1.2.
 
-## Evaluation
+## Security boundary
+
+TraceRAG is designed for one local operator. It does not start a Chroma server,
+expose a TraceRAG HTTP service, upload documents, or provide authentication.
+Ollama should remain bound to loopback. The optional container runs as a
+non-root user, mounts documents read-only, and writes only its application data
+volume. Treat documents and model responses as untrusted input; review
+[SECURITY.md](SECURITY.md) before ingesting sensitive or hostile material.
+
+## Evaluation methodology
 
 The versioned 40-question FastAPI set lives at `evals/dataset/fastapi-v1.json`. Run it after fetching and ingesting the corpus:
 
@@ -125,6 +150,11 @@ uv run tracerag eval --dataset clippy-v1
 
 Evaluation reports record dataset and corpus pins, index/cache provenance, each
 accepted retrieval target, the matched target and rank, and a failure class.
+Recall@5 measures whether an exact source-plus-heading target appears in the
+top five retrieved chunks. Citation validity checks only that every citation
+number points to a supplied source. Deterministic expected-fact checks are a
+proxy, not semantic truth; human semantic review is recorded separately. Out-
+of-scope refusal accuracy is reported independently from in-scope factuality.
 
 For a quick smoke test, use `uv run tracerag eval --limit 1`. The full 40-case
 gate is intentionally model- and hardware-dependent; it prints per-case
@@ -136,10 +166,13 @@ release gate is 100% citation validity, at least 90% retrieval recall@5, and at
 least 85% manually reviewed factuality. Failures remain visible rather than
 being hidden by an aggregate score.
 
-The latest H5 capture meets the local release gates: FastAPI reached 100%
+The checked-in v1.1 H5 capture meets the local release gates: FastAPI reached 100%
 citation validity, 100% Recall@5, and 97.1% deterministic factuality; Clippy
 reached 100% for all three metrics. FastAPI's one deterministic expected-fact
 proxy miss is semantically supported and documented in the manual review.
+Because v1.2 replaces the vector backend, P7 reruns both model-backed corpora
+before any public-visibility decision; the v1.1 reports remain labeled baseline
+evidence rather than being silently relabeled.
 
 The FastAPI evaluation procedure and smoke evidence are documented in
 [`docs/evaluation-report.md`](docs/evaluation-report.md); the parallel Clippy
@@ -161,13 +194,13 @@ and a captured native session is preserved in [`docs/demo-recording.txt`](docs/d
   parsing, and threshold. The checked-in evaluation sets are evidence, not a
   universal accuracy guarantee.
 - PDF support is limited to text-layer PDFs. Scanned documents require OCR,
-  which is intentionally outside v1.1.
+  which is intentionally outside v1.2.
 - There is no hosted service, browser UI, authentication, multi-user tenancy,
   agent loop, MCP server, or automatic web crawling.
 
 ## Version history
 
-See [`CHANGELOG.md`](CHANGELOG.md) for the v1.1.0 release notes and the
+See [`CHANGELOG.md`](CHANGELOG.md) for the v1.2.0 release notes and the
 reliability contracts added on top of the original v1 workflow.
 
 ## Attribution
