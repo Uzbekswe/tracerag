@@ -121,10 +121,15 @@ def test_ingest_yes_without_prune_has_usage_error(tmp_path: Path) -> None:
     source = tmp_path / "docs"
     source.mkdir()
 
-    result = runner.invoke(cli_module.app, ["ingest", str(source), "--yes"])
+    result = runner.invoke(
+        cli_module.app,
+        ["ingest", str(source), "--yes"],
+        color=False,
+        terminal_width=160,
+    )
 
     assert result.exit_code == 2
-    assert "--yes requires --prune" in result.output
+    assert "--yes requires --prune" in (result.stdout + result.stderr)
 
 
 def test_corpus_fetch_clippy_prints_pinned_commit_and_allowlist(
@@ -147,7 +152,12 @@ def test_corpus_fetch_clippy_prints_pinned_commit_and_allowlist(
     monkeypatch.setattr(cli_module, "Settings", lambda **_: settings)
     monkeypatch.setattr(cli_module, "fetch_clippy", fake_fetch)
 
-    result = runner.invoke(cli_module.app, ["corpus", "fetch", "clippy"])
+    result = runner.invoke(
+        cli_module.app,
+        ["corpus", "fetch", "clippy"],
+        color=False,
+        terminal_width=160,
+    )
 
     assert result.exit_code == 0
     assert CLIPPY_COMMIT in result.output
@@ -179,7 +189,12 @@ def test_eval_rejects_malformed_dataset_with_nonzero_exit(
 
 
 def test_benchmark_help_exposes_fastapi_profile() -> None:
-    result = runner.invoke(cli_module.app, ["benchmark", "--help"])
+    result = runner.invoke(
+        cli_module.app,
+        ["benchmark", "--help"],
+        color=False,
+        terminal_width=160,
+    )
 
     assert result.exit_code == 0
     assert "--corpus" in result.output
