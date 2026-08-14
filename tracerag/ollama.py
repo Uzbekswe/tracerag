@@ -27,7 +27,7 @@ class OllamaClient:
         try:
             response = httpx.post(
                 f"{self.base_url}/api/embed",
-                json={"model": model, "input": texts},
+                json={"model": model, "input": texts, "keep_alive": "2h"},
                 timeout=self.timeout,
             )
             response.raise_for_status()
@@ -56,6 +56,9 @@ class OllamaClient:
                 json={
                     "model": model,
                     "stream": False,
+                    # Long local evaluations should not let Ollama unload the
+                    # generation model between cases.
+                    "keep_alive": "2h",
                     # Keep Qwen3's private reasoning separate from the user-visible answer.
                     "think": True,
                     "options": {
