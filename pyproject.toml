@@ -11,7 +11,7 @@ requires-python = ">=3.13,<3.14"
 license = { text = "MIT" }
 dependencies = [
   "httpx>=0.28,<1",
-  "pypdf>=5,<7",
+  "pypdf>=5,<8",
   "pydantic-settings>=2.8,<3",
   "python-dotenv>=1.0,<2",
   "rank-bm25>=0.2,<1",
